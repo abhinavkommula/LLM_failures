@@ -1,24 +1,23 @@
 import json
 
-default_file_name = 'JEOPARDY_QUESTIONS1.json'
+default_file_name = 'data/alpaca_data.json'
 
-class JeapordyParser:
+class AlpacaParser:
     def __init__(self, file_name = default_file_name):
         self.file_name = file_name
         
     def get_questions(self):
-        with open(self.data) as json_data:
+        with open(self.file_name) as json_data:
             data = json.loads(json_data.read())
 
         questions = []
         for element in data:
             include = True
-            question = element["question"]
-
-            # Ignore files
-            if "http://" in question or "https://" in question:
-                include = False
-
+            question = element["instruction"]
+            
+            if len(element["input"]) > 0:
+                question += (". " + element["input"])
+            
             if include:
                 questions.append(question)
         

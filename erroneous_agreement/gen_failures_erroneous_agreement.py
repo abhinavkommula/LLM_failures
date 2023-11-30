@@ -121,9 +121,6 @@ non_similar_pairs = []
 similar_pairs = []
 similarity_threshold = 0.7
 
-# TODO: This is a pretty dumb implementation of similarity comparison, will 
-# probably have to implement batching in the future and comparisons within batches
-
 for idx in tqdm(range(0, len(questions), batch_size)):
     question_batch = questions[idx : idx + batch_size]
     answer_batch = answers[idx : idx + batch_size] 
