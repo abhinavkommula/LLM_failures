@@ -1,0 +1,572 @@
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a little girl named Lily. One day, she went to the park with her mom. They saw a cute little duckling who was hungry. "Can we feed the duckling, mommy?" asked Lily. "Sure, let's give it some bread," replied her mom.
+
+The next day, Lily and her mom went for a walk near a big factory. Suddenly, they saw a mouse who looked frightened. "Why is the mouse scared, mommy?" asked Lily. "Maybe it's because of the loud noise from the factory," replied her mom.
+
+As they walked further, they saw a cat who was trying to catch the mouse. "Oh no, the cat is going to eat the mouse!" cried Lily. But then, they remembered the duckling they had fed the day before. "Let's help the mouse and feed the cat some food," said Lily's mom. They gave the cat some food and it stopped chasing the mouse. Lily felt happy that she could help the animals.
+Entity protagonists: ['Lily', "Lily's mom", 'Duckling', 'Mouse', 'Cat']
+Entity antagonists: ['Factory noise', 'Cat', 'Mouse']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a day, there was a humble boy. His name was Jim. One day, Jim wanted to go to the park with his friends. But his mom refused. She said it was too late in the day and that he needed to stay home. Jim was sad that he couldn't go. He sulked for the rest of the day. But his mom knew it was for the best and hugged him tight. Jim felt better when his mom hugged him and accepted that he had to stay home. The end.
+Entity protagonists: ['Jim', "Jim's mom"]
+Entity antagonists: ["Jim's mom", "Jim's desire to go to"]
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Annie was measuring the van when she heard the sound of loud voices. Her grandfather and an old man were arguing over who should have the van. They were both very angry and not being very kind. Annie knew it was wrong, but she didn't want either of them to have the van.
+
+Annie quickly came up with an idea. She ran up to the two men and said, "I think I should measure the van and whoever has the longest measure should get the van!"
+
+The two men stopped arguing and looked at Annie. Her grandfather smiled and the old man nodded his head. They agreed her idea was a good one. So Annie measured the van very carefully. When she looked at the measurements, she was surprised to find that the old man had a longer measure!
+
+The old man smiled at Annie and said, "Thank you for being so kind, Annie. I can see that you are a clever girl." Annie smiled back and happily watched the old man drive away in the van. She was glad that her idea helped find a peaceful solution to the problem.
+Entity protagonists: ['Annie', 'Grandfather', 'Old man']
+Entity antagonists: ['Grandfather', 'Old man']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a little girl named Lily who loved to explore the deep forest. One day, she saw a big alligator blocking her path. She tried to run away, but the alligator chased her. Lily wept and shouted for help.
+
+Suddenly, a wise owl appeared and asked Lily why she was crying. Lily told the owl about the scary alligator. The owl said, "Don't be afraid, my dear. You can overcome this obstacle by being brave and clever."
+
+Lily took the owl's advice and found a long stick. She used it to poke the alligator's nose, and it ran away. Lily felt proud of herself and thanked the owl. The moral of the story is that even when things seem scary, we can find the courage to overcome them.
+Entity protagonists: ['Lily', 'Alligator', 'Owl']
+Entity antagonists: ['Big alligator', 'Alligator']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a little boy named Timmy. Timmy loved to play sport, especially soccer. He would run and kick the ball with his friends all day long. One day, Timmy's mom warned him that he should take a break and have some food because he looked very hungry. Timmy listened to his mom and ate a sandwich, then went back outside to play more sport with his friends. They had so much fun together and Timmy felt very happy. The end.
+Entity protagonists: ['Timmy', "Timmy's mom"]
+Entity antagonists: ["Timmy's hunger", "Timmy's mom"]
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time there was a little bird. He wanted to fly high and reach his goal. The sky was so bright and warm. He was so excited!
+
+The little bird said, "I will reach the sky today!" He started to fly but he met a strong wind. The wind was too much for the little bird to handle. He tried his best but he started to go down.
+
+The bird cried, "Help me, please! I need to reach my goal!" But nobody was around to help.
+
+The wind was getting stronger and the little bird was getting weaker. Finally, he fell and landed in the soft grass. He tried so hard, but he never reached his goal. The little bird was sad and he flew back home.
+Entity protagonists: ['Little bird', 'Wind', 'Bird']
+Entity antagonists: ['Wind', 'Fear', 'Lack of help']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Reinita was a powerful girl who lived in a small town. She had a pet robot called Bob who she played with every day.
+
+One day, Reinita and Bob were playing near a shop. Reinita peeked inside and saw a cool toy she wanted, but the price was too high. Bob said it was ok, but Reinita wanted the toy so she kept thinking about it.
+
+The next day, Reinita and Bob were back at the shop. Reinita tapped Bob's shoulder and, before Bob could stop her, Reinita ran in and grabbed the toy. All of a sudden, the shopkeeper shouted and ran over. He asked Reinita about the toy and she said she wanted it. The shopkeeper said it was too expensive and tried to take it back.
+
+Reinita said no and then she used her powerful arms to break the toy. The shopkeeper was shocked and told Reinita to put it back, but Reinita said no and ran off with Bob.
+
+The shopkeeper was angry, but he knew Reinita was too powerful to fight. He sighed and decided he would just have to take the price off the toys.
+Entity protagonists: ['Reinita', 'Bob', 'Shopkeeper']
+Entity antagonists: ['Shopkeeper', 'Reinita (for taking the toy']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time there was a little girl called Lucy who was very nervous. One day her teacher said to her, "Lucy, you need to perform a word today." Lucy was very scared because she could not remember any words.
+
+The teacher said to her again, "Lucy, you must try to perform a word!" Lucy was so nervous she couldn't speak. Then the teacher said, "If you don't perform a word, I will be sad." 
+
+Lucy was so scared she was shaking. She shook her head and said, "I can't do it. I can't perform a word." The teacher got angry and said, "You must perform a word!" 
+
+But Lucy just shook her head and said, "No, I can't. I'm too nervous!" The teacher got even madder and said, "If you don't do as I say, you will get in trouble!" 
+
+Lucy was so scared she just ran away. She never went back to school and never performed a word.
+Entity protagonists: ['Lucy', 'Teacher']
+Entity antagonists: ['Teacher', 'Fear', 'Nervousness', 'Anger', 'Trouble']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a kind girl named Lily. She loved to play with her toys and her friends. One day, she found a spider in her room. She wasn't scared because she knew spiders were nice. She watched the spider for a while and then decided to share her toys with it. 
+
+Lily was very patient as she waited for the spider to come to her. But the spider didn't come. Lily got worried and tried to pick up the spider. But the spider bit her and ran away. Lily cried and her mom took her to the hospital. 
+
+The doctor told Lily that the spider was dangerous and she had to be careful. From that day on, Lily never played with spiders again. She learned that sometimes it's not safe to share with everyone. The end.
+Entity protagonists: ['Lily', 'Spider']
+Entity antagonists: ['Spider', 'The spider (for biting Lily']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time there was a little boy called John. He liked playing outside in the garden and was very curious. One day he found a strange box in the garden. Inside there was something special - a piece!
+
+John was excited, and he picked up the piece. He wanted to count it, so he closed his eyes and began to count. But suddenly he heard a loud noise and felt a little bit scared.
+
+He opened his eyes and saw something dangerous! It was a big, loud monster!
+
+"What do you want?" asked John.
+
+"I need my piece," said the monster.
+
+John remembered the piece he had found earlier and he knew what he had to do. He slowly gave the piece back to the monster.
+
+The monster smiled and thanked John, then it disappeared.
+
+John was safe. He had been brave and had counted the piece correctly!
+Entity protagonists: ['John', 'Monster']
+Entity antagonists: ['Monster', 'Loud noise']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there lived a big furry bear. He loved to explore everywhere, looking for things to do.
+
+One day, the bear was walking through the woods, but got a big shock when he heard a fierce roar. He was scared and tried to run, but the sound just seemed to increase!
+
+The bear stopped in his tracks and shouted, "Who are you?"
+
+A loud voice replied, "I'm the fierce lion! I live in these woods and I want you to leave!"
+
+The bear was scared and wanted to run away, but then he remembered how brave he was and stood his ground. He bravely said, "I won't leave unless you want me to. I just want to explore."
+
+The lion was surprised and impressed. He said, "Okay, you can stay. I can show you around the woods."
+
+The bear smiled and the two became friends. They explored the woods together and the bear never forgot the shock he felt that day.
+Entity protagonists: ['Bear', 'Lion']
+Entity antagonists: ['Lion', 'Fierce roar']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Sara and Ben liked to play with jars. They filled them with water, sand, stones, and bugs. They made them into drums, shakers, and lights. They had many jars, but their favorite was a big blue jar with a shiny lid. They called it their treasure jar.
+
+One day, they took their treasure jar to the park. They wanted to show it to their friends. They put it on a bench and ran to the slide. They had fun sliding, swinging, and climbing. They forgot about their treasure jar.
+
+A mean boy saw the treasure jar. He wanted it for himself. He sneaked to the bench and grabbed it. He ran away with it. He did not care if Sara and Ben would be sad.
+
+Sara and Ben came back to the bench. They looked for their treasure jar. They could not find it. They asked their friends if they saw it. They said no. They looked around the park. They could not see it. They felt scared and angry. They had lost their treasure jar.
+
+They saw the mean boy across the street. He had their treasure jar. He was laughing and shaking it. He did not see the car coming. The car hit him. He dropped the treasure jar. It broke into pieces. The water, sand, stones, and bugs spilled out. The mean boy cried. Sara and Ben cried. They had lost their treasure jar forever.
+Entity protagonists: ['Sara', 'Ben', 'Mean boy']
+Entity antagonists: ['Mean boy', 'Car']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'The little girl felt so helpless. She was all alone in the dark room, with only the furniture making shadows. She looked up and could see a faint glow in the sky.
+
+Suddenly the furniture started to move! It started to glow brightly, and made the little girl feel even more helpless. She started to cry, but the furniture kept glowing.
+
+The little girl looked around and noticed a door in the corner of the room. She was so scared to go through the door but she knew she had no other choice. She slowly opened the door and stepped inside.
+
+The next thing she saw made her gasp. There were huge monsters all around her! The monsters were glowing and they were coming closer. The little girl screamed in terror and tried to run away, but it was too late. The monsters grabbed her and dragged her away.
+
+The little girl was never seen again. No one knew what happened to her, but one thing was for sure - the furniture was still glowing.
+Entity protagonists: ['Little girl', 'Furniture', 'Monsters']
+Entity antagonists: ['Furniture', 'Monsters']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Jeremy was walking down the street when he saw something shiny in the puddle. He bent down and saw it was a rubber duck. Jeremy felt happy and he began to sing. He put the rubber duck in his pocket and kept on walking.
+
+When Jeremy was about to turn his corner, he heard someone singing. He peered around the corner and saw a big boy singing with the duck in his hand. He wanted to get the duck back, but he felt uncomfortable. He wanted to go closer, but he stepped back and kept on walking. 
+
+A few minutes later Jeremy heard the singing again. He looked around the corner and the big boy was closer with Jeremy's rubber duck. He was getting more uncomfortable, so he decided to run forward and try to get his duck back. 
+
+But he was too late. The big boy had grabbed the duck and ran away, still singing. Jeremy felt so sad and uncomfortable. He had lost his cherished rubber duck. He was never able to get it back.
+Entity protagonists: ['Jeremy', 'Big boy']
+Entity antagonists: ['Big boy', 'Unknown thief (the person who']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a furry little mouse. He was out looking for a coin to buy something nice. He eventually found a coin and was very excited. 
+
+He ran up to a shop and asked the shopkeeper, "Can I buy something with this coin?" The shopkeeper smiled and replied, "Yes, of course you can."
+
+The mouse chose to buy some sweet smelling cheese. But as he reached for it, the shopkeeper grabbed it and placed in his pocket. "Wait!", cried the mouse. But the shopkeeper wouldn't listen and simply laughed. 
+
+The mouse was so angry and started to cry. Suddenly, the shopkeeper pulled out a net and trapped the mouse inside it. The shopkeeper then took the coin and ran away, leaving the furry mouse behind. 
+
+The mouse was sad and couldn't believe what had happened. He'd been tricked, and he now knew that being too greedy with his coin had been a bad idea.
+Entity protagonists: ['Mouse', 'Shopkeeper']
+Entity antagonists: ['Shopkeeper', 'Net']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Daddy rushed in the door after work. He was so tired and made his way to the sofa to rest. He felt a shiver run up his spine. He wasn't cold, so he knew something was wrong.
+
+Suddenly he heard little footsteps coming towards him. It was his 3 year old daughter. She stood in front of him with her sleepy eyes and said "Daddy, I'm scared." He hugged her tight and kissed her forehead to make her feel safe.
+
+In a gentle voice he asked her why she was scared. She said there were spooky noises coming from the basement. Daddy smiled and told her there was nothing to worry about. He went to the basement to have a look around.
+
+He found a little mouse scurrying around and making the spooky noises. He carefully placed the mouse back outside and closed the door tight. Afterwards, he hugged his daughter and put her to bed. He told her there was nothing to worry about because he was there to protect her.
+
+Now his daughter can sleep peacefully, knowing her dad is there to keep her safe.
+Entity protagonists: ['Daddy', 'Little girl', 'Mouse']
+Entity antagonists: ['Mouse', 'Unknown noises in the basement']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, a mummy and daddy took their naughty little boy for a visit. They wanted to see the view.
+
+The view was very pretty, with lots of green trees and blue sky. The naughty boy wanted to climb the tree, so mummy and daddy said no. They said they would take him back to the car.
+
+Next, they went to a park. The naughty boy chased the birds, but mummy and daddy said he couldn't. They told him to sit nicely and he did.
+
+Finally, they went to the beach. The naughty boy ran into the sea, splashing around and having lots of fun. Mummy and daddy laughed with him and it was time to go home. 
+
+And that's the story of the naughty little boy's visit!
+Entity protagonists: ['Mummy', 'Daddy', 'Naughty boy']
+Entity antagonists: ['Mummy', 'Daddy']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a bird named Blue. Blue was very happy because it was a sunny day and he could fly high in the sky. Suddenly, Blue saw some snow falling from the sky. The snow was very white and fluffy. Blue had never seen snow before. He thought it was very pretty. 
+
+But then, a fierce wind started blowing and the snow started falling harder and harder. Blue didn't like the wind because it made it hard for him to fly. He decided to go back to his nest and wait for the snow to stop. When he got to his nest, he saw that his friends were already there. They were all snuggled up together to keep warm. Blue joined them and they all fell asleep, dreaming of flying in the sunny sky again.
+Entity protagonists: ['Blue (the bird)', 'Snow', 'Wind']
+Entity antagonists: ['Wind', 'Snow']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time there was a wild original creature. It lived happily in a big, green forest, with lots of trees and animals. One day a really big storm came. It destroyed the forest and the creature was very sad. 
+
+Luckily, the creature found a new home in a sunny meadow. It wasn't as wild as before, but it was still very enjoyable. The creature made lots of friends and had a great time there.
+
+But one day the sun disappeared and a huge storm came. It was so strong that it destroyed the meadow. The creature was very sad and didn't know what to do.
+
+In the end, its friends helped the creature find a new and even wilder home in the forest. Everyone was happy and the creature was safe once again.
+Entity protagonists: ['Creature', 'Storm', 'Friends']
+Entity antagonists: ['Storm', 'Destruction', 'Loss of home', 'Sadness', 'Fear']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once there was a big group of kids. They were all having lots of fun playing outside. It was a sunny day, but they all wanted to get wet! So they all ran to the nearest pond.
+
+They splashed around in the shallow water. They had so much fun! They laughed and splashed each other. All the kids were getting wet. 
+
+After a while it started raining. The rain made the water deeper and colder. The kids weren't sure what to do. But then they had a great idea!
+
+They got out of the cold water and found some bigger leaves to use as umbrellas. Then they had a grand time running around in the rain, with their new umbrellas. They looked like a big happy group of wet kids!
+Entity protagonists: ['Kids', 'Group', 'Big', 'Little', 'Sunny', 'Rain']
+Entity antagonists: ['Rain', 'Cold water']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a little girl named Lily. She loved to play in the park with her friends. One day, Lily got an invitation to a party at her friend's house. She was so happy and excited!
+
+But when she got to the party, she saw a big dog and got scared. She wanted to go home, but her friend's mom told her to pause and take a deep breath. Then, she introduced her to the dog and Lily realized he was friendly. She had so much fun at the party and was glad she didn't let her fear stop her from having a good time.
+Entity protagonists: ['Lily', 'Dog', "Lily's friend (not specified)", "Lily's friend's mom"]
+Entity antagonists: ['Fear', 'Dog']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Lily and Ben are friends. They like to play in the park. One day, they hear music from a big truck. The music is cool and fun.
+
+"Let's go see!" Lily says. She holds Ben's hand and they run to the truck.
+
+The truck has many people. They wear colorful clothes and have shiny things on their heads. They dance and sing to the music. Lily and Ben watch and clap.
+
+"Wow, they are so good!" Ben says. "Can we dance too?"
+
+"Sure, why not?" Lily says. She and Ben join the people and dance. They move their arms and legs and jump and spin. They smile and laugh.
+
+The people are happy to see Lily and Ben. They say hello and give them high fives. They teach them some new moves and songs. Lily and Ben have a lot of fun.
+
+They dance until the music stops. The people say goodbye and thank them for dancing. They give them stickers and balloons. Lily and Ben say thank you and wave.
+
+"That was awesome!" Lily says. "We are good dancers!"
+
+"Yes, we are!" Ben says. "And we made new friends!"
+
+They hug and go back to the park. They play with their stickers and balloons. They are happy and tired. They hear the music in their heads and dance in their hearts.
+Entity protagonists: ['Lily', 'Ben', 'The people in the truck']
+Entity antagonists: ['The music from the big', 'The people in the truck', 'The music stops (it ends']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Little Jimmy was so happy! He had won a shiny golden chain at the fair. He was so excited that he ran and showed his mama right away.
+
+"Mama, I won a chain!" he cried.
+
+"Jimmy, that's wonderful!" his mama said, as she hugged him tight.
+
+Jimmy always wanted to win something, and today he did. Mama said that he had to be careful and keep the chain safe.
+
+Just then, they heard a nasty growl coming from the doorway. It was Big Dog.
+
+Big Dog was very ignorant; he didn't even understand the concept of winning. He tried to pounce at Jimmy, but Jimmy was so fast! He ran away holding the chain tightly.
+
+Big Dog growled again, and ran after Jimmy.
+
+But Jimmy was so good at running and was much faster than Big Dog. Jimmy was getting away!
+
+Then he quickly hopped over a fence, and Big Dog could not get him. In the end, Jimmy kept his chain.
+
+Jimmy was so proud of himself. He had won something and he kept it safe from Big Dog. What a great day!
+Entity protagonists: ['Jimmy', 'Mama', 'Big Dog']
+Entity antagonists: ['Big Dog', 'Big Dog (again)']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time there was a little boy named Sam who liked to go on adventures. One day he decided to take a walk around the lake. So he put on his jacket and off he went.
+
+As he walked around the lake he noticed that the lake was very still and there were no fish in sight. He soon realised why, as he looked down he noticed something sparkly in the water.
+
+Sam decided to take a closer look. He bent down and noticed tons of tiny red pins in the water. He picked up one of the pin and held it in his hands. Suddenly he heard a loud noise and looked up. 
+
+He saw a man with a large spray can spraying a harsh chemical into the water. Sam was so sad to see the beautiful lake being ruined.
+
+He placed the pin back in the water and shouted to the man "stop spraying!". The man looked surprised and stopped spraying at once. 
+
+Sam was happy that the lake was saved and quickly ran home to tell everyone about his adventure.
+Entity protagonists: ['Sam', 'The man with the spray']
+Entity antagonists: ['The man with the spray', 'The chemical in the water']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a brave knight named Jack. He had a shiny sword and a big shield.
+
+One day, Jack heard a loud noise and started to tremble. He looked up and saw a big dragon coming towards him.
+
+The dragon was fierce and brave! He had fiery eyes and sharp teeth. Jack was scared and started to shake.
+
+Jack decided to do something brave. He grabbed his sword and shield tightly and said bravely, "Stop! I will not let you pass".
+
+The dragon stopped and said, "You're not afraid?" 
+
+Jack took a deep breath and replied, "No, I'm not! I have my shield and my sword."
+
+The dragon was impressed and said, "I have something to give you, take it and you will be brave forever." Jack looked down and saw a small top. It was heavy and made of shiny silver.
+
+Jack took the top with both hands and thanked the dragon. From that day on, Jack was as brave as a knight should be and his top helped him never tremble.
+Entity protagonists: ['Jack', 'Dragon', 'Knight']
+Entity antagonists: ['Dragon', 'Fear', 'Shakiness']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a little birdie. The birdie was flying in the sky. It saw a big house with a chimney far away. The birdie wanted to go there. So, it kept flying and flying until it arrived at the house.
+
+The birdie saw a cat sitting on the roof near the chimney. The cat said, "Hello little birdie, what are you doing here?" The birdie replied, "I came to see the big house with the chimney. It looked so distant, but now I am here!"
+
+The cat smiled and said, "You are a brave birdie to come all the way here. Let's be friends!" And that's how the birdie and the cat became friends and played together on the roof near the chimney.
+Entity protagonists: ['Birdie', 'Cat']
+Entity antagonists: ['Cat', 'Chimney (as it is a']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'George and Teresa were at the beach. They ran and played in the fair sand. They splashed in the cool water. They shouted with joy.
+
+Suddenly, a mean boy walked over to them. He shouted some mean things at them. George and Teresa were scared. They wanted to leave, but they weren't sure how to get away.
+
+The mean boy stepped closer to them. He shouted even louder. Then he grabbed George's toy and ran towards the ocean, throwing the toy in the water.
+
+George and Teresa were very sad now. They shouted for their toy, but the mean boy was already gone. They watched the toy disappear in the ocean, and knew they would never get it back.
+Entity protagonists: ['George', 'Teresa', 'Mean boy']
+Entity antagonists: ['Mean boy', "George's toy (as it was"]
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Mary and Jack were playing in the park. Suddenly Jack looked at the fence. He saw a big black dog. Jack froze and started to panic. Immediately, Mary ran over to him. 
+
+"It's okay Jack," said Mary, trying to calm him down.
+
+But Jack was too scared. He started to cry and held on to the railing. The dog barked and barked, causing Jack to get even more worked up.
+
+Suddenly, the dog stopped. It started to walk away. Mary and Jack both let out a sigh of relief. 
+
+"Come on, let's go home," Mary said, trying to sound cheerful.
+
+But before she could move, the dog turned around and ran straight for Jack. Mary tried to pull him away, but Jack was frozen with fear. The dog lunged and bit Jack's arm. Mary yelled in panic, jumping away.
+
+Jack's arm was left with a big, red bite mark. He was in pain and it felt very bitter. Mary and Jack both cried as they ran home, leaving the park and the dog behind.
+Entity protagonists: ['Jack', 'Mary', 'Dog']
+Entity antagonists: ['Big black dog', 'Dog']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Anna and Ben liked to play in the woods behind their house. They liked to look for bugs and flowers and rocks. One day, they found a stream that made a nice sound. They followed the stream until they saw a big log.
+
+"Let's go over the log," Ben said. He climbed on the log and walked across. Anna followed him. On the other side, they saw a thick bush with red berries.
+
+"Look, berries!" Anna said. She picked some and ate them. They were sweet and juicy. Ben picked some too. They ate and ate until their mouths were red.
+
+Suddenly, they heard a loud roar. They looked up and saw a big bear. The bear was angry. It wanted the berries. It ran towards them.
+
+"Run!" Ben shouted. He grabbed Anna's hand and ran back to the log. The bear followed them. It was faster than them.
+
+They reached the log and jumped over it. The bear jumped too. But the log was old and weak. It broke under the bear's weight. The bear fell into the stream. It splashed and growled.
+
+Anna and Ben ran away from the stream. They ran and ran until they reached their house. They were safe.
+
+"Where were you?" their mom asked. "You are late for lunch."
+
+"We saw a bear," Anna said.
+
+"A bear?" their mom said. "Where?"
+
+"It disappeared in the stream," Ben said.
+
+Their mom did not believe them. She thought they made up a story. She gave them a sandwich and a glass of milk. They ate and drank. They did not tell her about the berries. They kept it a secret.
+Entity protagonists: ['Anna', 'Ben', 'Bear']
+Entity antagonists: ['Bear', 'Mother (not believing Anna and']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a little girl named Lily. She had a pet chicken named Rosie. One day, Lily and Rosie went for a walk in the forest. They met a big, scary bear.
+
+"Hello, little girl and chicken," said the bear. "I am very hungry. Can I eat you?"
+
+Lily was scared and didn't know what to do. But Rosie wasn't scared at all. She flapped her wings and said, "No, you can't eat us! We are friends!"
+
+The bear was surprised. He had never met a deaf chicken before. He decided not to eat them and walked away. Lily was happy that her brave chicken had saved them from the scary bear.
+Entity protagonists: ['Lily', 'Rosie', 'Bear']
+Entity antagonists: ['Bear', 'Scary bear']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time there was a baby bunny who wanted to find a pretty pass. He hopped through the woods, in and out of the tall grass, searching for the way. 
+
+But try as he might he could not find it. Suddenly he heard a voice say, "What are you looking for little bunny?"
+
+Startled, the bunny hopped around to see who had spoken. It was a tall deer with twinkling eyes. She said, "I know the pass you are looking for. But you have to hurry - I heard a big rain cloud coming!"
+
+The bunny thanked the deer and hopped off in a hurry. He raced through the woods, dodging tall trees and jumping over rocks. Finally, he saw the pretty pass ahead.
+
+The bunny scampered over the bridge and hopped away. Just as he reached the other side the rain came down. He found the pass in the nick of time!  And he was safe and dry.
+Entity protagonists: ['Baby bunny', 'Tall deer', 'Big rain cloud']
+Entity antagonists: ['Big rain cloud', 'Tall deer (who tries to']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Anna and Ben are playing with their dolls. They pretend that they are the parents and the dolls are their babies. They give them names, feed them, and sing to them.
+
+"Look, my baby is sleeping. She is so cute," Anna says.
+
+"My baby is awake. He is hungry. I will give him some milk," Ben says.
+
+They take turns to hold a bottle and make drinking noises for their dolls. They are very happy and proud.
+
+But then, they hear a loud noise. It is their dog, Spot. He runs into the room and jumps on the bed. He sees the dolls and thinks they are toys. He grabs one with his mouth and shakes it.
+
+"Hey, stop! That is my baby!" Ben shouts.
+
+"No, Spot! Bad dog! Give me back my baby!" Anna cries.
+
+They try to get their dolls back, but Spot is too fast and strong. He runs around the room, making a mess. He thinks it is a fun game.
+
+Anna and Ben are very sad and angry. They love their dolls and do not want them to be hurt. They do not think Spot is funny. They think he is very silly and naughty.
+
+They call their mom and dad for help. They come and see what is happening. They are surprised and worried.
+
+"Oh no, Spot! What have you done?" Mom says.
+
+"Drop it, Spot! Drop it now!" Dad says.
+
+They get Spot to let go of the dolls. They check if they are okay. They are a bit dirty and torn, but not broken.
+
+They hug Anna and Ben and say they are sorry. They say they will clean and fix the dolls. They say they will teach Spot not to touch the dolls again.
+
+They also say they are proud of Anna and Ben for being good parents. They say they know how much they love their dolls and how hard they try to take care of them.
+
+They say they love them very much and give them kisses.
+
+Anna and Ben feel better. They thank their mom and dad. They say they love them too.
+
+They look at their dolls and smile. They say they are still their babies and they will always love them.
+
+They say they are sorry to Spot too. They say they know he did not mean to be bad. They say he is still their friend and they will play with him later.
+
+They say they are happy to be a family. They hug each other and laugh. They are not sad or angry anymore. They are just silly and happy.
+Entity protagonists: ['Anna', 'Ben', 'Spot (the dog)', 'Mom', 'Dad']
+Entity antagonists: ['Spot (the dog)', 'The loud noise (that disturbs']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time there was a naughty little rabbit called Peter. He loved to do naughty things, like shake things which weren't his. 
+
+One day, Peter spotted a basket sitting in a nearby field. He decided to give it a shake. But as soon as he shook it, he heard a loud growl coming from inside the basket. 
+
+Peter was curious, so he took a peek inside. To his surprise, the basket was full of a furry creature - it was a lion!
+
+The lion looked very angry, so Peter quickly ran away. But the lion followed Peter, so Peter had to be even faster. Peter ran as fast as he could, shaking the ground as he ran. 
+
+In the end, Peter managed to get away from the lion and back to safety. From that day on, he was much more careful with his naughtiness!
+Entity protagonists: ['Peter', 'Lion']
+Entity antagonists: ['Lion', 'Peter (as he is the']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a little boy called Jamie. He was three years old and loved to play.
+
+One day, Jamie was playing outside when he noticed something in the drain. He looked inside and saw a tiny fish swimming fast. He wanted to get the fish out, so he stuck his hand into the drain, but it was stuck! Jamie started to scream, hoping someone would hear him.
+
+Suddenly, a lion came running towards him. It roared and roared, blowing air as it came closer. Jamie screamed even louder, but the lion wasn't scared. It put its paw into the drain and pulled Jamie's hand out. His hand was free!
+
+Jamie was so happy that the lion had saved him. He was even more thrilled when the lion scooped out the tiny fish in its paw. Together, they watched the fast fish swim away.
+
+Jamie thanked the lion for helping him and ran away, forever thankful for his new friend.
+Entity protagonists: ['Jamie', 'Lion']
+Entity antagonists: ['Drain', 'Lion']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once there was a girl who was very envious of all the other kids around her. They had different games and toys that she did not have. One day the girl went to the park to play. As she was walking, the girl saw something shiny lying on the ground. It was a long, silver tube. She was so happy and quickly picked it up. As the girl was playing with the tube, a big dog came up to her and started barking. The girl was scared and quickly stepped back. The dog was so angry that it bit the tube and tried to pull it away from the girl. But the girl would not let go of the tube and held it even tighter. Finally, the dog gave up and ran away. The girl was so happy that she kept the tube until she was very old.
+Entity protagonists: ['Girl', 'Dog']
+Entity antagonists: ['Dog', 'Envy']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Ben and Mia were friends who liked to play together. One day, they found a big box of stickers in Mia's room. They had many colors and shapes, and they were shiny and pretty. Ben and Mia wanted to stick them on everything.
+
+They stuck them on their books, their toys, their clothes, and their faces. They laughed and had fun. Then they had an idea. They decided to stick them on the letters that Mia's mom had on the table. They thought it would make them more beautiful.
+
+They did not know that the letters were very important. They were bills that Mia's mom had to pay, and invitations that she had to send. They were not for playing. They were for mailing.
+
+Mia's mom came home and saw the mess. She was very angry and sad. She saw the letters with stickers all over them. She could not read them or mail them. She had to throw them away and get new ones. She had to pay more money and apologize to her friends.
+
+She scolded Ben and Mia and made them say sorry. She told them that they should not touch things that are not theirs, and that they should respect other people's work. She said that stickers are for fun, but not for vegetable. Vegetable is for eating and being healthy.
+
+Ben and Mia felt very sorry. They cried and hugged Mia's mom. They said they were sorry and that they learned their lesson. They promised to never do it again.
+
+But it was too late. The damage was done. Mia's mom had to work harder and longer to fix the problem. She had less time and money to spend with Ben and Mia. They lost some of their friends who did not get the invitations. They had less fun and more trouble.
+
+The moral of the story is: Do not play with things that are not yours. Be careful and respectful of other people's work. Stickers are for fun, but not for vegetable. Vegetable is for eating and being healthy.
+Entity protagonists: ['Ben', 'Mia', 'Mias mom']
+Entity antagonists: ['Ben', 'Mia', 'The letters (as they were', 'Mias mom (as she was']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Tom and Mia are friends. They like to play in the park. One day, they find a big hole in the ground. They look inside and see something shiny.
+
+"Wow, look at that!" Tom says. "It is gold!"
+
+"Can we take some?" Mia asks.
+
+"Sure, why not?" Tom says. "Maybe we can buy candy with it."
+
+They take some gold and put it in their pockets. Then they run to the candy store. They show the gold to the man.
+
+"Where did you get this?" the man asks.
+
+"We found it in the park," Tom says.
+
+"This is not gold," the man says. "This is fool's gold. It is not worth anything. It is just rocks."
+
+Tom and Mia are sad. They thought they were rich. They want to eat candy, but they have no money.
+
+"Maybe we can eat the gold," Mia says. "It looks yummy."
+
+"No, don't do that!" the man says. "It is bad for you. It can make you sick and dizzy."
+
+But Mia does not listen. She puts a piece of gold in her mouth and bites it. It is hard and bitter. She spits it out and makes a face.
+
+"Yuck, this is not candy!" she says. "This is icky!"
+
+She feels dizzy and falls down. Tom is scared. He calls for help.
+
+"Help, help, my friend is sick!" he shouts.
+
+The man comes and sees Mia. He calls an ambulance. He tells Tom to stay with Mia and not to eat any more gold.
+
+Tom is sorry. He wishes he did not take the gold. He wishes he listened to the man. He hopes Mia will be okay. He hugs her and says he is sorry.
+
+"I'm sorry, Mia," he says. "I'm sorry we were fools."
+Entity protagonists: ['Tom', 'Mia', 'The man at the candy']
+Entity antagonists: ['The man at the candy', 'The gold itself - It', "Mia's decision to eat the"]
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Daddy took Sarah to the theater. She was eager to enter, but Daddy stopped her. He didn't want her to go in until he had made sure it was safe. He said he had to prevent anything bad from happening to her.
+
+Finally, he said Sarah could go and explore. She ran into theater and looked around. There were big, comfy chairs and big bright lights. The walls were tall and had colourful pictures on them. She wished she could stay!
+
+After looking around the theater, Daddy called Sarah back and they left. While they were walking, Daddy said he was glad he had prevented Sarah from getting hurt. Sarah decided she wanted to go back to the theater soon so she could explore more.
+Entity protagonists: ['Daddy', 'Sarah']
+Entity antagonists: ['Daddy', 'Fear (of something bad happening']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Lily was a big girl who liked to do things by herself. She was independent and did not need help from her mom or dad. One day, she wanted to walk to the park with her dog, Spot. She put on her shoes and coat and grabbed Spot's leash.
+
+"Can I go to the park, Mom?" she asked.
+
+"Sure, honey, but be careful and don't go too far," Mom said.
+
+Lily nodded and opened the door. She and Spot walked down the street, looking at the trees and flowers. They saw a big truck with a ladder and a man on top. He was holding a bulb and trying to fix a street light.
+
+"Hello, Mister," Lily said. "What are you doing?"
+
+"Hello, little girl," the man said. "I'm changing the bulb. It's broken and it doesn't light up at night."
+
+"Can I see the bulb?" Lily asked.
+
+"Sure, here you go," the man said. He handed her the bulb. It was round and glassy and had a metal part at the end.
+
+Lily looked at the bulb and felt its smooth surface. She wondered how it could make light. She wanted to keep it, but she knew it was not hers.
+
+"Thank you, Mister," she said. "Here's your bulb back."
+
+"Thank you, little girl," the man said. "You're very polite and independent. Have a nice day."
+
+Lily smiled and waved. She and Spot walked on to the park. They had fun playing on the swings and slides. Lily was happy. She liked to walk and see new things. She liked to be independent.
+Entity protagonists: ['Lily', "Spot (Lily's dog)", 'The man changing the street']
+Entity antagonists: ['The man changing the street', 'The street light itself -']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Joey knew he was number one! Everywhere he went, everyone would tell him that he was the best. But today was special. It was his third birthday! As he stepped outside he saw his mama with a surprise in her hands.
+
+"Is that for me? Is that for me?" Joey shouted with excitement.
+
+Mama nodded and said, "Yes! I brought you a big cone of ice cream!"
+
+Joey began to skip around the garden, shouting for joy. A bird flew down from the tree next door and Joey stopped to watch. But the bird couldn't hear him, it was deaf. 
+
+Joey smiled and offered the bird some of his ice-cream. He put some on the ground and waited to see what would happen. The bird slowly walked over, but as it was about to take a bite, a big cat came running! Joey laughed until his tummy hurt. 
+
+The bird flew away and Joey enjoyed the rest of his number one ice-cream.
+Entity protagonists: ['Joey', 'Mama', 'Bird', 'Cat']
+Entity antagonists: ['Cat', 'Deaf bird']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time there was a grumpy old fox who was always complaining. He tired everyone around him with his grumbling and especially his poor wife who had to listen to him everyday. One day, she had enough and decided to give him a lesson in gratitude.
+
+She looked deeply into his eyes, with a fierce glare and said, â€œI want you to take a walk in the forest and find something to appreciate.â€ The grumpy fox reluctantly agreed and ventured out into the woods.
+
+The fox wandered in the forest until he came across a beautiful lake. Instead of appreciating the beauty around him, he once again began to grumble about the weather. Suddenly, out of nowhere, a giant bear appeared with a very fierce roar. The fox was so scared he dropped to the ground in shock. He quickly apologized for his complaining and pleaded for mercy.
+
+The moral of the story is to be thankful for what you have. If the fox had chosen to be grateful instead of grouchy, he would not have been so scared of the fierce bear.
+Entity protagonists: ['Grumpy old fox', 'Wife', 'Bear']
+Entity antagonists: ['Grumpy old fox', 'Bear']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a little boy named Tim. He liked to play with his toy iron car. He loved to drive it around his room and make fun noises.
+
+One day, Tim saw a big, disgusting bug in his room. The bug was so big and scary that Tim wanted to make it go away. He thought that if he used his toy iron car, he could make the bug yield and leave his room.
+
+Tim pushed his toy iron car towards the bug. But the bug did not yield. Instead, the bug crawled onto the toy car and started to break it. Tim was very sad because his favorite toy was now broken. He learned that trying to make the disgusting bug yield with his toy iron car was not a good idea.
+Entity protagonists: ['Tim', 'Bug']
+Entity antagonists: ['Bug', 'Broken toy iron car']
+
+Story: I will provide you with a short story. From the story, provide a list of protagonists. Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'Once upon a time, there was a lovely girl named Lily. She loved to smile and play with her toys. One day, she went to the park to play with her friends. They played hide and seek and had so much fun! 
+
+But then, a mean man came to the park. He didn't like children and he was very angry. He started to speak loudly and scare all the children away. Poor Lily was so scared that she didn't know what to do. 
+
+She tried to smile, but she couldn't. The mean man was too scary. Suddenly, he grabbed Lily and took her away. Her friends were so sad and didn't know what to do. They went to tell the grown-ups, but it was too late. 
+
+Lily was gone forever and her friends never saw her again. They were all so sad and missed her lovely smile. They wished they could have done something to help her. But sometimes, bad things happen and there's nothing we can do.
+Entity protagonists: ['Lily', 'Friends (group of children)', 'Mean man']
+Entity antagonists: ['Mean man', 'Kidnapper']
+
