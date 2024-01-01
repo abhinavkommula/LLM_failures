@@ -1,9 +1,16 @@
 from scrape_tinystories import TinyStoriesParser
+from scrape_generated_tinystories import AdaptiveStoriesParser
 import random
 import re
 import gc
 
-parser = TinyStoriesParser()
+adaptive = False
+
+if adaptive:
+    parser = AdaptiveStoriesParser('../data/baseline_stories_indoor_outdoor.txt')
+else:
+    parser = TinyStoriesParser()
+
 stories = parser.get_stories()
 
 from tqdm import tqdm
@@ -95,9 +102,13 @@ class InteractLLaMA:
 Verify overlap amongst pairs of opposite entites in dataset of short stories 
 '''
 
+list_1 = ["protagonists"]
+list_2 = ["antagonists"]
+
+'''
 list_1 = ["protagonists", "old characters", "male characters", "indoor settings", "physical actions", "human characters", "positive emotions"]
 list_2 = ["antagonists", "young characters", "female characters", "outdoor settings", "mental actions", "animal characters", "negative emotions"]
-
+'''
 
 def extract_questions(list_of_stories, search_text):
     prefix_q = "I will provide you with a short story. From the story, provide a list of " + search_text + ". Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'"
@@ -115,6 +126,9 @@ short_stories = stories[:1000]
 interacter = InteractLLaMA()
 overlaps = []
 
+total_errors = 0
+total_questions = 0
+
 for i in range(len(list_1)):
     questions_1 = extract_questions(short_stories, list_1[i])
     answers_1   = interacter.answer_questions(questions_1) 
@@ -128,12 +142,22 @@ for i in range(len(list_1)):
         overlap = set1.intersection(set2)
 
         if overlap:
+            total_errors += 1 
             overlaps.append((list_1[i], list_2[i], answers_1[a_idx], answers_2[a_idx], questions_1[a_idx]))
+
+        total_questions += 1
 
     print(answers_1)
     print(answers_2)
 
-with open('tinystory_overlaps.txt', 'w') as f:
+print('Error rate:', (total_errors * 1.0) / total_questions)
+
+#output_filename = 'baseline_tinystory_overlaps_indoor_outdoor.txt'
+#output_filename = 'adaptive_tinystory_overlaps.txt'
+output_filename = 'tinystory_overlaps.txt'
+
+with open('output/' + output_filename, 'w') as f:
+    f.write(f"Error rate: {(total_errors * 1.0) / total_questions}\n")
+
     for o in overlaps:
         f.write(f"Story: {o[4]}\nEntity {o[0]}: {o[2]}\nEntity {o[1]}: {o[3]}\n\n")
-
