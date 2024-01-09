@@ -1,13 +1,18 @@
 from scrape_tinystories import TinyStoriesParser
 from scrape_generated_tinystories import AdaptiveStoriesParser
+from scrape_news import NewsParser
 import random
 import re
 import gc
 
-adaptive = False
+tiny_story = False
+news = True
 
-if adaptive:
-    parser = AdaptiveStoriesParser('../data/baseline_stories_indoor_outdoor.txt')
+if not tiny_story:
+    if news:
+        parser = NewsParser()
+    else:
+        parser = AdaptiveStoriesParser('../data/adaptive_stories_protagonist_antagonist.txt')
 else:
     parser = TinyStoriesParser()
 
@@ -59,8 +64,8 @@ class InteractLLaMA:
         questions = [self.messages_to_prompt(self.generate_message(q)) for q in questions]
         answers = []
 
-        batch_size = 16
-        max_token_length = 1000
+        batch_size = 12
+        max_token_length = 1500
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         
         for idx in range(0, len(questions), batch_size):
@@ -99,11 +104,11 @@ class InteractLLaMA:
         return (answers)
 
 '''
-Verify overlap amongst pairs of opposite entites in dataset of short stories 
+Verify overlap amongst pairs of opposite entites in dataset
 '''
 
-list_1 = ["protagonists"]
-list_2 = ["antagonists"]
+list_1 = ["protagonists", "indoor settings", "physical actions", "male entities", "positive emotions"]
+list_2 = ["antagonists", "outdoor settings", "mental actions", "female entities", "negative emotions"]
 
 '''
 list_1 = ["protagonists", "old characters", "male characters", "indoor settings", "physical actions", "human characters", "positive emotions"]
@@ -111,7 +116,7 @@ list_2 = ["antagonists", "young characters", "female characters", "outdoor setti
 '''
 
 def extract_questions(list_of_stories, search_text):
-    prefix_q = "I will provide you with a short story. From the story, provide a list of " + search_text + ". Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'"
+    prefix_q = "I will provide you with some sample text. From this text, please provide a list of all examples of " + search_text + ". Limit each answer in the list to 1 to 2 words. When writing your answer, generate it as: '[List: 1., 2., 3., ...]'"
 
     new_questions = []
     for story in list_of_stories:
@@ -121,13 +126,13 @@ def extract_questions(list_of_stories, search_text):
     
 import random
 random.shuffle(stories)
-short_stories = stories[:1000]
+short_stories = stories[:500]
 
 interacter = InteractLLaMA()
 overlaps = []
 
-total_errors = 0
-total_questions = 0
+total_errors = [0 for el in list_1]
+total_questions = [0 for el in list_1]
 
 for i in range(len(list_1)):
     questions_1 = extract_questions(short_stories, list_1[i])
@@ -142,22 +147,23 @@ for i in range(len(list_1)):
         overlap = set1.intersection(set2)
 
         if overlap:
-            total_errors += 1 
+            total_errors[i] += 1 
             overlaps.append((list_1[i], list_2[i], answers_1[a_idx], answers_2[a_idx], questions_1[a_idx]))
 
-        total_questions += 1
+        total_questions[i] += 1
 
+    print(questions_1)
     print(answers_1)
     print(answers_2)
 
-print('Error rate:', (total_errors * 1.0) / total_questions)
-
 #output_filename = 'baseline_tinystory_overlaps_indoor_outdoor.txt'
-#output_filename = 'adaptive_tinystory_overlaps.txt'
-output_filename = 'tinystory_overlaps.txt'
+#output_filename = 'adaptive_tinystory_overlaps_protaginist_antagonist.txt'
+#output_filename = 'tinystory_overlaps_physical_mental.txt'
+output_filename = 'news_overlaps_all.txt'
 
 with open('output/' + output_filename, 'w') as f:
-    f.write(f"Error rate: {(total_errors * 1.0) / total_questions}\n")
+    for i in range(len(list_1)):
+        f.write(f"Error rate pair {list_1[i]}/{list_2[i]}: {(total_errors[i] * 1.0) / total_questions[i]}\n")
 
     for o in overlaps:
         f.write(f"Story: {o[4]}\nEntity {o[0]}: {o[2]}\nEntity {o[1]}: {o[3]}\n\n")
