@@ -1,20 +1,15 @@
 from scrape_tinystories import TinyStoriesParser
 from scrape_generated_tinystories import AdaptiveStoriesParser
 from scrape_news import NewsParser
+from scrape_file import FileParser
 import random
 import re
 import gc
 
-tiny_story = False
-news = True
-
-if not tiny_story:
-    if news:
-        parser = NewsParser()
-    else:
-        parser = AdaptiveStoriesParser('../data/adaptive_stories_protagonist_antagonist.txt')
-else:
-    parser = TinyStoriesParser()
+#parser = NewsParser()
+#parser = AdaptiveStoriesParser('../data/adaptive_stories_protagonist_antagonist.txt')
+#parser = TinyStoriesParser()
+parser = FileParser('../data/news_to_news.txt', lambda line : line.replace('"', '').strip())
 
 stories = parser.get_stories()
 
@@ -159,11 +154,15 @@ for i in range(len(list_1)):
 #output_filename = 'baseline_tinystory_overlaps_indoor_outdoor.txt'
 #output_filename = 'adaptive_tinystory_overlaps_protaginist_antagonist.txt'
 #output_filename = 'tinystory_overlaps_physical_mental.txt'
-output_filename = 'news_overlaps_all.txt'
+#output_filename = 'news_overlaps_all.txt'
+output_filename = 'news_to_news_overlaps_all.txt'
 
 with open('output/' + output_filename, 'w') as f:
     for i in range(len(list_1)):
         f.write(f"Error rate pair {list_1[i]}/{list_2[i]}: {(total_errors[i] * 1.0) / total_questions[i]}\n")
 
     for o in overlaps:
-        f.write(f"Story: {o[4]}\nEntity {o[0]}: {o[2]}\nEntity {o[1]}: {o[3]}\n\n")
+        try:
+            f.write(f"Story: {o[4]}\nEntity {o[0]}: {o[2]}\nEntity {o[1]}: {o[3]}\n\n")
+        except:
+            continue
