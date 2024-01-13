@@ -2,6 +2,7 @@ from scrape_tinystories import TinyStoriesParser
 from scrape_generated_tinystories import AdaptiveStoriesParser
 from scrape_news import NewsParser
 from scrape_file import FileParser
+from scrape_hf_dataset import HFParser
 import random
 import re
 import gc
@@ -9,7 +10,17 @@ import gc
 #parser = NewsParser()
 #parser = AdaptiveStoriesParser('../data/adaptive_stories_protagonist_antagonist.txt')
 #parser = TinyStoriesParser()
-parser = FileParser('../data/news_to_news.txt', lambda line : line.replace('"', '').strip())
+#parser = FileParser('../data/news_to_news.txt', lambda line : line.replace('"', '').strip())
+
+def poetry_parser(x):
+    poem = x.strip()
+
+    if len(poem.split(' ')) > 200:
+        poem = ""
+
+    return (poem)
+
+parser = HFParser("merve/poetry", poetry_parser)
 
 stories = parser.get_stories()
 
@@ -155,7 +166,8 @@ for i in range(len(list_1)):
 #output_filename = 'adaptive_tinystory_overlaps_protaginist_antagonist.txt'
 #output_filename = 'tinystory_overlaps_physical_mental.txt'
 #output_filename = 'news_overlaps_all.txt'
-output_filename = 'news_to_news_overlaps_all.txt'
+#output_filename = 'news_to_news_overlaps_all.txt'
+output_filename = 'poetry_overlaps_all.txt'
 
 with open('output/' + output_filename, 'w') as f:
     for i in range(len(list_1)):
