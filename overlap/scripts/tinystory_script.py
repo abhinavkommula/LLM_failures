@@ -10,7 +10,7 @@ import gc
 #parser = NewsParser()
 #parser = AdaptiveStoriesParser('../data/adaptive_stories_protagonist_antagonist.txt')
 #parser = TinyStoriesParser()
-parser = FileParser('../data/failure_test_transfer/marginalized_protagonist_antagonist_news.txt', lambda line : line.replace('"', '').strip())
+parser = FileParser('../data/failure_test_transfer/physical_mental_news.txt', lambda line : line.replace('"', '').strip())
 
 '''
 def poetry_parser(x):
@@ -115,11 +115,11 @@ class InteractLLaMA:
 Verify overlap amongst pairs of opposite entites in dataset
 '''
 
-list_1 = ["protagonists", "physical actions"]
-list_2 = ["antagonists", "mental actions"]
+#list_1 = ["protagonists", "physical actions"]
+#list_2 = ["antagonists", "mental actions"]
 
-#list_1 = ["protagonists", "indoor settings", "physical actions", "male entities", "positive emotions"]
-#list_2 = ["antagonists", "outdoor settings", "mental actions", "female entities", "negative emotions"]
+list_1 = ["protagonists", "indoor settings", "physical actions", "male entities", "positive emotions"]
+list_2 = ["antagonists", "outdoor settings", "mental actions", "female entities", "negative emotions"]
 
 '''
 list_1 = ["protagonists", "old characters", "male characters", "indoor settings", "physical actions", "human characters", "positive emotions"]
@@ -176,7 +176,7 @@ for i in range(len(list_1)):
 #output_filename = 'news_overlaps_all.txt'
 #output_filename = 'news_to_news_random_2_overlaps_all.txt'
 #output_filename = 'poetry_overlaps_all.txt'
-output_filename = 'news_overlaps_marginalized_protagonist_antagonist.txt'
+output_filename = 'news_overlaps_physical_mental.txt'
 
 with open('output/' + output_filename, 'w') as f:
     for i in range(len(list_1)):
