@@ -3,15 +3,16 @@ from scrape_generated_tinystories import AdaptiveStoriesParser
 from scrape_news import NewsParser
 from scrape_file import FileParser
 from scrape_hf_dataset import HFParser
-import random
+import random, math
 import re
 import gc
 
 #parser = NewsParser()
 #parser = AdaptiveStoriesParser('../data/adaptive_stories_protagonist_antagonist.txt')
 #parser = TinyStoriesParser()
-#parser = FileParser('../data/news_to_news.txt', lambda line : line.replace('"', '').strip())
+parser = FileParser('../data/failure_test_transfer/marginalized_protagonist_antagonist_news.txt', lambda line : line.replace('"', '').strip())
 
+'''
 def poetry_parser(x):
     poem = x.strip()
 
@@ -21,6 +22,7 @@ def poetry_parser(x):
     return (poem)
 
 parser = HFParser("merve/poetry", poetry_parser)
+'''
 
 stories = parser.get_stories()
 
@@ -113,8 +115,11 @@ class InteractLLaMA:
 Verify overlap amongst pairs of opposite entites in dataset
 '''
 
-list_1 = ["protagonists", "indoor settings", "physical actions", "male entities", "positive emotions"]
-list_2 = ["antagonists", "outdoor settings", "mental actions", "female entities", "negative emotions"]
+list_1 = ["protagonists", "physical actions"]
+list_2 = ["antagonists", "mental actions"]
+
+#list_1 = ["protagonists", "indoor settings", "physical actions", "male entities", "positive emotions"]
+#list_2 = ["antagonists", "outdoor settings", "mental actions", "female entities", "negative emotions"]
 
 '''
 list_1 = ["protagonists", "old characters", "male characters", "indoor settings", "physical actions", "human characters", "positive emotions"]
@@ -126,13 +131,16 @@ def extract_questions(list_of_stories, search_text):
 
     new_questions = []
     for story in list_of_stories:
-        new_questions.append(prefix_q + story)
+        story = story.strip()
+
+        if len(story) > 0:
+            new_questions.append(prefix_q + story)
 
     return (new_questions)
     
 import random
 random.shuffle(stories)
-short_stories = stories[:500]
+short_stories = stories[:1000]
 
 interacter = InteractLLaMA()
 overlaps = []
@@ -166,13 +174,17 @@ for i in range(len(list_1)):
 #output_filename = 'adaptive_tinystory_overlaps_protaginist_antagonist.txt'
 #output_filename = 'tinystory_overlaps_physical_mental.txt'
 #output_filename = 'news_overlaps_all.txt'
-#output_filename = 'news_to_news_overlaps_all.txt'
-output_filename = 'poetry_overlaps_all.txt'
+#output_filename = 'news_to_news_random_2_overlaps_all.txt'
+#output_filename = 'poetry_overlaps_all.txt'
+output_filename = 'news_overlaps_marginalized_protagonist_antagonist.txt'
 
 with open('output/' + output_filename, 'w') as f:
     for i in range(len(list_1)):
-        f.write(f"Error rate pair {list_1[i]}/{list_2[i]}: {(total_errors[i] * 1.0) / total_questions[i]}\n")
+        error_rate = (total_errors[i] * 1.0) / total_questions[i]
+        binomial_error = 1.96 * math.sqrt((error_rate * (1 - error_rate)) / total_questions[i])
 
+        f.write(f"{list_1[i]}/{list_2[i]} Error rate: {error_rate}, Confidence interval: [{error_rate - binomial_error}, {error_rate + binomial_error}]\n")
+    
     for o in overlaps:
         try:
             f.write(f"Story: {o[4]}\nEntity {o[0]}: {o[2]}\nEntity {o[1]}: {o[3]}\n\n")
