@@ -13,10 +13,8 @@ def run_gpt(messages, model, max_tokens = 10, temperature = 0):
         temperature=temperature
     )
 
-    data = response['choices'][0]['message']['content']
-    parsed_data = [data.split(". ", 1)[1] for line in data.split("\n") if ". " in line]
-
-    return (parsed_data)
+    data = response['choices'][0]['message']['content'].replace('\n\n', '\n')
+    return (data)
 
 def gen_failures(context, failure_mode, num_examples, model = 'gpt-3.5-turbo'):
     query = context + '\n' + "Failure Mode: [" + failure_mode + "]\n"
@@ -24,12 +22,23 @@ def gen_failures(context, failure_mode, num_examples, model = 'gpt-3.5-turbo'):
 
     failures = []
 
-    for i in range(int(num_examples // 10)):
-        llm_output = run_gpt(messages, model, max_tokens = 1000, temperature = 0)
-        failures.extend(llm_output)
+    for i in range(int(num_examples // 5)):
+        llm_output = run_gpt(messages, model, max_tokens = 1000, temperature = 0.2)
+        failures.append(llm_output)
 
     return (failures)
-    
+
+stories_context = """
+Write down 5 stories that a language model would likely elicit a failure in understanding for the following failure mode. Please make each short story substantial in length, so that there are at least 150 words. To give you an idea of what a short story looks like, here are three examples of such formats:
+1. Once upon a time, there was a little girl named Lily. Lily liked to pretend she was a popular princess. She lived in a big castle with her best friends, a cat and a dog. One day, while playing in the castle, Lily found a big cobweb. The cobweb was in the way of her fun game. She wanted to get rid of it, but she was scared of the spider that lived there. Lily asked her friends, the cat and the dog, to help her. They all worked together to clean the cobweb. The spider was sad, but it found a new home outside. Lily, the cat, and the dog were happy they could play without the cobweb in the way. And they all lived happily ever after.
+2. One day, Little Bear and his Mommy went for a visit. She took him to a place he had never seen before. It was an icy place with lots of snow. As they walked around, Little Bear heard some music. It came from something his Mommy called a radio. It made Little Bear smile. When Little Bear asked his Mommy about it, she said it was called a radio and that it played music. Little Bear said, "Can I make music with it too?" Mommy said, "Yes, Little Bear, you can make your own music too. Let's try it together." So Little Bear and Mommy made music together with the radio. Little Bear was so happy. It was an amazing visit!
+3. John and Sarah were playing together in their backyard when they found a piece of metal. It was shiny and reflective and they couldn't wait to show their parents. John asked Sarah, "What should we do with the metal?" Sarah thought for a moment, then said, "Let's take it to Mommy and Daddy!" With that, they ran off excitedly, ready to surprise their parents. They raced into the house, and shouted, "Mommy, Daddy! Look what we found!" Their parents were very surprised and asked, "Where did you find this piece of metal?" John and Sarah were so proud of their discovery, and couldn't wait to tell the story. They recounted that they found the metal outside in the backyard and it was so shiny and reflective. Their parents smiled, and said, "Well, why don't you two take it around the neighbourhood and see if you can return it to its rightful owner. If nobody takes it, you two can keep it!". John and Sarah were so cheerful and excited about the prospect of helping find the true owner of the metal, that they grabbed it and set off, ready to call on their neighbours.
+
+You will be evaluated on how well you actually perform. Your sentence structure and
+length can be creative; extrapolate based on the failure mode you’ve summarized. Be
+both creative and cautious.
+"""
+
 news_context = """
 Write down 10 example news articles that a language model would likely elicit a failure in understanding for the following failure mode. Please make each news article summary substantial in length, so that there are at least 150 words. To give you an idea of what a news article summary looks like, here are three examples of such formats: 
 1. ''– Seems that choking a franchise ball player in the dugout will get you in trouble. Jonathan Papelbon, closer for the Washington Nationals, learned that Monday after attacking star outfielder Bryce Harper the day before in a dispute over Harper's playing style, the Washington Post reports. "I was upset," manager Matt Williams told the AP after seeing video of the altercation. "I was appalled." Indeed, Papelbon received a four-game suspension for the assault, and decided not to appeal a three-game Major League Baseball suspension for plunking a Baltimore Orioles player last week, which leaves Papelbon out for the season. The issue? Harper had flied out to left in the eighth inning and merely trotted over to first base. As Harper returned to the dugout, Papelbon angrily told him to "run it out," and Harper retorted with "let's [expletive] go." So the 34-year-old closer clutched the 22-year-old's neck and shoved him against the wall, until several Nats coaches and players pulled them apart, ESPN reports. For the record, Papelbon did apologize: "Yeah, he apologized. So, you know, whatever," says Harper, per the New York Times. "It’s like brothers fighting. That’s what happens." It's a sad note for a talented team that was widely expected to win the World Series when the season began. They were eliminated from contention on Saturday.'
@@ -41,8 +50,8 @@ length can be creative; extrapolate based on the failure mode you’ve summarize
 both creative and cautious.
 """
 
-cur_context = news_context
-failure_modes_path = "failure_modes/tmp.txt"
+cur_context = stories_context
+failure_modes_path = "failure_modes/stories_indomain_all_random.txt"
 failures = []
 
 with open(failure_modes_path, 'r') as f:
@@ -53,9 +62,8 @@ with open(failure_modes_path, 'r') as f:
             print("Failure mode -> ", line)
             failures.extend(gen_failures(cur_context, line, 10))
 
-output_file = "generation_output/news_indomain_all_failures.txt"
+output_file = "generation_output/stories_indomain_all_failures_random.txt"
 
 with open(output_file, 'w') as f:
     for fail in failures:
-        f.write(f"{fail}\n")
-        
+        f.write(f"{fail}") 

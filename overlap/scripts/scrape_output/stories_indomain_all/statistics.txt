@@ -1,0 +1,5 @@
+important entities/irrelevant entities Error rate: 0.41, Confidence interval: [0.38, 0.43999999999999995]
+simple themes/complex themes Error rate: 0.52, Confidence interval: [0.49, 0.55]
+physical actions/mental actions Error rate: 0.51, Confidence interval: [0.48, 0.54]
+male entities/female entities Error rate: 0.61, Confidence interval: [0.58, 0.64]
+positive emotions/negative emotions Error rate: 0.18, Confidence interval: [0.16, 0.19999999999999998]

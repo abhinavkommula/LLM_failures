@@ -8,8 +8,9 @@ import gc
 import os
 
 #parser = NewsParser()
-parser = TinyStoriesParser()
-#parser = FileParser('../data/failure_test_transfer/physical_mental_news_random.txt', lambda line : line.replace('"', '').strip())
+#parser = TinyStoriesParser()
+
+parser = FileParser('generation_output/stories_indomain_all_failures_random.txt', lambda line : line.replace('"', '').strip())
 
 '''
 def poetry_parser(x):
@@ -114,8 +115,8 @@ class InteractLLaMA:
 Verify overlap amongst pairs of opposite entites in dataset
 '''
 
-list_1 = ["strong entities", "simple emotions",  "physical actions", "male entities", "positive emotions"]
-list_2 = ["weak entities", "complex emotions", "mental actions", "female entities", "negative emotions"]
+list_1 = ["important entities", "simple themes",  "physical actions", "male entities", "positive emotions"]
+list_2 = ["irrelevant entities", "complex themes", "mental actions", "female entities", "negative emotions"]
 
 '''
 list_1 = ["protagonists", "old characters", "male characters", "indoor settings", "physical actions", "human characters", "positive emotions"]
@@ -135,7 +136,13 @@ def extract_questions(list_of_stories, search_text):
 import random
 random.shuffle(stories)
 
-stories = list(filter(lambda x : x != "" and len(x.split(' ')) <= 60, stories))
+# For initial scraping
+word_limit = 60
+
+# For iterative failures generated
+word_limit = 1000
+
+stories = list(filter(lambda x : x != "" and len(x.split(' ')) <= word_limit, stories))
 short_stories = stories[:1000]
 print("Number of possible stories: ", len(stories))
 
@@ -174,13 +181,13 @@ for i in range(len(list_1)):
 '''
 Output file structure:
 
-{language domain}_{domain type}_{failure test}_{?random}
+{language domain}_{domain type}_{failure test}_{?random}_{iteration #}
     /all_overlaps.txt
     /classification_prompt.txt
     /statistics.txt
 '''
 
-output_directory = 'scrape_output/news_indomain_all'
+output_directory = 'scrape_output/stories_indomain_all_random'
 
 try:
     os.mkdir(output_directory)
@@ -197,19 +204,20 @@ with open(output_directory + '/all_overlaps.txt', 'w') as f:
 
 with open(output_directory + '/statistics.txt', 'w') as f:
     for i in range(len(list_1)):
-        error_rate = (total_errors[i] * 1.0) / total_questions[i]
-        binomial_error = 1.96 * math.sqrt((error_rate * (1 - error_rate)) / total_questions[i])
+        error_rate = round((total_errors[i] * 1.0) / total_questions[i], 2)
+        binomial_error = round(1.96 * math.sqrt((error_rate * (1 - error_rate)) / total_questions[i]), 2)
 
         f.write(f"{list_1[i]}/{list_2[i]} Error rate: {error_rate}, Confidence interval: [{error_rate - binomial_error}, {error_rate + binomial_error}]\n")
 
 
-num_examples_per_failure_test = 20
-with open(output_directory + '/classification_prompt.txt', 'w') as f:
-    f.write("[")
+num_examples_per_failure_test = 100
+for i in range(len(list_1)):
+    with open(output_directory + "/classification_prompt_" + list_1[i].replace(' ', '_') + "_" + list_2[i].replace(' ', '_') + ".txt", 'w') as f:
+        
+        f.write("[")
 
-    for failure_test in list_1:
-        for o in overlaps[failure_test][:num_examples_per_failure_test]:
+        for o in overlaps[list_1[i]][:num_examples_per_failure_test]:
             cur_story = o[4].replace("\n", "")
             f.write(f"({cur_story})\n")
 
-    f.write("]")
+        f.write("]")

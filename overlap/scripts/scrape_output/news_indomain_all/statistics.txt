@@ -1,5 +1,0 @@
-strong entities/weak entities Error rate: 0.387, Confidence interval: [0.35681148215628994, 0.4171885178437101]
-simple emotions/complex emotions Error rate: 0.267, Confidence interval: [0.23958023746273505, 0.294419762537265]
-physical actions/mental actions Error rate: 0.491, Confidence interval: [0.46001469976908405, 0.5219853002309159]
-male entities/female entities Error rate: 0.612, Confidence interval: [0.581797169510127, 0.6422028304898729]
-positive emotions/negative emotions Error rate: 0.177, Confidence interval: [0.1533439286101855, 0.20065607138981448]
