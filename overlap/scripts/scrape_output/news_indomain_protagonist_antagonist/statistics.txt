@@ -1,0 +1,5 @@
+protagonists/antagonists Error rate: 0.248, Confidence interval: [0.22123354648818788, 0.2747664535118121]
+indoor settings/outdoor settings Error rate: 0.723, Confidence interval: [0.6952626411927884, 0.7507373588072116]
+physical actions/mental actions Error rate: 0.483, Confidence interval: [0.45202759651560764, 0.5139724034843923]
+male entities/female entities Error rate: 0.612, Confidence interval: [0.581797169510127, 0.6422028304898729]
+positive emotions/negative emotions Error rate: 0.194, Confidence interval: [0.1694910640296238, 0.2185089359703762]

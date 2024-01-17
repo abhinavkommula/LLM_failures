@@ -114,11 +114,8 @@ class InteractLLaMA:
 Verify overlap amongst pairs of opposite entites in dataset
 '''
 
-#list_1 = ["protagonists", "physical actions"]
-#list_2 = ["antagonists", "mental actions"]
-
-list_1 = ["protagonists", "indoor settings", "physical actions", "male entities", "positive emotions"]
-list_2 = ["antagonists", "outdoor settings", "mental actions", "female entities", "negative emotions"]
+list_1 = ["strong entities", "simple emotions",  "physical actions", "male entities", "positive emotions"]
+list_2 = ["weak entities", "complex emotions", "mental actions", "female entities", "negative emotions"]
 
 '''
 list_1 = ["protagonists", "old characters", "male characters", "indoor settings", "physical actions", "human characters", "positive emotions"]
@@ -190,6 +187,13 @@ try:
 except OSError as error:
     print(f"Could not create directory along path {output_directory}; {error}\n")
 
+with open(output_directory + '/all_overlaps.txt', 'w') as f:
+    for failure_test in list_1:
+        for o in overlaps[failure_test]:
+            try:
+                f.write(f"Story: {o[4]}\nEntity {o[0]}: {o[2]}\nEntity {o[1]}: {o[3]}\nOverlap Ratio: {o[5]}\n")
+            except:
+                continue
 
 with open(output_directory + '/statistics.txt', 'w') as f:
     for i in range(len(list_1)):
@@ -205,15 +209,7 @@ with open(output_directory + '/classification_prompt.txt', 'w') as f:
 
     for failure_test in list_1:
         for o in overlaps[failure_test][:num_examples_per_failure_test]:
-            o = o.replace("\n", "")
-            f.write(f"({o[4]})\n")
+            cur_story = o[4].replace("\n", "")
+            f.write(f"({cur_story})\n")
 
     f.write("]")
-
-with open(output_directory + '/all_overlaps.txt', 'w') as f:
-    for failure_test in list_1:
-        for o in overlaps[failure_test]:
-            try:
-                f.write(f"Story: {o[4]}\nEntity {o[0]}: {o[2]}\nEntity {o[1]}: {o[3]}\nOverlap Ratio: {o[5]}\n")
-            except:
-                continue
