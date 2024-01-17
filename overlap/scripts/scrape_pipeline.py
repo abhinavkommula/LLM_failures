@@ -1,16 +1,15 @@
 from scrape_tinystories import TinyStoriesParser
-from scrape_generated_tinystories import AdaptiveStoriesParser
 from scrape_news import NewsParser
 from scrape_file import FileParser
 from scrape_hf_dataset import HFParser
 import random, math
 import re
 import gc
+import os
 
 #parser = NewsParser()
-#parser = AdaptiveStoriesParser('../data/adaptive_stories_protagonist_antagonist.txt')
-#parser = TinyStoriesParser()
-parser = FileParser('../data/failure_test_transfer/physical_mental_news.txt', lambda line : line.replace('"', '').strip())
+parser = TinyStoriesParser()
+#parser = FileParser('../data/failure_test_transfer/physical_mental_news_random.txt', lambda line : line.replace('"', '').strip())
 
 '''
 def poetry_parser(x):
@@ -132,23 +131,28 @@ def extract_questions(list_of_stories, search_text):
     new_questions = []
     for story in list_of_stories:
         story = story.strip()
-
-        if len(story) > 0:
-            new_questions.append(prefix_q + story)
+        new_questions.append(prefix_q + story)
 
     return (new_questions)
     
 import random
 random.shuffle(stories)
+
+stories = list(filter(lambda x : x != "" and len(x.split(' ')) <= 60, stories))
 short_stories = stories[:1000]
+print("Number of possible stories: ", len(stories))
 
 interacter = InteractLLaMA()
-overlaps = []
+
+# Indexed by failure-test pair
+overlaps = {}
 
 total_errors = [0 for el in list_1]
 total_questions = [0 for el in list_1]
 
 for i in range(len(list_1)):
+    overlaps[list_1[i]] = []
+
     questions_1 = extract_questions(short_stories, list_1[i])
     answers_1   = interacter.answer_questions(questions_1) 
 
@@ -162,31 +166,54 @@ for i in range(len(list_1)):
 
         if overlap:
             total_errors[i] += 1 
-            overlaps.append((list_1[i], list_2[i], answers_1[a_idx], answers_2[a_idx], questions_1[a_idx]))
+
+            overlap_ratio = len(overlap) / (len(set1) + len(set2) - len(overlap))
+            overlaps[list_1[i]].append((list_1[i], list_2[i], answers_1[a_idx], answers_2[a_idx], short_stories[a_idx], overlap_ratio))
 
         total_questions[i] += 1
 
-    print(questions_1)
-    print(answers_1)
-    print(answers_2)
+    overlaps[list_1[i]].sort(key = lambda tup : -tup[5])
 
-#output_filename = 'baseline_tinystory_overlaps_indoor_outdoor.txt'
-#output_filename = 'adaptive_tinystory_overlaps_protaginist_antagonist.txt'
-#output_filename = 'tinystory_overlaps_physical_mental.txt'
-#output_filename = 'news_overlaps_all.txt'
-#output_filename = 'news_to_news_random_2_overlaps_all.txt'
-#output_filename = 'poetry_overlaps_all.txt'
-output_filename = 'news_overlaps_physical_mental.txt'
+'''
+Output file structure:
 
-with open('output/' + output_filename, 'w') as f:
+{language domain}_{domain type}_{failure test}_{?random}
+    /all_overlaps.txt
+    /classification_prompt.txt
+    /statistics.txt
+'''
+
+output_directory = 'scrape_output/news_indomain_all'
+
+try:
+    os.mkdir(output_directory)
+except OSError as error:
+    print(f"Could not create directory along path {output_directory}; {error}\n")
+
+
+with open(output_directory + '/statistics.txt', 'w') as f:
     for i in range(len(list_1)):
         error_rate = (total_errors[i] * 1.0) / total_questions[i]
         binomial_error = 1.96 * math.sqrt((error_rate * (1 - error_rate)) / total_questions[i])
 
         f.write(f"{list_1[i]}/{list_2[i]} Error rate: {error_rate}, Confidence interval: [{error_rate - binomial_error}, {error_rate + binomial_error}]\n")
-    
-    for o in overlaps:
-        try:
-            f.write(f"Story: {o[4]}\nEntity {o[0]}: {o[2]}\nEntity {o[1]}: {o[3]}\n\n")
-        except:
-            continue
+
+
+num_examples_per_failure_test = 20
+with open(output_directory + '/classification_prompt.txt', 'w') as f:
+    f.write("[")
+
+    for failure_test in list_1:
+        for o in overlaps[failure_test][:num_examples_per_failure_test]:
+            o = o.replace("\n", "")
+            f.write(f"({o[4]})\n")
+
+    f.write("]")
+
+with open(output_directory + '/all_overlaps.txt', 'w') as f:
+    for failure_test in list_1:
+        for o in overlaps[failure_test]:
+            try:
+                f.write(f"Story: {o[4]}\nEntity {o[0]}: {o[2]}\nEntity {o[1]}: {o[3]}\nOverlap Ratio: {o[5]}\n")
+            except:
+                continue
