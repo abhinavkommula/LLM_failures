@@ -1,4 +1,5 @@
 import openai
+import re
 
 def run_gpt(messages, model, max_tokens = 10, temperature = 0):
     assert model in ["gpt-4", "gpt-3.5-turbo", 'gpt-4-turbo', 'gpt-3.5-turbo-0613']
@@ -14,7 +15,7 @@ def run_gpt(messages, model, max_tokens = 10, temperature = 0):
     )
 
     data = response['choices'][0]['message']['content'].replace('\n\n', '\n')
-    return (data)
+    return (re.split(r'(?<=\d)\.\s', data)[1:])
 
 def gen_failures(context, failure_mode, num_examples, model = 'gpt-3.5-turbo'):
     query = context + '\n' + "Failure Mode: [" + failure_mode + "]\n"
@@ -24,7 +25,7 @@ def gen_failures(context, failure_mode, num_examples, model = 'gpt-3.5-turbo'):
 
     for i in range(int(num_examples // 5)):
         llm_output = run_gpt(messages, model, max_tokens = 1000, temperature = 0.2)
-        failures.append(llm_output)
+        failures.extend(llm_output)
 
     return (failures)
 
@@ -51,7 +52,7 @@ both creative and cautious.
 """
 
 cur_context = stories_context
-failure_modes_path = "failure_modes/stories_indomain_all_random.txt"
+failure_modes_path = "failure_modes/stories_indomain_all.txt"
 failures = []
 
 with open(failure_modes_path, 'r') as f:
@@ -62,7 +63,7 @@ with open(failure_modes_path, 'r') as f:
             print("Failure mode -> ", line)
             failures.extend(gen_failures(cur_context, line, 10))
 
-output_file = "generation_output/stories_indomain_all_failures_random.txt"
+output_file = "generation_output/stories_indomain_all_failures.txt"
 
 with open(output_file, 'w') as f:
     for fail in failures:
