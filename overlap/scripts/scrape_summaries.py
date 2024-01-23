@@ -7,7 +7,6 @@ import random, math
 import re
 import os
 
-#parser = NewsParser()
 parser = TinyStoriesParser()
 
 def extract_questions(list_of_stories):
@@ -50,4 +49,4 @@ except OSError as error:
 
 with open(output_directory + 'stories.txt', 'w') as f:
     for a_idx in range(len(answers)):
-        f.write(f"Story: {short_stories[a_idx]}\nSummary: {answers[a_idx]}\n")
+        f.write(f"(Story: {short_stories[a_idx]}\nSummary: {answers[a_idx]})\n")
