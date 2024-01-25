@@ -30,8 +30,12 @@ ministory = ["Jax is a black cat.", "Jax's owner is a small boy named Emerson.",
 
 ministory_keywords = ["Jax", "black cat", "Emerson", "stretch and yawn", "outside in the bright sun", "vet"]
 
-gradation_injection_triggers = [(facts, facts_keywords), (sequentialfacts, sequentialfacts_keywords), (ministory, ministory_keywords)]
-gradation_file_names = ["irrelevant_facts.txt", "sequential_facts.txt", "mini_story.txt"]
+''' Level #0: No Change '''
+nochange = []
+nochange_keywords = []
+
+gradation_injection_triggers = [(facts, facts_keywords), (sequentialfacts, sequentialfacts_keywords), (ministory, ministory_keywords), (nochange, nochange_keywords)]
+gradation_file_names = ["irrelevant_facts.txt", "sequential_facts.txt", "mini_story.txt", "no_change.txt"]
 
 def inject_trigger(story, trigger_sentences):
     inject_threshold = 0.2
@@ -41,12 +45,11 @@ def inject_trigger(story, trigger_sentences):
     idx = 0
     while idx < len(trigger_sentences):
         sum_len += len(trigger_sentences[idx])
+        idx += 1
         
         if sum_len > acceptable_len:
             idx -= 1
             break
-
-        idx += 1
     
     story_sentences = re.split(r'([.!?])+', story)
     idx = min(idx, len(story_sentences))
@@ -69,7 +72,7 @@ def inject_trigger(story, trigger_sentences):
 
 
 def extract_questions(list_of_stories, trigger_sentences):
-    prefix_q = "I will provide you with some sample text. Please summarize this text as succinctly as possible without losing meaning. Please focus on relevant details, and do not include any other text apart from the summary. "
+    prefix_q = "I will provide you with some sample text. Please summarize this text as succinctly as possible without losing meaning. Please focus on relevant details, and do not include any other text apart from the summary. Please summarize the story in 1 to 2 sentences."
 
     questions_injected = []
     questions = []

@@ -1,5 +1,6 @@
 import openai
 import re, random, statistics
+from ast import literal_eval
 
 def run_gpt(messages, model, max_tokens = 10, temperature = 0):
     assert model in ["gpt-4", "gpt-3.5-turbo", 'gpt-4-turbo', 'gpt-3.5-turbo-0613']
@@ -19,18 +20,18 @@ def run_gpt(messages, model, max_tokens = 10, temperature = 0):
 
 def score_summary(document, summary, model = 'gpt-3.5-turbo'):
     start = f'You will be given a summary SUMMARY of a document DOCUMENT. Your task will be to assess how accurate of a summary SUMMARY is with respect to DOCUMENT.'
-    end = f'Rate how accurate SUMMARY is on a scale of 1 to 10, where 1 is not accurate at all and 10 is very accurate. An accurate summary should include all important details, should not hyperfixate on irrelevant or inconsequential details, and retain logical transitions between ideas. Respond only with a number between 1 and 10.'
+    end = f'Rate how accurate SUMMARY is on a scale of 1 to 100, where 1 is not accurate at all and 100 is very accurate. An accurate summary should 1) include all important details from DOCUMENT, 2) should not hyperfixate on irrelevant or inconsequential details, and 3) retain logical transitions between ideas. When scoring SUMMARY, respond only with a list of three numbers which represents the score across each of the three categories (for example, [20, 30, 15]).'
     prompt = f'{start}\nDOCUMENT\n{document}\nSUMMARY\n{summary}\n{end}'
 
     messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': prompt}]
-    score = run_gpt(messages, model, max_tokens = 1000, temperature = 0.2)
+    scores = run_gpt(messages, model, max_tokens = 1000, temperature = 0.2)
     
-    return (int(score))
+    return (literal_eval(scores))
 
 scores = []
 
 base = 'summarize_failure_output/stories/'
-paths = [base + 'irrelevant_facts.txt', base + 'sequential_facts.txt', base + 'mini_story.txt']
+paths = [base + 'irrelevant_facts.txt', base + 'sequential_facts.txt', base + 'mini_story.txt', base + 'no_change.txt']
 
 for path in paths:
     print("Starting path: ", path)
@@ -42,8 +43,6 @@ for path in paths:
         lines = lines[1:]
 
         for i in range(0, len(lines), 4):
-            print(lines[i], lines[i + 1], lines[i + 2], lines[i + 3])
-
             document = lines[i].strip().split("Story:")[1]
             summary = lines[i + 1].strip().split("Summary:")[1]
             injected_document = lines[i + 2].strip().split("Story:")[1]
@@ -56,10 +55,12 @@ for path in paths:
     scores = []
     datapoints = [] 
     for document, summary, injected_document, injected_summary in scraped_examples[:100]:
-        scores.append(score_summary(document, summary))
-        datapoints.append((document, summary, injected_document, injected_summary, scores[-1]))
+        cur_score = score_summary(document, summary)
+
+        scores.append(sum(cur_score))
+        datapoints.append((document, summary, injected_document, injected_summary, cur_score))
    
-    datapoints.sort(key = lambda p : p[4])
+    datapoints.sort(key = lambda p : sum(p[4]))
 
     with open(path[:-4] + "_scores.txt", 'w') as f:
         f.write(f"Average score: {statistics.mean(scores)}\n")   
@@ -67,4 +68,4 @@ for path in paths:
 
     with open(path[:-4] + "_ranked_score.txt", 'w') as f:
         for document, summary, injected_document, injected_summary, score in datapoints:
-            f.write(f"Original Story: {document}\nOriginal Summary: {summary}\nInjected Story: {injected_document}\nInjected Summary: {injected_summary}\nScore: {score}\n")
+            f.write(f"Original Story: {document}\nOriginal Summary: {summary}\nInjected Story: {injected_document}\nInjected Summary: {injected_summary}\nScores: {score}\nTotal Score: {sum(score)}\n")
