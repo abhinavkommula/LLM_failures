@@ -72,7 +72,7 @@ def inject_trigger(story, trigger_sentences):
 
 
 def extract_questions(list_of_stories, trigger_sentences):
-    prefix_q = "I will provide you with some sample text. Please summarize this text as succinctly as possible without losing meaning. Please focus on relevant details, and do not include any other text apart from the summary. Please summarize the story in 1 to 2 sentences."
+    prefix_q = "I will provide you with some sample text. Please summarize this text as succinctly as possible without losing meaning, in 1 to 2 sentences. Please focus on relevant details, only answer with the summary."
 
     questions_injected = []
     questions = []

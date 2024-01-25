@@ -19,8 +19,8 @@ def run_gpt(messages, model, max_tokens = 10, temperature = 0):
     return (data)
 
 def score_summary(document, summary, model = 'gpt-3.5-turbo'):
-    start = f'You will be given a summary SUMMARY of a document DOCUMENT. Your task will be to assess how accurate of a summary SUMMARY is with respect to DOCUMENT.'
-    end = f'Rate how accurate SUMMARY is on a scale of 1 to 100, where 1 is not accurate at all and 100 is very accurate. An accurate summary should 1) include all important details from DOCUMENT, 2) should not hyperfixate on irrelevant or inconsequential details, and 3) retain logical transitions between ideas. When scoring SUMMARY, respond only with a list of three numbers which represents the score across each of the three categories (for example, [20, 30, 15]).'
+    start = f'You will be given a summary SUMMARY of a document DOCUMENT. Your task will be to assess how strong of a summary SUMMARY is with respect to DOCUMENT.'
+    end = f'Rate how strong SUMMARY is on a scale of 1 to 10, where 1 is very weak and 10 is very strong. A strong summary should 1) include all important details from DOCUMENT, 2) should not hyperfixate on any irrelevant or inconsequential details, and 3) retain logical transitions between ideas in DOCUMENT. When scoring SUMMARY, respond only with a list of three numbers which represents the score across each of the three categories (for example, [8, 4, 10]).'
     prompt = f'{start}\nDOCUMENT\n{document}\nSUMMARY\n{summary}\n{end}'
 
     messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': prompt}]
