@@ -70,7 +70,8 @@ for path in paths:
     datapoints.sort(key = lambda p : p[4])
 
     plt.figure()
-    plt.hist(scores, color = 'blue')
+    plt.hist(scores, range = [1.0, 10.0], color = 'blue')
+    plt.title(path[len(base):-4])
     plt.xlabel("Score")
     plt.ylabel("Frequency")
     plt.savefig(path[:-4] + "_histogram.png")
