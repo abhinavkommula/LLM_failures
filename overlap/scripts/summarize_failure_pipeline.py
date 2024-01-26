@@ -7,8 +7,8 @@ import random, math
 import re
 import os
 
-#parser = TinyStoriesParser()
-parser = NewsParser()
+parser = TinyStoriesParser()
+#parser = NewsParser()
 
 ''' Level #1: Irrelevant Facts '''
 facts = ["The all pairs shortest path algorithm is NP-complete", "A group of flamingos is called a flamboyance", "Octopuses have three hearts",
