@@ -97,9 +97,11 @@ for path, path2 in paths:
     failure_datapoints.sort(key = lambda p : p[4])
     nonfailure_datapoints.sort(key = lambda p : p[4]) 
 
+    print(len(failure_scores), len(nonfailure_scores))
+
     plt.style.use('seaborn-deep')
-    plt.hist(failure_scores, np.linspace(1.0, 10.0, 20), label = 'failures')
-    plt.hist(nonfailure_scores, np.linspace(1.0, 10.0, 20), label = 'non-failures')
+    plt.hist(failure_scores, np.linspace(1.0, 10.0, 20), alpha = 0.5, label = 'failures')
+    plt.hist(nonfailure_scores, np.linspace(1.0, 10.0, 20), alpha = 0.5, label = 'non-failures')
     plt.legend(loc = 'upper right')
     plt.title(path[len(base):-4])
     plt.xlabel("Score")
