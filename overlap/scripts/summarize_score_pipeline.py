@@ -34,12 +34,14 @@ def score_summary(document, summary, model = 'gpt-3.5-turbo'):
 scores = []
 
 base = 'summarize_failure_output/stories/'
-paths = [base + 'irrelevant_facts.txt', base + 'sequential_facts.txt', base + 'mini_story.txt', base + 'no_change.txt']
+paths = [(base + 'irrelevant_facts.txt', base + 'irrelevant_facts_nofail.txt'), (base + 'sequential_facts.txt', base + 'sequential_facts_nofail.txt'), 
+         (base + 'mini_story.txt', base + 'mini_story_nofail.txt'), (base + 'no_change.txt', base + 'no_change_nofail.txt')]
 
-for path in paths:
+for path, path2 in paths:
     print("Starting path: ", path)
 
-    scraped_examples = []
+    scraped_failures = []
+    scraped_nonfailures = []
 
     with open(path, 'r') as f:
         lines = f.readlines()
@@ -51,26 +53,53 @@ for path in paths:
             injected_document = lines[i + 2].strip().split("Story:")[1]
             injected_summary = lines[i + 3].strip().split("Summary:")[1]
             
-            scraped_examples.append((document, summary, injected_document, injected_summary))
+            scraped_failures.append((document, summary, injected_document, injected_summary))
+    
+    with open(path2, 'r') as f:
+        lines = f.readlines()
+        
+        for i in range(0, len(lines), 4):
+            document = lines[i].strip().split("Story:")[1]
+            summary = lines[i + 1].strip().split("Summary:")[1]
+            injected_document = lines[i + 2].strip().split("Story:")[1]
+            injected_summary = lines[i + 3].strip().split("Summary:")[1]
 
-    random.shuffle(scraped_examples)
+            scraped_nonfailures.append((document, summary, injected_document, injected_summary)) 
+        
+    random.shuffle(scraped_failures)
+    random.shuffle(scraped_nonfailures)
 
-    scores = []
-    datapoints = [] 
-    for document, summary, injected_document, injected_summary in scraped_examples[:100]:
+    failure_scores = []
+    failure_datapoints = [] 
+    nonfailure_scores = []
+    nonfailure_datapoints = []
+
+    for document, summary, injected_document, injected_summary in scraped_failures[:100]:
         cur_score = score_summary(document, summary)
 
         if type(cur_score) == list:
-            scores.append(sum(cur_score))
+            failure_scores.append(sum(cur_score))
         else:
-            scores.append(cur_score)
+            failure_scores.append(cur_score)
 
-        datapoints.append((document, summary, injected_document, injected_summary, cur_score))
-   
-    datapoints.sort(key = lambda p : p[4])
+        failure_datapoints.append((document, summary, injected_document, injected_summary, cur_score))
+    
+    for document, summary, injected_document, injected_summary in scraped_nonfailures[:100]:
+        cur_score = score_summary(document, summary)
+
+        if type(cur_score) == list:
+            nonfailure_scores.append(sum(cur_score))
+        else:
+            nonfailure_scores.append(cur_score)
+
+        nonfailure_datapoints.append((document, summary, injected_document, injected_summary, cur_score))
+    
+    failure_datapoints.sort(key = lambda p : p[4])
+    nonfailure_datapoints.sort(key = lambda p : p[4]) 
 
     plt.figure()
-    plt.hist(scores, range = [1.0, 10.0], color = 'blue')
+    plt.hist(failure_scores, range = [1.0, 10.0], label = 'failures')
+    plt.hist(nonfailure_scores, range = [1.0, 10.0], label = 'non-failures')
     plt.title(path[len(base):-4])
     plt.xlabel("Score")
     plt.ylabel("Frequency")
@@ -78,9 +107,15 @@ for path in paths:
     plt.close()
 
     with open(path[:-4] + "_scores.txt", 'w') as f:
-        f.write(f"Average score: {statistics.mean(scores)}\n")   
-        f.write(f"Standard Deviation: {statistics.pstdev(scores)}\n")
+        f.write(f"Failures Average score: {statistics.mean(failure_scores)}\n")   
+        f.write(f"Failures Standard Deviation: {statistics.pstdev(failure_scores)}\n")
+        f.write(f"Non-failures Average score: {statistics.mean(nonfailure_scores)}\n")
+        f.write(f"Non-failures Standard Deviation: {statistics.pstdev(nonfailure_scores)}\n")
 
-    with open(path[:-4] + "_ranked_score.txt", 'w') as f:
-        for document, summary, injected_document, injected_summary, score in datapoints:
+    with open(path[:-4] + "_failure_ranked_score.txt", 'w') as f:
+        for document, summary, injected_document, injected_summary, score in failure_datapoints:
+            f.write(f"Original Story: {document}\nOriginal Summary: {summary}\nInjected Story: {injected_document}\nInjected Summary: {injected_summary}\nScore: {score}\n")
+
+    with open(path[:-4] + "_nonfailure_ranked_score.txt", 'w') as f:
+        for document, summary, injected_document, injected_summary, score in nonfailure_datapoints:
             f.write(f"Original Story: {document}\nOriginal Summary: {summary}\nInjected Story: {injected_document}\nInjected Summary: {injected_summary}\nScore: {score}\n")

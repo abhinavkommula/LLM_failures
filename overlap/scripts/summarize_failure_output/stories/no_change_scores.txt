@@ -1,2 +1,2 @@
-Average score: 7.95
-Standard Deviation: 0.698212002188447
+Failures Average score: 8.26
+Failures Standard Deviation: 0.9150956234186677

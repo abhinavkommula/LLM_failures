@@ -36,7 +36,8 @@ nochange = []
 nochange_keywords = []
 
 gradation_injection_triggers = [(facts, facts_keywords), (sequentialfacts, sequentialfacts_keywords), (ministory, ministory_keywords), (nochange, nochange_keywords)]
-gradation_file_names = ["irrelevant_facts.txt", "sequential_facts.txt", "mini_story.txt", "no_change.txt"]
+gradation_failure_filenames = ["irrelevant_facts.txt", "sequential_facts.txt", "mini_story.txt", "no_change.txt"]
+gradation_nonfailure_filenames = ["irrelevant_facts_nofail.txt", "sequential_facts_nofail.txt", "mini_story_nofail.txt", "no_change_nofail.txt"]
 
 def inject_trigger(story, trigger_sentences):
     inject_threshold = 0.15
@@ -102,6 +103,7 @@ print("Number of possible stories: ", len(stories))
 
 interacter = InteractLLaMA()
 failures = []
+nonfailures = []
 
 for level in gradation_injection_triggers:
     trigger_sentences = level[0]
@@ -112,7 +114,8 @@ for level in gradation_injection_triggers:
     answers_injected = interacter.answer_questions(questions_injected, extract_answers)
 
     level_failures = []
-    
+    level_nonfailures = []
+
     for i in range(len(answers_injected)):
         flag = False
 
@@ -126,10 +129,13 @@ for level in gradation_injection_triggers:
 
         if flag:
             level_failures.append((short_stories[i], answers[i], questions_injected[i], answers_injected[i]))
-
+        else:
+            level_nonfailures.append((short_stories[i], answers[i], questions_injected[i], answers_injected[i]))
+    
     failures.append(level_failures)
+    nonfailures.append(level_nonfailures)
 
-output_directory = 'summarize_failure_output/news'
+output_directory = 'summarize_failure_output/stories'
 
 try:
     os.mkdir(output_directory)
@@ -137,8 +143,12 @@ except OSError as error:
     print(f"Could not create directory along path {output_directory}; {error}\n")
 
 for i in range(len(gradation_injection_triggers)):
-    with open(output_directory + '/' + gradation_file_names[i], 'w') as f:
+    with open(output_directory + '/' + gradation_failure_filenames[i], 'w') as f:
         f.write(f"Failure rate: {len(failures[i]) / max(1, len(short_stories))}\n")
     
-        for failure in failures[i][:200]:
+        for failure in failures[i][:500]:
             f.write(f"Original Story: {failure[0]}\nOriginal Summary: {failure[1]}\nInjected Story: {failure[2]}\nInjected Summary: {failure[3]}\n")
+    
+    with open(output_directory + '/' + gradation_nonfailure_filenames[i], 'w') as f:
+        for nonfailure in nonfailures[i][:500]:
+            f.write(f"Original Story: {nonfailure[0]}\nOriginal Summary: {nonfailure[1]}\nInjected Story: {nonfailure[2]}\nInjected Summary: {nonfailure[3]}\n")

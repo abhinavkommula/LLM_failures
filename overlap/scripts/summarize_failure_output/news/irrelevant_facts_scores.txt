@@ -1,2 +1,0 @@
-Average score: 8.4
-Standard Deviation: 0.48989794855663565
