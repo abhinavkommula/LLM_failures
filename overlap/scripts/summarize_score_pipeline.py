@@ -57,7 +57,7 @@ for path in paths:
 
     scores = []
     datapoints = [] 
-    for document, summary, injected_document, injected_summary in scraped_examples[:20]:
+    for document, summary, injected_document, injected_summary in scraped_examples[:100]:
         cur_score = score_summary(document, summary)
 
         if type(cur_score) == list:

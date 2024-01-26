@@ -1,2 +1,2 @@
-Average score: 8.025
-Standard Deviation: 1.6768646337734003
+Average score: 8.117647058823529
+Standard Deviation: 1.3232025740237638
