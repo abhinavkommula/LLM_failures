@@ -7,7 +7,8 @@ import random, math
 import re
 import os
 
-parser = TinyStoriesParser()
+#parser = TinyStoriesParser()
+parser = NewsParser()
 
 ''' Level #1: Irrelevant Facts '''
 facts = ["The all pairs shortest path algorithm is NP-complete", "A group of flamingos is called a flamboyance", "Octopuses have three hearts",
@@ -38,7 +39,7 @@ gradation_injection_triggers = [(facts, facts_keywords), (sequentialfacts, seque
 gradation_file_names = ["irrelevant_facts.txt", "sequential_facts.txt", "mini_story.txt", "no_change.txt"]
 
 def inject_trigger(story, trigger_sentences):
-    inject_threshold = 0.2
+    inject_threshold = 0.15
     acceptable_len = int(inject_threshold * len(story))
     
     sum_len = 0
@@ -128,7 +129,7 @@ for level in gradation_injection_triggers:
 
     failures.append(level_failures)
 
-output_directory = 'summarize_failure_output/stories'
+output_directory = 'summarize_failure_output/news'
 
 try:
     os.mkdir(output_directory)

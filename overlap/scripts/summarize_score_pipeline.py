@@ -1,4 +1,7 @@
 import openai
+import numpy as np
+import matplotlib.pyplot as plt
+
 import re, random, statistics
 from ast import literal_eval
 
@@ -20,7 +23,7 @@ def run_gpt(messages, model, max_tokens = 10, temperature = 0):
 
 def score_summary(document, summary, model = 'gpt-3.5-turbo'):
     start = f'You will be given a summary SUMMARY of a document DOCUMENT. Your task will be to assess how strong of a summary SUMMARY is with respect to DOCUMENT.'
-    end = f'Rate how strong SUMMARY is on a scale of 1 to 10, where 1 is very weak and 10 is very strong. A strong summary should 1) include all important details from DOCUMENT, 2) should not hyperfixate on any irrelevant or inconsequential details, and 3) retain logical transitions between ideas in DOCUMENT. When scoring SUMMARY, respond only with a list of three numbers which represents the score across each of the three categories (for example, [8, 4, 10]).'
+    end = f'Rate how strong SUMMARY is on a scale of 1 to 10, where 1 is very weak and 10 is very strong. A strong summary should 1) include all important details from DOCUMENT, 2) have little to no irrelevant or inconsequential details, and 3) retain logical transitions between ideas in DOCUMENT. When scoring SUMMARY, respond only with a number from 1 to 10.'
     prompt = f'{start}\nDOCUMENT\n{document}\nSUMMARY\n{summary}\n{end}'
 
     messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': prompt}]
@@ -54,13 +57,24 @@ for path in paths:
 
     scores = []
     datapoints = [] 
-    for document, summary, injected_document, injected_summary in scraped_examples[:100]:
+    for document, summary, injected_document, injected_summary in scraped_examples[:20]:
         cur_score = score_summary(document, summary)
 
-        scores.append(sum(cur_score))
+        if type(cur_score) == list:
+            scores.append(sum(cur_score))
+        else:
+            scores.append(cur_score)
+
         datapoints.append((document, summary, injected_document, injected_summary, cur_score))
    
-    datapoints.sort(key = lambda p : sum(p[4]))
+    datapoints.sort(key = lambda p : p[4])
+
+    plt.figure()
+    plt.hist(scores, color = 'blue')
+    plt.xlabel("Score")
+    plt.ylabel("Frequency")
+    plt.savefig(path[:-4] + "_histogram.png")
+    plt.close()
 
     with open(path[:-4] + "_scores.txt", 'w') as f:
         f.write(f"Average score: {statistics.mean(scores)}\n")   
@@ -68,4 +82,4 @@ for path in paths:
 
     with open(path[:-4] + "_ranked_score.txt", 'w') as f:
         for document, summary, injected_document, injected_summary, score in datapoints:
-            f.write(f"Original Story: {document}\nOriginal Summary: {summary}\nInjected Story: {injected_document}\nInjected Summary: {injected_summary}\nScores: {score}\nTotal Score: {sum(score)}\n")
+            f.write(f"Original Story: {document}\nOriginal Summary: {summary}\nInjected Story: {injected_document}\nInjected Summary: {injected_summary}\nScore: {score}\n")
