@@ -75,8 +75,6 @@ for path, path2 in paths:
     nonfailure_datapoints = []
 
     for document, summary, injected_document, injected_summary in scraped_failures[:100]:
-        print("Injected Document:", injected_document)
-        print("Injected Summary:", injected_summary)
         cur_score = score_summary(document, summary)
 
         if type(cur_score) == list:
@@ -87,8 +85,6 @@ for path, path2 in paths:
         failure_datapoints.append((document, summary, injected_document, injected_summary, cur_score))
     
     for document, summary, injected_document, injected_summary in scraped_nonfailures[:100]:
-        print("Document:", document)
-        print("Summary:", summary)
         cur_score = score_summary(document, summary)
 
         if type(cur_score) == list:
@@ -101,7 +97,10 @@ for path, path2 in paths:
     failure_datapoints.sort(key = lambda p : p[4])
     nonfailure_datapoints.sort(key = lambda p : p[4]) 
 
-    print(len(failure_scores), len(nonfailure_scores))
+    if len(failure_scores) == 0:
+        failure_scores.append(0)
+    if len(nonfailure_scores) == 0:
+        nonfailure_scores.append(0)
 
     plt.style.use('seaborn-deep')
     plt.hist(failure_scores, np.linspace(1.0, 10.0, 20), alpha = 0.5, label = 'failures')
