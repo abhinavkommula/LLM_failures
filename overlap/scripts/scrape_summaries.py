@@ -10,7 +10,7 @@ import os
 parser = TinyStoriesParser()
 
 def extract_questions(list_of_stories):
-    prefix_q = "I will provide you with some sample text. Please summarize this text as succinctly as possible, in 1 to 2 sentences."
+    prefix_q = "I will provide you with some sample text. Please summarize this text as succinctly as possible in 1 sentence. Please focus on relevant details. Only respond with 1 sentence. "
 
     new_questions = []
     for story in list_of_stories:
@@ -31,7 +31,7 @@ random.shuffle(stories)
 word_limit = 1000
 
 stories = list(filter(lambda x : x != "" and len(x.split(' ')) <= word_limit, stories))
-short_stories = stories[:1000]
+short_stories = stories[:500]
 short_stories = [s.replace('\n', '').strip() for s in short_stories]
 print("Number of possible summary stories: ", len(stories))
 
