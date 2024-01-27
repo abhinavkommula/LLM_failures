@@ -7,7 +7,8 @@ import random, math
 import re
 import os
 
-parser = TinyStoriesParser()
+#parser = TinyStoriesParser()
+parser = NewsParser()
 
 def extract_questions(list_of_stories):
     prefix_q = "I will provide you with some sample text. Please summarize this text as succinctly as possible in 1 sentence. Please focus on relevant details. Only respond with 1 sentence. "
@@ -47,6 +48,6 @@ try:
 except OSError as error:
     print(f"Could not create directory along path {output_directory}; {error}\n")
 
-with open(output_directory + 'stories.txt', 'w') as f:
+with open(output_directory + 'news.txt', 'w') as f:
     for a_idx in range(len(answers)):
-        f.write(f"(Story: {short_stories[a_idx]}\nSummary: {answers[a_idx]})\n")
+        f.write(f"Story: {short_stories[a_idx]}\nSummary: {answers[a_idx]}\n")
