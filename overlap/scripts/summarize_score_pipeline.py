@@ -23,7 +23,7 @@ def run_gpt(messages, model, max_tokens = 10, temperature = 0):
 
 def score_summary(document, summary, model = 'gpt-3.5-turbo'):
     start = f'You will be given a summary SUMMARY of a document DOCUMENT. Your task will be to assess how strong of a summary SUMMARY is with respect to DOCUMENT.'
-    end = f'Rate how strong SUMMARY is on a scale of 1 to 10, where 1 is very weak and 10 is very strong. A strong summary should 1) include all important details from DOCUMENT, 2) have little to no irrelevant or inconsequential details, and 3) retain logical transitions between ideas in DOCUMENT. When scoring SUMMARY, respond only with a number from 1 to 10.'
+    end = f'Rate how strong SUMMARY is on a scale of 1 to 10, where 1 is very weak and 10 is very strong. A strong summary should 1) not miss any important details from DOCUMENT, 2) have no irrelevant details, and 3) retain logical transitions between ideas in DOCUMENT. When scoring SUMMARY, respond only with a number from 1 to 10.'
     prompt = f'{start}\nDOCUMENT\n{document}\nSUMMARY\n{summary}\n{end}'
 
     messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': prompt}]
@@ -75,6 +75,8 @@ for path, path2 in paths:
     nonfailure_datapoints = []
 
     for document, summary, injected_document, injected_summary in scraped_failures[:100]:
+        print("Injected Document:", injected_document)
+        print("Injected Summary:", injected_summary)
         cur_score = score_summary(document, summary)
 
         if type(cur_score) == list:
@@ -85,6 +87,8 @@ for path, path2 in paths:
         failure_datapoints.append((document, summary, injected_document, injected_summary, cur_score))
     
     for document, summary, injected_document, injected_summary in scraped_nonfailures[:100]:
+        print("Document:", document)
+        print("Summary:", summary)
         cur_score = score_summary(document, summary)
 
         if type(cur_score) == list:
