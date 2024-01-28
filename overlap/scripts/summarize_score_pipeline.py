@@ -76,6 +76,8 @@ for path, path2 in paths:
     nonfailure_scores = []
     nonfailure_datapoints = []
 
+    print(len(scraped_failures), len(scraped_nonfailures))
+    
     print("Scoring Failures:")
 
     for document, summary, injected_document, injected_summary in scraped_failures[:500]:
@@ -87,7 +89,8 @@ for path, path2 in paths:
             failure_scores.append(cur_score)
 
         failure_datapoints.append((document, summary, injected_document, injected_summary, cur_score))
-   
+        print(len(failure_datapoints))
+
     print("Scoring Nonfailures:")
     
     for document, summary, injected_document, injected_summary in scraped_nonfailures[:500]:
@@ -99,6 +102,9 @@ for path, path2 in paths:
             nonfailure_scores.append(cur_score)
 
         nonfailure_datapoints.append((document, summary, injected_document, injected_summary, cur_score))
+        print(len(nonfailure_datapoints))
+
+    print(len(failure_datapoints), len(nonfailure_datapoints))
     
     failure_datapoints.sort(key = lambda p : p[4])
     nonfailure_datapoints.sort(key = lambda p : p[4]) 
