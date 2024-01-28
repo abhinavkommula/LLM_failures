@@ -22,13 +22,14 @@ def run_gpt(messages, model, max_tokens = 10, temperature = 0):
     return (data)
 
 def score_summary(document, summary, model = 'gpt-3.5-turbo'):
-    start = f'You will be given a summary SUMMARY, and your task will be to assess how strong of a summary it is.'
-    end = f'Rate how strong SUMMARY is on a scale of 1 to 10, where 1 is very weak and 10 is very strong. Your rating should focus solely on the conciseness of the summary: it should include only critical points. Deduct points for any content that could be omitted without significantly altering the summarys meaning. Respond only with a number from 1 to 10. '
+    start = f'You will be given a summary SUMMARY, and your task will be to assess how strong of a summary it is on scale from 1 to 10. Here is an example of a summary that would recieve a score of 2, because a high proportion of it contains irrelevant text: [a $4 trillion package with revenues, a $1 trillion-$2 trillion spending cuts-only deal, or a deal that grants the President authority to raise the debt ceiling without GOP agreement. Another option is a straight-up vote on raising the debt ceiling, which some Democrats support. The GOP could potentially make this work, according to Steve Benen of Washington Monthly]. Here is an example of a summary that would receive a score of 7 because it has a smaller portion of irrelevant information and makes more logical sense: [Richard "The Old Man" Harrison, a star of the popular reality TV show "Pawn Stars," has passed away at the age of 77 due to complications from Parkinsons disease. He will be greatly missed by his family, the team at Gold & Silver Pawn, and his many fans around the world. Harrison was a Navy veteran who opened the Gold & Silver Pawn Shop in Las Vegas in 1988, which became a multimillion-dollar business after the show premiered in 2009. He was known for his wisdom and wit on the show, which featured him and his family evaluating and purchasing rare and unusual items. Harrisons legacy will be remembered through the show and the impact he had on his family and the community.]'
+    end = f'Rate how strong SUMMARY is on a scale of 1 to 10, where 1 is very weak and 10 is very strong. Your rating should focus particularly on the conciseness of the summary: it should include only critical points. Deduct points for any content that could be omitted without significantly altering the summarys meaning. Deduct points if sentences could be shortened, and if unecessary details are included. Deduct points if the summary has logical gaps, or if it appears as though information has been ommitted. Respond only with a number from 1 to 10. '
     prompt = f'{start}\nSUMMARY\n{summary}\n{end}'
     
     messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': prompt}]
     scores = run_gpt(messages, model, max_tokens = 1000, temperature = 0)
-    
+    print(scores)
+
     return (literal_eval(scores))
 
 scores = []
@@ -74,6 +75,8 @@ for path, path2 in paths:
     nonfailure_scores = []
     nonfailure_datapoints = []
 
+    print("Scoring Failures:")
+
     for document, summary, injected_document, injected_summary in scraped_failures[:100]:
         cur_score = score_summary(document, summary)
 
@@ -83,6 +86,8 @@ for path, path2 in paths:
             failure_scores.append(cur_score)
 
         failure_datapoints.append((document, summary, injected_document, injected_summary, cur_score))
+   
+    print("Scoring Nonfailures:")
     
     for document, summary, injected_document, injected_summary in scraped_nonfailures[:100]:
         cur_score = score_summary(document, summary)

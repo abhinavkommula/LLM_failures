@@ -40,7 +40,7 @@ gradation_failure_filenames = ["irrelevant_facts.txt", "sequential_facts.txt", "
 gradation_nonfailure_filenames = ["irrelevant_facts_nofail.txt", "sequential_facts_nofail.txt", "mini_story_nofail.txt", "no_change_nofail.txt"]
 
 def inject_trigger(story, trigger_sentences):
-    inject_threshold = 0.1
+    inject_threshold = 0.3
     acceptable_len = int(inject_threshold * len(story))
     
     sum_len = 0
