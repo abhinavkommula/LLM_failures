@@ -1,4 +1,4 @@
-Failures Average score: 8.365
-Failures Standard Deviation: 0.5824731753480155
+Failures Average score: 7.58
+Failures Standard Deviation: 0.532541078227774
 Non-failures Average score: 0
 Non-failures Standard Deviation: 0.0
