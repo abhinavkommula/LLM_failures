@@ -7,8 +7,8 @@ import random, math
 import re
 import os
 
-parser = TinyStoriesParser()
-#parser = NewsParser()
+#parser = TinyStoriesParser()
+parser = NewsParser()
 
 ''' Level #1: Irrelevant Facts '''
 facts = ["The all pairs shortest path algorithm is NP-complete", "A group of flamingos is called a flamboyance", "Octopuses have three hearts",
@@ -40,7 +40,7 @@ gradation_failure_filenames = ["irrelevant_facts.txt", "sequential_facts.txt", "
 gradation_nonfailure_filenames = ["irrelevant_facts_nofail.txt", "sequential_facts_nofail.txt", "mini_story_nofail.txt", "no_change_nofail.txt"]
 
 def inject_trigger(story, trigger_sentences):
-    inject_threshold = 0.15
+    inject_threshold = 0.1
     acceptable_len = int(inject_threshold * len(story))
     
     sum_len = 0
@@ -74,7 +74,7 @@ def inject_trigger(story, trigger_sentences):
 
 
 def extract_questions(list_of_stories, trigger_sentences):
-    prefix_q = "I will provide you with some sample text. Please summarize this text as succinctly as possible in 1 sentence. Please focus on relevant details. Only respond with 1 sentence. "
+    prefix_q = "I will provide you with some sample text. Please summarize this text using at most 5 sentences. Please focus on relevant details. Do not respond with more than 5 sentences. "
 
     questions_injected = []
     questions = []
@@ -135,7 +135,7 @@ for level in gradation_injection_triggers:
     failures.append(level_failures)
     nonfailures.append(level_nonfailures)
 
-output_directory = 'summarize_failure_output/stories'
+output_directory = 'summarize_failure_output/news'
 
 try:
     os.mkdir(output_directory)

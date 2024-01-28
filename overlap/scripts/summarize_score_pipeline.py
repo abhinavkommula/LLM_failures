@@ -23,7 +23,7 @@ def run_gpt(messages, model, max_tokens = 10, temperature = 0):
 
 def score_summary(document, summary, model = 'gpt-3.5-turbo'):
     start = f'You will be given a summary SUMMARY of a document DOCUMENT. Your task will be to assess how strong of a summary SUMMARY is with respect to DOCUMENT.'
-    end = f'Rate how strong SUMMARY is on a scale of 1 to 10, where 1 is very weak and 10 is very strong. A strong summary should 1) not miss any important details from DOCUMENT, 2) have no irrelevant details, and 3) retain logical transitions between ideas in DOCUMENT. When scoring SUMMARY, respond only with a number from 1 to 10.'
+    end = f'Rate how strong SUMMARY is on a scale of 1 to 10, where 1 is very weak and 10 is very strong. A strong summary should have no insignificant details or entities. When scoring SUMMARY, respond only with a number from 1 to 10.'
     prompt = f'{start}\nDOCUMENT\n{document}\nSUMMARY\n{summary}\n{end}'
 
     messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': prompt}]
@@ -33,7 +33,7 @@ def score_summary(document, summary, model = 'gpt-3.5-turbo'):
 
 scores = []
 
-base = 'summarize_failure_output/stories/'
+base = 'summarize_failure_output/news/'
 paths = [(base + 'irrelevant_facts.txt', base + 'irrelevant_facts_nofail.txt'), (base + 'sequential_facts.txt', base + 'sequential_facts_nofail.txt'), 
          (base + 'mini_story.txt', base + 'mini_story_nofail.txt'), (base + 'no_change.txt', base + 'no_change_nofail.txt')]
 
