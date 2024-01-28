@@ -36,8 +36,8 @@ def score_summary(document, summary, model = 'gpt-3.5-turbo'):
 scores = []
 
 base = 'summarize_failure_output/news/'
-paths = [(base + 'irrelevant_facts.txt', base + 'irrelevant_facts_nofail.txt'), (base + 'sequential_facts.txt', base + 'sequential_facts_nofail.txt'), 
-         (base + 'mini_story.txt', base + 'mini_story_nofail.txt'), (base + 'no_change.txt', base + 'no_change_nofail.txt')]
+paths = [(base + 'irrelevant_facts.txt', base + 'irrelevant_facts_nofail.txt')] #(base + 'sequential_facts.txt', base + 'sequential_facts_nofail.txt'), 
+#         (base + 'mini_story.txt', base + 'mini_story_nofail.txt'), (base + 'no_change.txt', base + 'no_change_nofail.txt')]
 
 for path, path2 in paths:
     print("Starting path: ", path)
@@ -78,7 +78,7 @@ for path, path2 in paths:
 
     print("Scoring Failures:")
 
-    for document, summary, injected_document, injected_summary in scraped_failures[:100]:
+    for document, summary, injected_document, injected_summary in scraped_failures[:500]:
         cur_score = score_summary(document, summary)
 
         if type(cur_score) == list:
@@ -90,7 +90,7 @@ for path, path2 in paths:
    
     print("Scoring Nonfailures:")
     
-    for document, summary, injected_document, injected_summary in scraped_nonfailures[:100]:
+    for document, summary, injected_document, injected_summary in scraped_nonfailures[:500]:
         cur_score = score_summary(document, summary)
 
         if type(cur_score) == list:
@@ -121,8 +121,16 @@ for path, path2 in paths:
     failure_scores_np = np.array(failure_scores)
     nonfailure_scores_np = np.array(nonfailure_scores)
 
+    with open(path[:-4] + "_failure_ranked_score.txt", 'w') as f:
+        for document, summary, injected_document, injected_summary, score in failure_datapoints:
+            f.write(f"Original Story: {document}\nOriginal Summary: {summary}\nInjected Story: {injected_document}\nInjected Summary: {injected_summary}\nScore: {score}\n")
+
+    with open(path[:-4] + "_nonfailure_ranked_score.txt", 'w') as f:
+        for document, summary, injected_document, injected_summary, score in nonfailure_datapoints:
+            f.write(f"Original Story: {document}\nOriginal Summary: {summary}\nInjected Story: {injected_document}\nInjected Summary: {injected_summary}\nScore: {score}\n")
+    
     emd = wasserstein_distance(failure_scores, nonfailure_scores)
-    b_distance = np.sum(np.sqrt((failure_scores_np / np.sum(failure_scores_np)) * (nonfailure_scores_np / np.sum(nonfailure_scores_np))))
+    #b_distance = np.sum(np.sqrt((failure_scores_np / np.sum(failure_scores_np)) * (nonfailure_scores_np / np.sum(nonfailure_scores_np))))
 
     with open(path[:-4] + "_scores.txt", 'w') as f:
         f.write(f"Failures Average score: {statistics.mean(failure_scores)}\n")   
@@ -131,11 +139,3 @@ for path, path2 in paths:
         f.write(f"Non-failures Standard Deviation: {statistics.pstdev(nonfailure_scores)}\n")
         f.write(f"Earth Movers Distance: {emd}\n")
         f.write(f"Bhattacharyya Coefficient: {b_distance}\n")
-
-    with open(path[:-4] + "_failure_ranked_score.txt", 'w') as f:
-        for document, summary, injected_document, injected_summary, score in failure_datapoints:
-            f.write(f"Original Story: {document}\nOriginal Summary: {summary}\nInjected Story: {injected_document}\nInjected Summary: {injected_summary}\nScore: {score}\n")
-
-    with open(path[:-4] + "_nonfailure_ranked_score.txt", 'w') as f:
-        for document, summary, injected_document, injected_summary, score in nonfailure_datapoints:
-            f.write(f"Original Story: {document}\nOriginal Summary: {summary}\nInjected Story: {injected_document}\nInjected Summary: {injected_summary}\nScore: {score}\n")
