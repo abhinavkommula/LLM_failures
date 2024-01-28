@@ -1,4 +1,6 @@
-Failures Average score: 6.88
-Failures Standard Deviation: 1.3876599006961323
-Non-failures Average score: 7.16
-Non-failures Standard Deviation: 0.9243376006633075
+Failures Average score: 6.835
+Failures Standard Deviation: 1.2146089905809194
+Non-failures Average score: 7.23
+Non-failures Standard Deviation: 0.9257969539807311
+Earth Movers Distance: 0.395
+Bhattacharyya Coefficient: 0.9911546543314668

@@ -1,6 +1,7 @@
 import openai
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import wasserstein_distance
 
 import re, random, statistics
 from ast import literal_eval
@@ -103,9 +104,9 @@ for path, path2 in paths:
     nonfailure_datapoints.sort(key = lambda p : p[4]) 
 
     if len(failure_scores) == 0:
-        failure_scores.append(0)
+        failure_scores.append(1)
     if len(nonfailure_scores) == 0:
-        nonfailure_scores.append(0)
+        nonfailure_scores.append(1)
 
     plt.style.use('seaborn-deep')
     plt.hist(failure_scores, np.linspace(1.0, 10.0, 20), alpha = 0.5, label = 'failures')
@@ -117,11 +118,19 @@ for path, path2 in paths:
     plt.savefig(path[:-4] + "_histogram.png")
     plt.close()
 
+    failure_scores_np = np.array(failure_scores)
+    nonfailure_scores_np = np.array(nonfailure_scores)
+
+    emd = wasserstein_distance(failure_scores, nonfailure_scores)
+    b_distance = np.sum(np.sqrt((failure_scores_np / np.sum(failure_scores_np)) * (nonfailure_scores_np / np.sum(nonfailure_scores_np))))
+
     with open(path[:-4] + "_scores.txt", 'w') as f:
         f.write(f"Failures Average score: {statistics.mean(failure_scores)}\n")   
         f.write(f"Failures Standard Deviation: {statistics.pstdev(failure_scores)}\n")
         f.write(f"Non-failures Average score: {statistics.mean(nonfailure_scores)}\n")
         f.write(f"Non-failures Standard Deviation: {statistics.pstdev(nonfailure_scores)}\n")
+        f.write(f"Earth Movers Distance: {emd}\n")
+        f.write(f"Bhattacharyya Coefficient: {b_distance}\n")
 
     with open(path[:-4] + "_failure_ranked_score.txt", 'w') as f:
         for document, summary, injected_document, injected_summary, score in failure_datapoints:
