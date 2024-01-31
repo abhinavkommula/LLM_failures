@@ -25,30 +25,33 @@ class Task:
         data = response['choices'][0]['message']['content'].replace('\n\n', '\n')
         return (data)
 
-    def gen_failures(self, context, is_baseline = False, model = 'gpt-3.5-turbo'):
+    def gen_failures(self, context, num_paragraphs = 5, is_baseline = False, model = 'gpt-3.5-turbo'):
+        iteration_number = self.num_examples
+
         if is_baseline:
             query = context + '\n'
+            iteration_number = (iteration_number // 5)
         else:
-            query = context + '\n' + "Failure Mode: [" + self.failure_mode + "]\n"
-        
+            query = context + '\n' + "Failure Mode: [" + self.failure_mode + "]\n" 
+
         messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': query}]
         failures = []
         
-        for i in range(int(self.num_examples // 3) + 1):
+        for i in range(int(iteration_number // num_paragraphs)):
             llm_output = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0.2)
-            paragraphs = re.split(r'\d+:', text)
+            paragraphs = re.split(r'\d+.', llm_output)[1:]
+        
+            if len(paragraphs) != num_paragraphs:
+                continue
+
             failures.extend(paragraphs)
+            print("Failures Generated:", num_paragraphs * (i + 1))
 
         return (failures)
 
     def gen_data(self):
-        prompt = "Write down 3 short paragraphs that would likely elicit failure in understanding for the following failure mode. You will be evaluated on how well you perform. Your sentence structure and length can be creative; extrapolate based on the failure mode you've summarized. Be both creative and cautious. " 
-
-        baseline_prompt = "Write down 3 short paragraphs. "
-
-        self.intial_domain = self.gen_failures(prompt)
-        self.baseline = self.gen_failures(context = baseline_prompt, is_baseline = True)
-
+        raise NotImplementedError
+    
     ''' 
     Returns: Tuple (Failure Rate, F1 Score, TP Rate, FP Rate, TN Rate, FN Rate)
     '''
@@ -61,4 +64,4 @@ class Task:
             for failure in self.baseline_failures:
                 f.write(f"{failure}\n")
 
-        return (len(self.failures) / self.num_examples, len(self.baseline_failures) / self.num_examples)
+        return (len(self.failures) / len(self.initial_domain), len(self.baseline_failures) / len(self.baseline))

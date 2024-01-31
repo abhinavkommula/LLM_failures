@@ -1,12 +1,23 @@
 from task import Task
+from ast import literal_eval
+from matplotlib import pyplot as plt
 
+import numpy as np
 import random, math
 import re
 import os
 
 class SummarizationScore(Task):
-    def __init__(self, failure_mode, num_examples):
-        super().__init__("summarization_score_task", failure_mode, num_examples)
+    def __init__(self, failure_mode, num_examples, interacter):
+        super().__init__("summarization_score_task", failure_mode, num_examples, interacter)
+
+    def gen_data(self):
+        prompt = "Write down 5 additional paragraphs that when passed as input to a language model with the following failure mode might elicit failures in summarization. You will be evaluated on how well you perform. Your sentence structure and length can be creative; extrapolate based on the failure mode. Be both creative and cautious. "
+
+        baseline_prompt = "Write down 5 additional paragraphs that when passed as input to a language model might elicit failures in summarization. You will be evaluated on how well you perform. Your sentence structure and length can be creative; be both creative and cautious. "
+
+        self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 5)
+        self.baseline = self.gen_failures(context = baseline_prompt, num_paragraphs = 5, is_baseline = True)
 
     def score_summary(self, summary, model = 'gpt-3.5-turbo'):
         start = f'You will be given a summary SUMMARY, and your task will be to assess how strong of a summary it is on scale from 1 to 10. Here is an example of a summary that would recieve a score of 2, because a high proportion of it contains irrelevant text: [a $4 trillion package with revenues, a $1 trillion-$2 trillion spending cuts-only deal, or a deal that grants the President authority to raise the debt ceiling without GOP agreement. Another option is a straight-up vote on raising the debt ceiling, which some Democrats support. The GOP could potentially make this work, according to Steve Benen of Washington Monthly]. Here is an example of a summary that would receive a score of 7 because it has a smaller portion of irrelevant information and makes more logical sense: [Richard "The Old Man" Harrison, a star of the popular reality TV show "Pawn Stars," has passed away at the age of 77 due to complications from Parkinsons disease. He will be greatly missed by his family, the team at Gold & Silver Pawn, and his many fans around the world. Harrison was a Navy veteran who opened the Gold & Silver Pawn Shop in Las Vegas in 1988, which became a multimillion-dollar business after the show premiered in 2009. He was known for his wisdom and wit on the show, which featured him and his family evaluating and purchasing rare and unusual items. Harrisons legacy will be remembered through the show and the impact he had on his family and the community.]'
@@ -32,7 +43,7 @@ class SummarizationScore(Task):
         for iterations in range(2):
             questions = []
             for i in range(len(input_domain)):
-                questions.append(summarize_prefix + input_domain)
+                questions.append(summarize_prefix + input_domain[i])
             answers = self.interacter.answer_questions(questions, extract_answers)
             
             failures = []
@@ -41,8 +52,8 @@ class SummarizationScore(Task):
             for i in range(len(questions)):
                 scores.append(self.score_summary(answers[i]))
         
-                if scores <= 4:
-                    failures.append((questions[i], answers[i]))
+                if scores[-1] <= 4:
+                    failures.append((questions[i], answers[i], scores[-1]))
 
             print("Scraping Baseline...")
             input_domain = self.baseline
@@ -74,5 +85,4 @@ class SummarizationScore(Task):
         plt.savefig("metrics/" + self.name + "_histogram.png")
         plt.close()
         
-        return (len(self.failures) / self.num_examples, len(self.baseline_failures) / self.num_examples)
-
+        return (len(self.failures) / len(self.initial_domain), len(self.baseline_failures) / len(self.baseline))

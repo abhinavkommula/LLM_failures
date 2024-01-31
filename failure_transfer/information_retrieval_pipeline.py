@@ -21,8 +21,8 @@ def get_random_facts(num):
     return (facts, queries, answers)
 
 class InformationRetrieval(Task):
-    def __init__(self, failure_mode, num_examples, num_facts = 3):
-        super().__init__("information_retrieval_task", failure_mode, num_examples)
+    def __init__(self, failure_mode, num_examples, interacter, num_facts = 3):
+        super().__init__("information_retrieval_task", failure_mode, num_examples, interacter)
         
         self.num_facts = num_facts
         self.facts, self.queries, self.answers = get_random_facts(num_facts)

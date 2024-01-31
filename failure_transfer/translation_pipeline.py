@@ -6,12 +6,20 @@ import re
 import os
 
 class Translation(Task):
-    def __init__(self, failure_mode, num_examples, language, threshold = 0.9):
-        super().__init__("translation_task", failure_mode, num_examples)
+    def __init__(self, failure_mode, num_examples, interacter, language, threshold = 0.9):
+        super().__init__("translation_task", failure_mode, num_examples, interacter)
 
         self.model = SentenceTransformer('distilbert-base-nli-mean-tokens')
         self.language = language
         self.threshold = threshold
+
+    def gen_data(self):
+        prompt = "Write down 5 additional paragraphs that when passed as input to a language model with the following failure mode might elicit failures in language translation. You will be evaluated on how well you perform. Your sentence structure and length can be creative; extrapolate based on the failure mode. Be both creative and cautious. "
+
+        baseline_prompt = "Write down 5 additional paragraphs that when passed as input to a language model might elicit failures in language translation. You will be evaluated on how well you perform. Your sentence structure and length can be creative; be both creative and cautious. "
+
+        self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 5)
+        self.baseline = self.gen_failures(context = baseline_prompt, num_paragraphs = 5, is_baseline = True)
 
     def pipeline(self):
         translate_prefix = f"Translate the following text from English to {self.language}. "  
@@ -27,7 +35,7 @@ class Translation(Task):
         for iterations in range(2):
             questions = []
             for i in range(len(input_domain)):
-                questions.append(translate_prefix + input_domain)
+                questions.append(translate_prefix + input_domain[i])
             answers = self.interacter.answer_questions(questions, extract_answers)
 
             questions2 = []
@@ -37,16 +45,16 @@ class Translation(Task):
 
             failures = []
             for i in range(len(answers2)):
-                print(f"Comparing initial text: {input_domain}\n with final text: {answers2[i]}\n")
+                print(f"Comparing initial text: {input_domain[i]}\n with final text: {answers2[i]}\n")
             
-                initial_embedding = self.model.encode(input_domain)
+                initial_embedding = self.model.encode(input_domain[i])
                 final_embedding = self.model.encode(answers2[i])
-                similarity = util.pytorch_cos_sim(initial_embedding, final_embedding)
+                similarity = util.pytorch_cos_sim(initial_embedding, final_embedding).item()
     
                 print(f"Semantic Similarity Score: {similarity}\n")
             
                 if similarity < self.threshold:
-                    failures.append((input_domain, answer2[i]))
+                    failures.append((input_domain[i], answers2[i], similarity))
 
             print("Scraping Baseline...")
             input_domain = self.baseline
