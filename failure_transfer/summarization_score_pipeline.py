@@ -39,7 +39,6 @@ class SummarizationScore(Task):
         all_scores = []
         all_failures = []
 
-        print("Scraping Initial Domain...")
         for iterations in range(2):
             questions = []
             for i in range(len(input_domain)):
@@ -55,7 +54,6 @@ class SummarizationScore(Task):
                 if scores[-1] <= 4:
                     failures.append((questions[i], answers[i], scores[-1]))
 
-            print("Scraping Baseline...")
             input_domain = self.baseline
             all_scores.append(scores)
             all_failures.append(failures)

@@ -2,88 +2,70 @@ from task import Task
 import random, math
 import re
 
-facts_queries_answers = [
-    ("The capital of Japan is Tokyo.", "What is the capital of Japan?", "Tokyo"), 
-    ("The chemical symbol for gold is Au.", "What is the chemical symbol for gold?", "Au"), 
-    ("The Great Barrier Reef is the largest coral reef system in the world.", "Which coral reef system is the largest in the world?", "The Great Barrier Reef"),
-    ("The human body has 206 bones.", "How many bones are in the human body?", "206"), 
-    ("Sherlock Holmes is known for residing at 221B Baker Street in London", "What street does Sherlock Holmes live on?", "221B Baker Street"), 
-    ("Bobby Fisher has a pet owl named Flappy", "What is the name of Bobby Fischer's owl?", "Flappy"), 
-    ("Harry Potter's chessboard has 72 squares arranged in an 8x9 grid.", "How many squares are in Harry Potter's chessboard?", "72") 
-]
-
-def get_random_facts(num):
-    random.shuffle(facts_queries_answers)
-    facts = [tup[0] for tup in facts_queries_answers[:num]]
-    queries = [tup[1] for tup in facts_queries_answers[:num]]
-    answers = [tup[2] for tup in facts_queries_answers[:num]]
-    
-    return (facts, queries, answers)
-
 class InformationRetrieval(Task):
     def __init__(self, failure_mode, num_examples, interacter, num_facts = 3):
         super().__init__("information_retrieval_task", failure_mode, num_examples, interacter)
         
         self.num_facts = num_facts
-        self.facts, self.queries, self.answers = get_random_facts(num_facts)
 
     def gen_data(self):
-        prompt = f"I will give you a list of facts. Please write me 3 paragraphs, each containing all of the facts in the list. Furthermore, these paragraphs should likely elicit a failure in understanding for the following failure mode. Facts: [" + ", ".join(fact for fact in self.facts) + "Extrapolate based on the failure mode you’ve summarized. Be both creative and cautious. It is critical that each of the 3 paragraphs should every single facts in them."
-        
-        self.initial_domain = self.gen_failures(prompt)
-        self.baseline = self.gen_failures(context = prompt, is_baseline = True)
-        
+        prompt = f"Write 3 additional paragraphs, and for each paragraph provide {self.num_facts} objective question/short answer pairs that could be used to test a language models ability to retrieve information. Furthermore, design all 3 of these paragraphs so that when passed as input to a language model with the following failure mode they would likely elicit failures in information retrieval tasks. You will be evaluated on how well you perform. Your sentence structure and length can be creative; extrapolate based on the failure mode. Be both creative and cautious. Format your output as: (Paragraph 1., Questions ...), (Paragraph 2., Questions ...). "
+
+        baseline_prompt = f"Write 3 additional paragraphs, and for each paragraph provide {self.num_facts} objective question/short answer pairs that could be used to test a language models ability to retrieve information. Furthermore, design all 3 of these paragraphs so that when passed as input to a language model they would likely elicit failures in information retrieval tasks. You will be evaluated on how well you perform. Your sentence structure and length can be creative; be both creative and cautious. "
+
+        self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 3)
+        self.baseline = self.gen_failures(context = baseline_prompt, num_paragraphs = 3, is_baseline = True)
+
     def pipeline(self):
-        info_prefix = f"I will provide you with some text and ask you some questions. Text: "
-        info_suffix = f" Questions: "
+        info_prefix = f"I will provide you with a paragraph and {self.num_facts} questions related to this paragraph. Please answer them to the best of your ability, and rely only on the paragraph. Paragraph: "
 
-        for i in range(self.num_facts):
-            info_suffix += (str(i + 1) + ". " + self.queries[i] + ", ")
+        def extract_question_answer(example):
+            split_qs = example.replace('\n', '').split("1.")
+            questions_indiv = re.split(r'\d+.', split_qs[1])
 
-        info_suffix += "Please use the text to answer each of these questions, rather than relying on external knowledge. Do not include the original text in your answer." 
-        
+            questions = []
+            answers = []
+
+            for q in questions_indiv:
+                if '-' in q:
+                    divide = q.split('-')
+                    questions.append(divide[0])
+                    answers.append(divide[1])
+                else:
+                    questions.append('0')
+                    answers.append('0')
+
+            return (split_qs[0], questions, answers)
+
         def extract_answers(response):
             return ([response])
 
         input_domain = self.initial_domain
-        print("Scraping Initial Domain...")
-
         all_failures = []
+
         for iterations in range(2):
             questions = []
+            question_answers = []
+
             for i in range(len(input_domain)):
-                questions.append(info_prefix + input_domain[i] + info_suffix)
+                orig_q, extract_qs, extract_ans = extract_question_answer(input_domain[i])
+                
+                questions_str = ""
+                for i in range(len(extract_qs)):
+                    questions_str += (str(i + 1) + ".")
+                    questions_str += (extract_qs[i] + " ")
 
-            print(len(questions), questions[0], len(input_domain))
+                questions.append(info_prefix + orig_q + " Questions: " + questions_str)
+                question_answers.append((extract_qs, extract_ans))
+
             answers = self.interacter.answer_questions(questions, extract_answers)
-
-            for q in questions:
-                print(q)
-
-            print("Answers:")
-
-            for a in answers:
-                print(a)
 
             failures = []
             for i in range(len(answers)):
-                pass
-
-            '''
-                initial_embedding = self.model.encode(input_domain)
-                final_embedding = self.model.encode(answers2[i])
-                similarity = util.pytorch_cos_sim(initial_embedding, final_embedding)
-    
-                print(f"Semantic Similarity Score: {similarity}\n")
+                print("Questions:", questions[i], "Answers:", answers[i], question_answers[i])                 
             
-                if similarity < self.threshold:
-                    self.failures.append((input_domain, answer2[i]))
-            '''
-
-            all_failures.append(failures)
-
-            print("Scraping Baseline...")
             input_domain = self.baseline
+            all_failures.append(failures)
 
         self.failures = all_failures[0]
         self.baseline_failures = all_failures[1]

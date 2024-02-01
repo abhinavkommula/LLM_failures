@@ -30,7 +30,6 @@ class Translation(Task):
 
         input_domain = self.initial_domain
         all_failures = []
-        print("Scraping Initial Domain...")
 
         for iterations in range(2):
             questions = []
@@ -45,18 +44,13 @@ class Translation(Task):
 
             failures = []
             for i in range(len(answers2)):
-                print(f"Comparing initial text: {input_domain[i]}\n with final text: {answers2[i]}\n")
-            
                 initial_embedding = self.model.encode(input_domain[i])
                 final_embedding = self.model.encode(answers2[i])
                 similarity = util.pytorch_cos_sim(initial_embedding, final_embedding).item()
     
-                print(f"Semantic Similarity Score: {similarity}\n")
-            
                 if similarity < self.threshold:
-                    failures.append((input_domain[i], answers2[i], similarity))
+                    failures.append((input_domain[i], questions2[i], answers2[i], similarity))
 
-            print("Scraping Baseline...")
             input_domain = self.baseline
             all_failures.append(failures)
 

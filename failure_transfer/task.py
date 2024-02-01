@@ -38,9 +38,9 @@ class Task:
         failures = []
         
         for i in range(int(iteration_number // num_paragraphs)):
-            llm_output = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0.2)
+            llm_output = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0.3).replace("Paragraph", '')
             paragraphs = re.split(r'\d+.', llm_output)[1:]
-        
+            
             if len(paragraphs) != num_paragraphs:
                 continue
 
