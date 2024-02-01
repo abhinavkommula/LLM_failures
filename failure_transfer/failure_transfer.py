@@ -1,6 +1,7 @@
 from translation_pipeline import Translation
 from information_retrieval_pipeline import InformationRetrieval
 from summarization_score_pipeline import SummarizationScore
+from reasoning_pipeline import Reasoning
 from interact_llama import InteractLLaMA
 
 failure_modes = []
@@ -10,13 +11,14 @@ with open("failure_modes.txt", 'r') as f:
         failure_modes.append(line.strip().replace('\n', ''))
 
 tasks = [ 
+    (Reasoning, {}),
     #(InformationRetrieval, {"num_facts": 3}),
     (SummarizationScore, {}), 
     (Translation, {"language": "French", "threshold": 0.9}),
 ]
 
 interacter = InteractLLaMA()
-num_examples = 500
+num_examples = 100
 all_metrics = []
 
 for failure_mode in failure_modes:
@@ -32,7 +34,7 @@ for failure_mode in failure_modes:
     print(metrics)
     all_metrics.append(metrics)
 
-with open("metrics/aggregate.txt") as f:
+with open("metrics/aggregate.txt", 'w') as f:
     for i in range(len(failure_modes)):
-        f.write(f"Failure mode: {failure_mode[i]}\nRates: {all_metrics[i]}\n")
+        f.write(f"Failure mode: {failure_modes[i]}\nRates: {all_metrics[i]}\n")
 

@@ -22,8 +22,8 @@ class Translation(Task):
         self.baseline = self.gen_failures(context = baseline_prompt, num_paragraphs = 5, is_baseline = True)
 
     def pipeline(self):
-        translate_prefix = f"Translate the following text from English to {self.language}. "  
-        reverse_translate_prefix = f"Translate the following text from {self.language} to English. " 
+        translate_prefix = f"Translate the following paragraph from English to {self.language}. Only write the translated paragraph, do not include the original text. Paragraph: "  
+        reverse_translate_prefix = f"Translate the following paragraph from {self.language} to English. Only write the translated paragraph, do not include the original text. Paragraph: " 
 
         def extract_answers(response):
             return ([response])

@@ -30,7 +30,7 @@ class Task:
 
         if is_baseline:
             query = context + '\n'
-            iteration_number = (iteration_number // 5)
+            iteration_number = (iteration_number // 2)
         else:
             query = context + '\n' + "Failure Mode: [" + self.failure_mode + "]\n" 
 
@@ -64,4 +64,4 @@ class Task:
             for failure in self.baseline_failures:
                 f.write(f"{failure}\n")
 
-        return (len(self.failures) / len(self.initial_domain), len(self.baseline_failures) / len(self.baseline))
+        return (self.name, len(self.failures) / len(self.initial_domain), len(self.baseline_failures) / len(self.baseline))

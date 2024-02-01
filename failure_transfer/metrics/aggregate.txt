@@ -1,0 +1,6 @@
+Failure mode: Rigid Semantic Interpretation: Models often adhere strictly to semantic norms, struggling with non-traditional narratives or unconventional character roles. This limits their effectiveness in creative content generation, literary analysis, and adaptive storytelling.
+Rates: [('reasoning_task', 0.56, 0.58), ('summarization_score_task', 0.2875, 0.0), ('translation_task', 0.0, 0.0)]
+Failure mode: Bias Towards Stereotypes and Norms: Models may perpetuate stereotypes, especially in gender role assignment and emotional representation. This leads to biased interpretations and content generation, affecting tasks like diversity analysis and inclusive content creation.
+Rates: [('reasoning_task', 0.56, 0.62), ('summarization_score_task', 0.6, 0.0), ('translation_task', 0.0, 0.04)]
+Failure mode: Challenges in Integrating Emotional Context with Narrative Flow: Difficulty in correlating emotional states with narrative progression affects tasks involving empathetic response generation and psychological counseling support.
+Rates: [('reasoning_task', 0.54, 0.6), ('summarization_score_task', 0.19, 0.0), ('translation_task', 0.02, 0.0)]
