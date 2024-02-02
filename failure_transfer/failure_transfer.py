@@ -18,7 +18,7 @@ tasks = [
 ]
 
 interacter = InteractLLaMA()
-num_examples = 20
+num_examples = 100
 all_metrics = []
 
 for failure_mode in failure_modes:

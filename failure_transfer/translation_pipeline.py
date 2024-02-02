@@ -14,12 +14,11 @@ class Translation(Task):
         self.threshold = threshold
 
     def gen_data(self):
-        prompt = "Imagine you are attacking a language model with the following failure mode that is tasked with translating languages. Write down 5 additional paragraphs that would likely elicit failures in your opponent's ability to translate languages. You will be evaluated on how well you perform. Your sentence structure and length can be creative; extrapolate based on the failure mode. Be both creative and cautious. "
-        
-        baseline_prompt = "Imagine you are attacking a language model that is tasked with translating languages. Write down 5 additional paragraphs that would likely elicit failures in your opponents ability to translate languages. You will be evaluated on how well you perform. Your sentence structure and length can be creative; be both creative and cautious. "
+        prompt = "Imagine you are attacking a language model with the following failure mode that is tasked with translating languages. Write down 3 separate paragraphs that would likely elicit failures in the language model's ability to translate languages accurately. You will be evaluated on how strong your attack is. Your sentence structure and length can be creative; extrapolate based on the failure mode. Write only in english. "  
+        baseline_prompt = "Imagine you are attacking a language model that is tasked with translating languages. Write down 3 separate paragraphs that would likely elicit failures in the language model's ability to translate languages accurately. You will be evaluated on how strong your attack is. Your sentence structure and length can be creative. Write only in english. "
 
-        self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 5)
-        self.baseline = self.gen_failures(context = baseline_prompt, num_paragraphs = 5, is_baseline = True)
+        self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 3)
+        self.baseline = self.gen_failures(context = baseline_prompt, num_paragraphs = 3, is_baseline = True)
 
     def pipeline(self):
         translate_prefix = f"Translate the following paragraph from English to {self.language}. Only write the translated paragraph, do not include the original text. Paragraph: "  

@@ -14,33 +14,38 @@ class Task:
     
         if model == 'gpt-4-turbo':
             model = 'gpt-4-1106-preview'
-    
-        response = openai.ChatCompletion.create(
-            model=model,
-            messages=messages,
-            max_tokens=max_tokens,
-            temperature=temperature
-        )
+   
+        try:
+            response = openai.ChatCompletion.create(
+                model=model,
+                messages=messages,
+                max_tokens=max_tokens,
+                temperature=temperature
+            )
 
-        data = response['choices'][0]['message']['content'].replace('\n\n', '\n')
+            data = response['choices'][0]['message']['content'].replace('\n\n', '\n')
+        except:
+            data = "Error Querying OpenAI"
+
         return (data)
 
     def gen_failures(self, context, num_paragraphs = 5, is_baseline = False, model = 'gpt-3.5-turbo'):
         iteration_number = self.num_examples
 
         if is_baseline:
-            query = context + '\n'
-            iteration_number = (iteration_number // 1)
+            query = context + "Only write your attack paragraphs. Do not include any text about a language model. "
+            iteration_number = (iteration_number // 2)
         else:
-            query = context + '\n' + "Failure Mode: [" + self.failure_mode + "]\n" 
+            query = context + "Failure Mode: [" + self.failure_mode + "]. Only write your attack paragraphs. Do not include any language model. "
 
         messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': query}]
         failures = []
         
         for i in range(int(iteration_number // num_paragraphs)):
-            llm_output = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0.3).replace("Paragraph", '')
+            llm_output = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0.3).replace("Attack", '')
             paragraphs = re.split(r'\d+.', llm_output)[1:]
-            
+           
+            #print(llm_output, len(paragraphs))
             if len(paragraphs) != num_paragraphs:
                 continue
 
