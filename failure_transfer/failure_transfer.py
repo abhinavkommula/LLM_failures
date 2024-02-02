@@ -12,13 +12,13 @@ with open("failure_modes.txt", 'r') as f:
 
 tasks = [ 
     (Reasoning, {}),
-    #(InformationRetrieval, {"num_facts": 3}),
+    (Translation, {"language": "Chinese", "threshold": 0.9}),
     (SummarizationScore, {}), 
-    (Translation, {"language": "French", "threshold": 0.9}),
+    #(InformationRetrieval, {"num_facts": 3}),
 ]
 
 interacter = InteractLLaMA()
-num_examples = 100
+num_examples = 200
 all_metrics = []
 
 for failure_mode in failure_modes:
