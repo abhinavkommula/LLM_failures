@@ -31,9 +31,9 @@ class Reasoning(Task):
             
             
     def gen_data(self):
-        prompt = "Imagine you are a language model with the following failure mode that is tasked with answering reasoning questions. Please rewrite the following question so that it would likely elicit failures in your ability to answer reasoning questions. You will be evaluated on how well you perform. Extrapolate based on the failure mode, but do not change the fundamental meaning of the original question. Question: "
+        prompt = "Imagine you are attacking a language model with the following failure mode that is tasked with answering reasoning questions. Please rewrite the following question so that it would likely elicit failures in your opponent's ability to answer reasoning questions. You will be evaluated on how well you perform. Extrapolate based on the failure mode, but do not change the fundamental meaning of the question. Question: "
 
-        baseline_prompt = "Imagine you are a language model that is tasked with answering reasoning questions. Please rewrite the following question so that it would likely elicit failures in your ability to answer reasoning questions. You will be evaluated on how well you perform. Extrapolate as you see fit, but do not change the fundamental meaning of the original question. Question: "
+        baseline_prompt = "Imagine you are attacking language model that is tasked with answering reasoning questions. Please rewrite the following question so that it would likely elicit failures in your opponent's ability to answer reasoning questions. You will be evaluated on how well you perform. Extrapolate as you see fit, but do not change the fundamental meaning of the question. Question: "
 
         self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 1)
         self.baseline = self.gen_failures(context = baseline_prompt, num_paragraphs = 1, is_baseline = True)
@@ -42,7 +42,7 @@ class Reasoning(Task):
         iteration_number = self.num_examples
 
         if is_baseline:
-            iteration_number = (iteration_number // 2)
+            iteration_number = (iteration_number // 1)
 
         failures = []
         

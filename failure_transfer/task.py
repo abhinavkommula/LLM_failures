@@ -30,7 +30,7 @@ class Task:
 
         if is_baseline:
             query = context + '\n'
-            iteration_number = (iteration_number // 2)
+            iteration_number = (iteration_number // 1)
         else:
             query = context + '\n' + "Failure Mode: [" + self.failure_mode + "]\n" 
 

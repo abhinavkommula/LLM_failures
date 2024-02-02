@@ -14,9 +14,9 @@ class Translation(Task):
         self.threshold = threshold
 
     def gen_data(self):
-        prompt = "Imagine you are a language model with the following failure mode that is tasked with translating languages. Write down 5 additional paragraphs that would likely elicit failures in your ability to translate languages. You will be evaluated on how well you perform. Your sentence structure and length can be creative; extrapolate based on the failure mode. Be both creative and cautious. "
+        prompt = "Imagine you are attacking a language model with the following failure mode that is tasked with translating languages. Write down 5 additional paragraphs that would likely elicit failures in your opponent's ability to translate languages. You will be evaluated on how well you perform. Your sentence structure and length can be creative; extrapolate based on the failure mode. Be both creative and cautious. "
         
-        baseline_prompt = "Imagine you are a language model that is tasked with translating languages. Write down 5 additional paragraphs that would likely elicit failures in your ability to translate languages. You will be evaluated on how well you perform. Your sentence structure and length can be creative; be both creative and cautious. "
+        baseline_prompt = "Imagine you are attacking a language model that is tasked with translating languages. Write down 5 additional paragraphs that would likely elicit failures in your opponents ability to translate languages. You will be evaluated on how well you perform. Your sentence structure and length can be creative; be both creative and cautious. "
 
         self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 5)
         self.baseline = self.gen_failures(context = baseline_prompt, num_paragraphs = 5, is_baseline = True)
