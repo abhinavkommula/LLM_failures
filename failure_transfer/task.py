@@ -3,11 +3,12 @@ import openai
 import re
 
 class Task:
-    def __init__(self, name, failure_mode, num_examples, interacter):
+    def __init__(self, name, failure_mode, num_examples, interacter, read_file):
         self.name = name
         self.failure_mode = failure_mode
         self.num_examples = num_examples
         self.interacter = interacter
+        self.read_file = read_file
     
     def run_gpt(self, messages, model, max_tokens = 10, temperature = 0):
         assert model in ["gpt-4", "gpt-3.5-turbo", 'gpt-4-turbo', 'gpt-3.5-turbo-0613']
@@ -33,24 +34,26 @@ class Task:
         iteration_number = self.num_examples
 
         if is_baseline:
-            query = context + "Only write your attack paragraphs. Do not include any text about a language model. "
-            iteration_number = (iteration_number // 2)
+            query = context
+            iteration_number = (iteration_number // 1)
         else:
-            query = context + "Failure Mode: [" + self.failure_mode + "]. Only write your attack paragraphs. Do not include any language model. "
+            #query = context + "Failure Mode: [" + self.failure_mode + "]."
+            query = context
 
         messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': query}]
         failures = []
         
         for i in range(int(iteration_number // num_paragraphs)):
-            llm_output = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0.3).replace("Attack", '')
-            paragraphs = re.split(r'\d+.', llm_output)[1:]
+            llm_output = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0.3)
+            paragraphs = re.split(r'\d+\.|Paragraph \d+', llm_output)[1:]
            
-            #print(llm_output, len(paragraphs))
             if len(paragraphs) != num_paragraphs:
+                print("LLM Output:", llm_output)
+                print("Paragraphs:", paragraphs)
+                print(len(paragraphs), num_paragraphs)
                 continue
 
             failures.extend(paragraphs)
-            print("Failures Generated:", num_paragraphs * (i + 1))
 
         return (failures)
 

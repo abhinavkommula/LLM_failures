@@ -11,14 +11,16 @@ with open("failure_modes.txt", 'r') as f:
         failure_modes.append(line.strip().replace('\n', ''))
 
 tasks = [ 
-    (Reasoning, {}),
-    (Translation, {"language": "Chinese", "threshold": 0.9}),
-    (SummarizationScore, {}), 
-    #(InformationRetrieval, {"num_facts": 3}),
+    (Translation, {"name": "french", "language": "French", "threshold": 2.0}),
+    (Translation, {"name": "french_spanish_transfer", "language": "Spanish", "threshold": 2.0, "read_file": "metrics/translation/french_failures.txt"}),
+    (Translation, {"name": "spanish", "language": "Spanish", "threshold": 2.0}),
+    (Translation, {"name": "spanish_french_transfer", "language": "French", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
+    (Translation, {"name": "spanish_chinese_transfer", "language": "Chinese", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
+    #(SummarizationScore, {"name": "}),
 ]
 
 interacter = InteractLLaMA()
-num_examples = 100
+num_examples = 150
 all_metrics = []
 
 for failure_mode in failure_modes:

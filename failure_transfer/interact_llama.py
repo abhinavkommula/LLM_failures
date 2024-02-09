@@ -54,23 +54,17 @@ class InteractLLaMA:
             inputs = self.tokenizer(batch, return_tensors = 'pt', padding = True, max_length = max_token_length)
             inputs = {k : v.to(device) for k, v in inputs.items()}
 
-            token_counts = [input_id.size(0) for input_id in inputs["input_ids"]]
-
             with torch.no_grad():
                 outputs = self.model.generate(**inputs, max_length = max_token_length, num_return_sequences = 1)
-
-            for output, count in zip(outputs, token_counts):
-                response = self.tokenizer.decode(output[count:], skip_special_tokens = True)
-                response = response.replace('\r', '').replace('\n', '')
-                response = response.split(":")[-1]
-
-                try:
-                    answers.extend(extract_answers(response))
-                except:
-                    answers.append([])
+            
+            for output in outputs:    
+                response = self.tokenizer.decode(output, skip_special_tokens = True)
+                response = response.replace('\r', '').replace('\n', '').split("[/INST]")[1:]
+                
+                answers.extend(extract_answers(response))
 
                 del output
-
+            
             inputs = {k : v.cpu() for k, v in inputs.items()}
             del inputs
 

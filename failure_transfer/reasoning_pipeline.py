@@ -41,7 +41,7 @@ class Reasoning(Task):
         iteration_number = self.num_examples
 
         if is_baseline:
-            iteration_number = (iteration_number // 2)
+            iteration_number = (iteration_number // 1)
 
         failures = []
         

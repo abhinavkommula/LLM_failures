@@ -1,0 +1,2 @@
+Failure Similarity Mean: 0.9681900382041931
+Baseline Similarity Mean: 0.9238445380081733

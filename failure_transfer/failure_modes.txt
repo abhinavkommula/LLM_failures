@@ -1,2 +1,1 @@
 Rigid Semantic Interpretation: Models often adhere strictly to semantic norms, struggling with non-traditional narratives or unconventional character roles. This limits their effectiveness in creative content generation, literary analysis, and adaptive storytelling.
-Bias Towards Stereotypes and Norms: Models may perpetuate stereotypes, especially in gender role assignment and emotional representation. This leads to biased interpretations and content generation, affecting tasks like diversity analysis and inclusive content creation.
