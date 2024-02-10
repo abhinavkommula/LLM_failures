@@ -45,7 +45,7 @@ class Task:
         
         for i in range(int(iteration_number // num_paragraphs)):
             llm_output = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0.3)
-            paragraphs = re.split(r'\d+\.|Paragraph \d+', llm_output)[1:]
+            paragraphs = re.split(r'\d+\)|\d+\.|Paragraph \d+', llm_output)[1:]
            
             if len(paragraphs) != num_paragraphs:
                 print("LLM Output:", llm_output)

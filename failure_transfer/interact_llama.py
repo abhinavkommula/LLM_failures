@@ -59,7 +59,7 @@ class InteractLLaMA:
             
             for output in outputs:    
                 response = self.tokenizer.decode(output, skip_special_tokens = True)
-                response = response.replace('\r', '').replace('\n', '').split("[/INST]")[1:]
+                response = "".join(response.replace('\r', '').replace('\n', '').split("[/INST]")[1:])
                 
                 answers.extend(extract_answers(response))
 

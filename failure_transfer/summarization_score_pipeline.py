@@ -9,11 +9,24 @@ import re
 import os
 
 class SummarizationScore(Task):
-    def __init__(self, failure_mode, num_examples, interacter, name = "score_task", read_file = None):
+    def __init__(self, failure_mode, num_examples, interacter, name = "score_task", domain = "news articles", example1 = "", example2 = "", read_file = None):
         super().__init__(name, failure_mode, num_examples, interacter, read_file)
         
         self.domain = domain
-    
+        self.example1 = example1
+        self.example2 = example2
+   
+    def domain_transfer(self, summary, model = 'gpt-3.5-turbo'):
+        start = f'Given a summary SUMMARY, please rewrite it in the style of a {self.domain}. You will be evaluated on how well you perform. Here are examples from this domain as a reference.'
+        end = f'Ensure that all important points in the summary are contained your response. Your sentence structure and length can be creative. Be creative and cautious. Limit the length of your response to 5 sentences.' 
+        prompt = f'{start}\nEXAMPLE #1:{self.example1}\nEXAMPLE #2:{self.example2}\nSUMMARY\n{summary}\n{end}'
+
+        messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': prompt}]
+        output_domain = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0)
+        
+        return (output_domain)
+
+
     def gen_data(self):
         if self.read_file != None:
             paragraphs_list = []
@@ -21,25 +34,23 @@ class SummarizationScore(Task):
             with open(self.read_file, 'r') as f:
                 for line in f:
                     tup = literal_eval(line)
-                    paragraphs_list.append((tup[0], tup[2]))
-                
-            idx = min(len(paragraphs_list) - 1, 5)
-            while paragraphs_list[idx][1] < 0.9:
+                    paragraphs_list.append((tup[0], tup[2], tup[1]))
+
+            idx = 5
+            while paragraphs_list[idx][1] <= 4:
                 idx += 1
 
-            self.initial_domain = [el[0] for el in paragraphs_list[:idx]]
             print("Mean failure transfer:", statistics.mean([el[1] for el in paragraphs_list[:idx]]))
-
-            random.shuffle(paragraphs_list)
-            self.baseline = [el[0] for el in paragraphs_list[:100]]
             
-            print("Mean baseline:", statistics.mean([el[1] for el in paragraphs_list[:100]]))
+            random.shuffle(paragraphs_list)
+            print("Mean baseline:", statistics.mean([el[1] for el in paragraphs_list[:30]]))
+
+            self.initial_domain = [self.domain_transfer(el[2]) for el in paragraphs_list[:idx]]
+            self.baseline = [self.domain_transfer(el[2]) for el in paragraphs_list[:30]]
 
             return
 
-        prompt = "Write down 3 separate paragraphs from arbitrary domains (short stories, news articles, etc.). You will be evaluated on how well you perform. Your sentence structure and length can be creative. Only write in English. "
-
-        baseline_prompt = "Write down 3 separate paragraphs from arbitrary domains (short domains, news articles, etc.). You will be evaluated on how well you perform. Your sentence structure and length can be creative, extrapolate if necessary. Only write in English. "
+        prompt = "Write down 3 separate and unrelated paragraphs in the style of {self.domain}. You will be evaluated on how well you perform. Your sentence structure and length can be creative. Please format your numbered output as: Paragraph 1:, Paragraph 2:, ..."
 
         self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 3)
         self.baseline = ["..."] 
@@ -56,10 +67,13 @@ class SummarizationScore(Task):
         return (literal_eval(scores))
 
     def pipeline(self):
-        summarize_prefix = f"Please summarize the following text as succinctly as possible. Only write 2 sentences or less. "  
+        summarize_prefix = f"Summarize the following text as succinctly as possible. Only write 2 sentences or less. "  
         
         def extract_answers(response):
-            return ([response])
+            if ':' not in response:
+                return ([response])
+            
+            return ([':'.join(response.split(":")[1:])])
 
         input_domain = self.initial_domain
         all_scores = []
@@ -71,17 +85,22 @@ class SummarizationScore(Task):
                 questions.append(summarize_prefix + input_domain[i])
             answers = self.interacter.answer_questions(questions, extract_answers)
             
+            assert(len(questions) == len(answers))
+
             failures = []
             scores = []
 
             for i in range(len(questions)):
                 scores.append(self.score_summary(answers[i]))
-    
-                if scores[-1] <= 4:
+   
+                # Modify if we decide to apply thresholding
+                if scores[-1] <= 10:
                     failures.append((questions[i], answers[i], scores[-1]))
 
             input_domain = self.baseline
             all_scores.append(scores)
+
+            failures.sort(key = lambda f : f[2])
             all_failures.append(failures)
 
         self.failure_scores = all_scores[0]
@@ -117,7 +136,7 @@ class SummarizationScore(Task):
         plt.title("Summarization Score Failure Transfer")
         plt.xlabel("Score")
         plt.ylabel("Frequency")
-        plt.savefig("metrics/" + self.name + "_histogram.png")
+        plt.savefig("metrics/summarization/" + self.name + "_histogram.png")
         plt.close()
         
         return (self.name, len(self.failures) / len(self.initial_domain), len(self.baseline_failures) / len(self.baseline), self.failure_mean, self.baseline_mean, self.emd)
