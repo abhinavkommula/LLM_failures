@@ -57,10 +57,10 @@ class SummarizationScore(Task):
         self.baseline = ["..."] 
         #self.baseline = self.gen_failures(context = baseline_prompt, num_paragraphs = 3, is_baseline = True)
 
-    def score_summary(self, summary, document, model = 'gpt-3.5-turbo'):
-        start = f'You will be given a summary SUMMARY for a document DOCUMENT, and you will be asked to score the quality of the summary on a scale from 1 to 10. A strong summary should be as succinct as possible, contain only details necessary to understanding DOCUMENT, and have logical transitions between ideas. '
-        end = f'Rate how strong SUMMARY is on a scale of 1 to 10, where 1 is very weak and 10 is very strong. Respond only with a number from 1 to 10. '
-        prompt = f'{start}\nSUMMARY:\n{summary}\nDOCUMENT:\n{document}\n{end}'
+    def score_summary(self, summary,  model = 'gpt-3.5-turbo'):
+        start = f'You will be given a paragraph PARAGRAPH and you will be asked to score the quality of the paragraph on a scale from 1 to 10. A strong paragraph should have grammatically correct sentences, and should make logical sense to a reader with no external context. '
+        end = f'Rate how strong PARAGRAPH is on a scale of 1 to 10 where 1 represents a paragraph with incomplete sentences and/or requires additional context for complete understanding, while a 10 represents a perfectly-written paragraph. Be a harsh critic when giving a score. Respond only with an integer from 1 to 10. '
+        prompt = f'{start}\nPARAGRAPH:\n{summary}\n{end}'
     
         messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': prompt}]
         scores = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0)
@@ -73,7 +73,7 @@ class SummarizationScore(Task):
         return (scores)
 
     def pipeline(self):
-        summarize_prefix = f"Summarize the following text as succinctly as possible. Capture only the points necessary to understanding the text. Only write 1 sentence. "  
+        summarize_prefix = f"Summarize the following text as succinctly as possible. Capture only the points necessary to understanding the text. "  
         
         def extract_answers(response):
             if ':' not in response:
@@ -97,7 +97,7 @@ class SummarizationScore(Task):
             scores = []
 
             for i in range(len(questions)):
-                scores.append(self.score_summary(answers[i], input_domain[i]))
+                scores.append(self.score_summary(answers[i]))
    
                 # Modify if we decide to apply thresholding
                 if scores[-1] <= 10:

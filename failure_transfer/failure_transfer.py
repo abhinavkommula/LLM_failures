@@ -36,7 +36,7 @@ if translation:
         #(Translation, {"name": "spanish", "language": "Spanish", "threshold": 2.0}),
         #(Translation, {"name": "spanish_french_transfer", "language": "French", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
         #(Translation, {"name": "spanish_dutch_transfer", "language": "Dutch", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
-        (Translation, {"name": "spanish_chinese_transfer", "language": "Mandarin Chinese", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
+        #(Translation, {"name": "spanish_chinese_transfer", "language": "Mandarin Chinese", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
         (Translation, {"name": "spanish_arabic_transfer", "language": "Arabic", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
         (Translation, {"name": "spanish_korean_transfer", "language": "Korean", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
    
@@ -81,7 +81,7 @@ if summarization:
 
 
 interacter = InteractLLaMA()
-num_examples = 100
+num_examples = 200
 all_metrics = []
 
 for failure_mode in failure_modes:
