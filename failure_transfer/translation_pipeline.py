@@ -23,8 +23,8 @@ class Translation(Task):
                     tup = literal_eval(line)
                     paragraphs_list.append((tup[0], tup[2]))
             
-            idx = 5
-            while paragraphs_list[idx][1] < 0.95:
+            idx = int(len(paragraphs_list) * 0.1)
+            while paragraphs_list[idx][1] < 0.925:
                 idx += 1
 
             self.initial_domain = [el[0] for el in paragraphs_list[:idx]]
@@ -51,8 +51,13 @@ class Translation(Task):
         messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': prompt}]
         scores = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0)
 
-        return (literal_eval(scores))
-    
+        try:
+            scores = literal_eval(scores)
+        except:
+            scores = 0
+
+        return (scores)
+
     def pipeline(self):
         translate_prefix = f"Translate the following text from English to {self.language}: ["  
         translate_suffix = f"]. Translate the text to {self.language} to the best of your ability. Only write your translation. Only write in {self.language}. "

@@ -1,0 +1,1 @@
+('...', '  He was very happy to chat with me, and I was very happy to chat with him.', 0.16474531590938568, -1)

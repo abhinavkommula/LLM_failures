@@ -11,8 +11,11 @@ import gc
 
 class InteractLLaMA:
     def __init__(self):
+        gc.collect()
+        torch.cuda.empty_cache()
+
         self.model, self.tokenizer = self.load_llama_model()
-            
+
     def generate_message(self, question):
         formatted_question = question.replace("'", '')
         return ([{'role': 'system', 'content': ''}, 
@@ -68,7 +71,7 @@ class InteractLLaMA:
             inputs = {k : v.cpu() for k, v in inputs.items()}
             del inputs
 
-            torch.cuda.empty_cache()
             gc.collect()
+            torch.cuda.empty_cache()
 
         return (answers)
