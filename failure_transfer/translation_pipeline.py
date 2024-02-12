@@ -7,12 +7,13 @@ import re
 import os
 
 class Translation(Task):
-    def __init__(self, failure_mode, num_examples, interacter, name = "task", language = "English", threshold = 0.9, read_file = None):
+    def __init__(self, failure_mode, num_examples, interacter, name = "task", language = "English", threshold = 0.9, data_gen = None, read_file = None):
         super().__init__(name, failure_mode, num_examples, interacter, read_file)
         
         self.model = SentenceTransformer('distilbert-base-nli-mean-tokens')
         self.language = language
         self.threshold = threshold
+        self.data_gen = data_gen
 
     def gen_data(self):
         if self.read_file != None:
