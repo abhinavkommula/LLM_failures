@@ -39,7 +39,7 @@ class Translation(Task):
 
         prompt = "Write down 5 unique and unrelated sentences from arbitrary domains (stories, news articles, etc.). You will be evaluated on how well you perform. Your sentence structure and length can be creative. Only write in English. "
         
-        self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 5)
+        self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 5, temp = 1)
         self.baseline = ["..."]
         #self.baseline = self.gen_failures(context = baseline_prompt, num_paragraphs = 3, is_baseline = True)
 
@@ -49,7 +49,7 @@ class Translation(Task):
         prompt = f'{start}\nVERSION1\n{v1}\nVERSION2\n{v2}\n{end}'
     
         messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': prompt}]
-        scores = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0)
+        scores = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0.01)
 
         try:
             scores = literal_eval(scores)

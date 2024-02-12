@@ -30,7 +30,7 @@ class Task:
 
         return (data)
 
-    def gen_failures(self, context, num_paragraphs = 5, is_baseline = False, model = 'gpt-3.5-turbo'):
+    def gen_failures(self, context, num_paragraphs = 5, temp = 0.3, is_baseline = False, model = 'gpt-3.5-turbo'):
         iteration_number = self.num_examples
 
         if is_baseline:
@@ -44,7 +44,7 @@ class Task:
         failures = []
         
         for i in range(int(iteration_number // num_paragraphs)):
-            llm_output = self.run_gpt(messages, model, max_tokens = 1000, temperature = 0.3)
+            llm_output = self.run_gpt(messages, model, max_tokens = 1000, temperature = temp)
             paragraphs = re.split(r'\d+\)|\d+\.|Paragraph \d+', llm_output)[1:]
            
             if len(paragraphs) != num_paragraphs:

@@ -6,6 +6,11 @@ from interact_llama import InteractLLaMA
 
 from scrape.scrape_news import NewsScrape
 from scrape.scrape_stories import StoriesScrape
+from scrape.scrape_arxiv import ArxivScrape
+from scrape.scrape_pubmed import PubmedScrape
+
+#from scrape.scrape_amazon_reviews import AmazonReviewsScrape
+#from scrape.scrape_law import LawScrape
 
 failure_modes = []
 
@@ -13,30 +18,36 @@ with open("failure_modes.txt", 'r') as f:
     for line in f:
         failure_modes.append(line.strip().replace('\n', ''))
 
-translation = True
-summarization = False
+translation = False
+summarization = True
 
 assert((translation or summarization) == True)
 
 if summarization:
     news_scraper = NewsScrape()
     stories_scraper = StoriesScrape()
+    arxiv_scraper = ArxivScrape()
+    pubmed_scraper = PubmedScrape()
+    
+    #amazon_reviews_scraper = AmazonReviewsScrape()
+    #law_scraper = LawScrape()
 
 tasks = []
 
 if translation:
+    """
     tasks.extend([
-        #(Translation, {"name": "french", "language": "French", "threshold": 2.0}),
-        #(Translation, {"name": "french_spanish_transfer", "language": "Spanish", "threshold": 2.0, "read_file": "metrics/translation/french_failures.txt"}), 
-        #(Translation, {"name": "french_dutch_transfer", "language": "Dutch", "threshold": 2.0, "read_file": "metrics/translation/french_failures.txt"}),
-        #(Translation, {"name": "french_arabic_transfer", "language": "Arabic", "threshold": 2.0, "read_file": "metrics/translation/french_failures.txt"}),
-        #(Translation, {"name": "french_chinese_transfer", "language": "Mandarin Chinese", "threshold": 2.0, "read_file": "metrics/translation/french_failures.txt"}),
-        #(Translation, {"name": "french_korean_transfer", "language": "Korean", "threshold": 2.0, "read_file": "metrics/translation/french_failures.txt"}), 
+        (Translation, {"name": "french", "language": "French", "threshold": 2.0}),
+        (Translation, {"name": "french_spanish_transfer", "language": "Spanish", "threshold": 2.0, "read_file": "metrics/translation/french_failures.txt"}), 
+        (Translation, {"name": "french_dutch_transfer", "language": "Dutch", "threshold": 2.0, "read_file": "metrics/translation/french_failures.txt"}),
+        (Translation, {"name": "french_arabic_transfer", "language": "Arabic", "threshold": 2.0, "read_file": "metrics/translation/french_failures.txt"}),
+        (Translation, {"name": "french_chinese_transfer", "language": "Mandarin Chinese", "threshold": 2.0, "read_file": "metrics/translation/french_failures.txt"}),
+        (Translation, {"name": "french_korean_transfer", "language": "Korean", "threshold": 2.0, "read_file": "metrics/translation/french_failures.txt"}), 
     
-        #(Translation, {"name": "spanish", "language": "Spanish", "threshold": 2.0}),
-        #(Translation, {"name": "spanish_french_transfer", "language": "French", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
-        #(Translation, {"name": "spanish_dutch_transfer", "language": "Dutch", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
-        #(Translation, {"name": "spanish_chinese_transfer", "language": "Mandarin Chinese", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
+        (Translation, {"name": "spanish", "language": "Spanish", "threshold": 2.0}),
+        (Translation, {"name": "spanish_french_transfer", "language": "French", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
+        (Translation, {"name": "spanish_dutch_transfer", "language": "Dutch", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
+        (Translation, {"name": "spanish_chinese_transfer", "language": "Mandarin Chinese", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
         (Translation, {"name": "spanish_arabic_transfer", "language": "Arabic", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
         (Translation, {"name": "spanish_korean_transfer", "language": "Korean", "threshold": 2.0, "read_file": "metrics/translation/spanish_failures.txt"}),
    
@@ -69,6 +80,12 @@ if translation:
         (Translation, {"name": "korean_arabic_transfer", "language": "Arabic", "threshold": 2.0, "read_file": "metrics/translation/korean_failures.txt"}),
         (Translation, {"name": "korean_chinese_transfer", "language": "Mandarin Chinese", "threshold": 2.0, "read_file": "metrics/translation/korean_failures.txt"}),
     ])
+    """
+
+    """ Studying randomness of Yes/No scoring """
+    for i in range(10):
+        tasks.append((Translation, {"name": f"french_dutch_transfer_{i}", "language": "Dutch", "threshold": 2.0, "read_file": "metrics/translation/french_failures.txt"}))
+
 
 if summarization:
     tasks.extend([
@@ -77,6 +94,13 @@ if summarization:
 
         (SummarizationScore, {"name": "short_stories", "domain": ("short stories", stories_scraper)}),
         (SummarizationScore, {"name": "short_stories_news_transfer", "domain": ("news articles", news_scraper), "read_file": "metrics/summarization/short_stories_failures.txt"}),
+    
+        (SummarizationScore, {"name": "arxiv", "domain": ("technical scientific papers", arxiv_scraper)}),
+
+        (SummarizationScore, {"name": "pubmed", "domain": ("medical scientific papers", pubmed_scraper)}),
+
+        #(SummarizationScore, {"name": "amazon_reviews", "domain": ("amazon reviews", amazon_reviews_scraper)}),
+        #(SummarizationScore, {"name": "law", "domain": ("legal documents", law_scraper)}),
     ])
 
 
