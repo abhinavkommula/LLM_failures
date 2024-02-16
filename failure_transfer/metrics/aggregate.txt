@@ -1,2 +1,2 @@
 Failure mode: Rigid Semantic Interpretation: Models often adhere strictly to semantic norms, struggling with non-traditional narratives or unconventional character roles. This limits their effectiveness in creative content generation, literary analysis, and adaptive storytelling.
-Rates: [('news', 1.0, 1.0, 8.095, 9.0, 0.905), ('news_short_stories_transfer', 1.0, 1.0, 8.0, 8.133333333333333, 0.13333333333333344), ('short_stories', 1.0, 1.0, 7.65, 9.0, 1.35), ('short_stories_news_transfer', 1.0, 1.0, 7.857142857142857, 8.133333333333333, 0.2761904761904761), ('arxiv', 1.0, 1.0, 7.275, 9.0, 1.725), ('pubmed', 1.0, 1.0, 7.97, 9.0, 1.03)]
+Rates: [('dutch_french_transfer', 0.9577464788732394, 0.986), ('dutch_spanish_transfer', 0.9871402327005512, 0.996)]

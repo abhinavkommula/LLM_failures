@@ -48,6 +48,8 @@ class InteractLLaMA:
         questions = [self.messages_to_prompt(self.generate_message(q)) for q in questions]
         answers = []
 
+        gc.collect()
+        torch.cuda.empty_cache()
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         
         for idx in range(0, len(questions), batch_size):
@@ -63,7 +65,7 @@ class InteractLLaMA:
             for output in outputs:    
                 response = self.tokenizer.decode(output, skip_special_tokens = True)
                 response = "".join(response.replace('\r', '').replace('\n', '').split("[/INST]")[1:])
-                
+               
                 answers.extend(extract_answers(response))
 
                 del output

@@ -3,11 +3,12 @@ import openai
 import re
 
 class Task:
-    def __init__(self, name, failure_mode, num_examples, interacter, read_file):
+    def __init__(self, name, failure_mode, num_examples, interacter, initial_domain, read_file):
         self.name = name
         self.failure_mode = failure_mode
         self.num_examples = num_examples
         self.interacter = interacter
+        self.initial_domain = initial_domain
         self.read_file = read_file
     
     def run_gpt(self, messages, model, max_tokens = 10, temperature = 0):

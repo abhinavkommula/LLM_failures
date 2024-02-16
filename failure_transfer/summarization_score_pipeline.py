@@ -9,8 +9,8 @@ import re
 import os
 
 class SummarizationScore(Task):
-    def __init__(self, failure_mode, num_examples, interacter, name = "score_task", domain = ("", None), read_file = None):
-        super().__init__(name, failure_mode, num_examples, interacter, read_file)
+    def __init__(self, failure_mode, num_examples, interacter, initial_domain, name = "score_task", domain = ("", None), read_file = None):
+        super().__init__(name, failure_mode, num_examples, interacter, initial_domain, read_file)
         
         self.domain = domain[0]
         self.scraper = domain[1]
@@ -49,7 +49,7 @@ class SummarizationScore(Task):
 
             return
 
-        #prompt = "Write down 3 separate and unrelated paragraphs in the style of {self.domain}. You will be evaluated on how well you perform. Your sentence structure and length can be creative. Please format your numbered output as: Paragraph 1:, Paragraph 2:, ..."
+        prompt = "Write down 3 separate and unrelated paragraphs in the style of {self.domain}. You will be evaluated on how well you perform. Your sentence structure and length can be creative. Please format your numbered output as: Paragraph 1:, Paragraph 2:, ..."
 
         self.initial_domain = self.scraper.get_examples(self.num_examples)
         #self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 3)

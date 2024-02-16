@@ -1,7 +1,7 @@
 import os
 from ast import literal_eval
 
-cur_dir = '.'
+cur_dir = './data/'
 
 for filename in os.listdir(cur_dir):
     file_path = os.path.join(cur_dir, filename)
