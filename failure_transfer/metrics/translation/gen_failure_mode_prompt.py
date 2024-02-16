@@ -8,8 +8,7 @@ prompt_examples = 200
 
 failure_mode_prefix = "I will provide a series of data for you to remember. Subsequently, I will ask you some questions to test your performance! Here are some prompts for you to memorize."
 
-failure_mode_suffix = "I am trying to find failures with a language model. The above are sentences that a language model fails to translate accurately. Using these specific examples, are there any general type of failures you notice the language model is making, or any common features of sentences that the language model fails to translate? Try to give failures that are specific enough that someone could reliably produce examples that the language model would fail to translate. Please try to give as many general failures as possible. Please focus on what you notice on the text, rather than what you know about languages and translation tasks. In your failure modes, please explain clearly why the failure would lead to problems for future tasks related to translation. Please summarize as many as you can and stick to the examples rather than any prior knowledge."
-
+failure_mode_suffix = "The above are sentences that are important to me. Please write 10 paragraphs that contain sentences which are similar to those provided in the list above. By similar sentences, I mean sentences that share the same structure, features, concepts, etc. You will be evaluated on how well you actually perform. Your sentence structure and length can be creative."
 
 for filename in os.listdir(cur_dir):
     file_path = os.path.join(cur_dir, filename)
