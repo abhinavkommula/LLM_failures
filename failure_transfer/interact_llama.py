@@ -10,11 +10,12 @@ import torch.nn.functional as F
 import gc
 
 class InteractLLaMA:
-    def __init__(self):
+    def __init__(self, logger):
         gc.collect()
         torch.cuda.empty_cache()
 
         self.model, self.tokenizer = self.load_llama_model()
+        self.logger = logger
 
     def generate_message(self, question):
         formatted_question = question.replace("'", '')
@@ -54,7 +55,7 @@ class InteractLLaMA:
         
         for idx in range(0, len(questions), batch_size):
             batch = questions[idx : min(len(questions), idx + batch_size)]
-            print("BATCH:", len(batch))
+            self.logger.print("BATCH: " + str(len(batch)))
 
             inputs = self.tokenizer(batch, return_tensors = 'pt', padding = True, max_length = max_token_length)
             inputs = {k : v.to(device) for k, v in inputs.items()}

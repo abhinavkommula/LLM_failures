@@ -3,11 +3,12 @@ import openai
 import re
 
 class Task:
-    def __init__(self, name, failure_mode, num_examples, interacter, initial_domain, read_file):
+    def __init__(self, name, failure_mode, num_examples, interacter, logger, initial_domain, read_file):
         self.name = name
         self.failure_mode = failure_mode
         self.num_examples = num_examples
         self.interacter = interacter
+        self.logger = logger        
         self.initial_domain = initial_domain
         self.read_file = read_file
     
@@ -49,9 +50,11 @@ class Task:
             paragraphs = re.split(r'\d+\)|\d+\.|Paragraph \d+', llm_output)[1:]
            
             if len(paragraphs) != num_paragraphs:
-                print("LLM Output:", llm_output)
-                print("Paragraphs:", paragraphs)
-                print(len(paragraphs), num_paragraphs)
+                self.logger.print("Error with parsing following output:")
+                self.logger.print("LLM Output:", llm_output)
+                self.logger.print("Paragraphs:", paragraphs)
+                self.logger.print(len(paragraphs), num_paragraphs)
+
                 continue
 
             failures.extend(paragraphs)

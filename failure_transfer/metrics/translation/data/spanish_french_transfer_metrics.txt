@@ -1,4 +1,13 @@
-Failure Similarity Mean: 0.8360414594770709
-Baseline Similarity Mean: 0.9452567344801284
-Failure Score Mean: 0.6309314586994728
-Baseline Score Mean: 0.807
+Failure Similarity Mean: 0.850027991481901
+Baseline Similarity Mean: 0.9565846513741546
+Failure Score Mean: 0.5289982425307557
+Baseline Score Mean: 0.7425307557117751
+True Positive: 564
+False Positive: 574
+True Negative: 1047
+False Negative: 91
+Failure Rate: 0.4956063268892794
+Baseline Failure Rate: 0.07996485061511424
+Precision: 0.4956063268892794
+Recall: 0.8610687022900764
+F1 Score: 0.3145566090351366

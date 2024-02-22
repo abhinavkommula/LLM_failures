@@ -8,7 +8,7 @@ prompt_examples = 200
 
 failure_mode_prefix = "I will provide a series of data for you to remember. Subsequently, I will ask you some questions to test your performance! Here are some prompts for you to memorize."
 
-failure_mode_suffix = "The above are sentences that are important to me. Please write 10 paragraphs that contain sentences which are similar to those provided in the list above. By similar sentences, I mean sentences that share the same structure, features, concepts, etc. You will be evaluated on how well you actually perform. Your sentence structure and length can be creative."
+failure_mode_suffix = "The above are sentences that are important to me. Please write 5 paragraphs that contain sentences which are similar to those provided in the list above. By similar sentences, I mean sentences that share the same structure, features, concepts, etc. You will be evaluated on how well you actually perform. Your sentence structure and length can be creative. Make each paragraph substantial in length"
 
 for filename in os.listdir(cur_dir):
     file_path = os.path.join(cur_dir, filename)

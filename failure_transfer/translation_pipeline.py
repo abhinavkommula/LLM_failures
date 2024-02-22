@@ -3,12 +3,13 @@ from sentence_transformers import SentenceTransformer, util
 from ast import literal_eval
 
 import random, math, statistics
+import torch, numpy
 import re
 import os
 
 class Translation(Task):
-    def __init__(self, failure_mode, num_examples, interacter, initial_domain = [], name = "task", language = "English", threshold = 0.9, read_file = None):
-        super().__init__(name, failure_mode, num_examples, interacter, initial_domain, read_file)
+    def __init__(self, failure_mode, num_examples, interacter, logger, initial_domain = [], name = "task", language = "English", threshold = 0.9, read_file = None):
+        super().__init__(name, failure_mode, num_examples, interacter, logger, initial_domain, read_file)
         
         self.model = SentenceTransformer('distilbert-base-nli-mean-tokens')
         self.language = language
@@ -28,12 +29,13 @@ class Translation(Task):
                 idx += 1
 
             self.initial_domain = [el[0] for el in paragraphs_list[:idx]]
-            print("Mean failure transfer:", statistics.mean([el[1] for el in paragraphs_list[:idx]]))
+            self.logger.print("Mean failure transfer: " + str(statistics.mean([el[1] for el in paragraphs_list[:idx]])))
 
+            paragraphs_list = paragraphs_list[idx:]
             random.shuffle(paragraphs_list)
-            self.baseline = [el[0] for el in paragraphs_list[:1000]]
+            self.baseline = [el[0] for el in paragraphs_list[:idx]]
             
-            print("Mean baseline:", statistics.mean([el[1] for el in paragraphs_list[:1000]]))
+            self.logger.print("Mean baseline: " + str(statistics.mean([el[1] for el in paragraphs_list[:1000]])))
 
         elif len(self.initial_domain) == 0: 
             prompt = "Write down 5 unique and unrelated sentences from arbitrary domains (stories, news articles, etc.). You will be evaluated on how well you perform. Your sentence structure and length can be creative. Only write in English. "
@@ -50,7 +52,7 @@ class Translation(Task):
         prompt = f'{start}\nVERSION1\n{v1}\nVERSION2\n{v2}\n{end}'
     
         messages = [{'role': 'system', 'content': ''}, {'role': 'user', 'content': prompt}]
-        scores = self.run_gpt(messages, model, max_tokens = 1500, temperature = 0.01)
+        scores = self.run_gpt(messages, model, max_tokens = 5, temperature = 0.01)
 
         try:
             scores = literal_eval(scores)
@@ -72,7 +74,7 @@ class Translation(Task):
             return ([':'.join(response.split(":")[1:])])
 
         def filter_failure(response, input_domain):
-            targets = ["Please note that", "I apologize, but I cannot", "happy to help"]
+            targets = ["Please note that", "I apologize, but I cannot", "happy to help", "I cannot provide", "I am sorry"]
 
             for target in targets:
                 if target in response:
@@ -80,37 +82,50 @@ class Translation(Task):
 
             return len(input_domain) < 10
 
+        self.num_failures = []
         input_domain = self.initial_domain
         all_scores = []
         all_failures = []
 
         for iterations in range(2):
+            self.logger.print(f"Starting iteration: {iterations}")
+
             questions = []
             for i in range(len(input_domain)):
                 questions.append(translate_prefix + input_domain[i] + translate_suffix)
-            answers = self.interacter.answer_questions(questions, extract_answers, 30)
+            answers = self.interacter.answer_questions(questions, extract_answers, 25)
             
             questions2 = []
             for i in range(len(answers)):
                 questions2.append(reverse_translate_prefix + answers[i] + reverse_translate_suffix)
-            answers2 = self.interacter.answer_questions(questions2, extract_answers, 30)
+            answers2 = self.interacter.answer_questions(questions2, extract_answers, 25)
 
             assert(len(answers2) == len(questions))
 
+            self.logger.print("Calculating Similarity Scores...")
+            
             failures = []
             scores = []
+            total_fails = 0
+            cur_score = -1
+ 
+            initial_embeddings = self.model.encode(input_domain, convert_to_tensor=True, batch_size=32)
+            final_embeddings = self.model.encode(answers2, convert_to_tensor=True, batch_size=32)
+            cosine_similarities = util.pytorch_cos_sim(initial_embeddings, final_embeddings)
+            similarity_scores = torch.diag(cosine_similarities).cpu().numpy()
 
-            for i in range(len(answers2)):
-                initial_embedding = self.model.encode(input_domain[i])
-                final_embedding = self.model.encode(answers2[i])
-                similarity = util.pytorch_cos_sim(initial_embedding, final_embedding).item()
-                
-                cur_score = self.score_translation(input_domain[i], answers2[i])
+            self.logger.print("Calculating GPT-3.5 Scores...")
+            for i, similarity in enumerate(similarity_scores):
+                #cur_score = self.score_translation(input_domain[i], answers2[i])
                 scores.append(cur_score)
 
-                if similarity < self.threshold and not filter_failure(answers2[i], input_domain[i]):
-                    if len(answers[i]) > 1 and len(answers2[i]) > 1:
-                        failures.append((input_domain[i], questions[i], answers[i], questions2[i], answers2[i], similarity, cur_score))
+                if not filter_failure(answers2[i], input_domain[i]):
+                    failures.append((input_domain[i], questions[i], answers[i], questions2[i], answers2[i], similarity, cur_score))
+
+                    if similarity < self.threshold:
+                        total_fails += 1
+
+            self.num_failures.append(total_fails)
 
             input_domain = self.baseline
             all_scores.append(scores)
@@ -146,5 +161,26 @@ class Translation(Task):
             f.write(f"Baseline Similarity Mean: {self.baseline_mean}\n")
             f.write(f"Failure Score Mean: {self.failure_score_mean}\n")
             f.write(f"Baseline Score Mean: {self.baseline_score_mean}\n")
+            
+            if self.read_file != None: 
+                self.true_positive = self.num_failures[0]
+                self.false_positive = len(self.initial_domain) - self.num_failures[0]
+                self.true_negative = len(self.baseline) - self.num_failures[1]
+                self.false_negative = self.num_failures[1]
 
+                self.precision = self.true_positive / max(1, (self.true_positive + self.false_positive))
+                self.recall = self.true_positive / max(1, (self.true_positive + self.false_negative)) 
+                self.f1 = (self.precision * self.recall) / max(1, self.precision + self.recall)
+               
+                f.write(f"True Positive: {self.true_positive}\n")
+                f.write(f"False Positive: {self.false_positive}\n")
+                f.write(f"True Negative: {self.true_negative}\n")
+                f.write(f"False Negative: {self.false_negative}\n")
+                
+                f.write(f"Failure Rate: {self.true_positive / (self.true_positive + self.false_positive)}\n")
+                f.write(f"Baseline Failure Rate: {self.false_negative / (self.true_negative + self.false_negative)}\n")
+                f.write(f"Precision: {self.precision}\n")
+                f.write(f"Recall: {self.recall}\n")
+                f.write(f"F1 Score: {self.f1}\n")
+        
         return (self.name, len(self.failures) / len(self.initial_domain), len(self.baseline_failures) / len(self.baseline))

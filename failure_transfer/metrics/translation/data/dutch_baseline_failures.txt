@@ -1,1 +1,0 @@
-('...', '... into English. I will do my best to translate the text as well as possible.', 0.17102289199829102, 0)

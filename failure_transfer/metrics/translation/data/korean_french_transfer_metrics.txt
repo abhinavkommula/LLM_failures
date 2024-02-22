@@ -1,4 +1,0 @@
-Failure Similarity Mean: 0.967134038910611
-Baseline Similarity Mean: 0.9666411685943603
-Failure Score Mean: 0.8244274809160306
-Baseline Score Mean: 0.79

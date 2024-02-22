@@ -2,15 +2,21 @@ from task import Task
 from ast import literal_eval
 from matplotlib import pyplot as plt
 from scipy.stats import wasserstein_distance
+from sentence_transformers import SentenceTransformer, util
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 import numpy as np
 import random, math, statistics
 import re
 import os
 
+model = SentenceTransformer("distilbert-base-nli-mean-tokens")
+vectorizer = TfidfVectorizer(stop_words='english')
+
 class SummarizationScore(Task):
-    def __init__(self, failure_mode, num_examples, interacter, initial_domain, name = "score_task", domain = ("", None), read_file = None):
-        super().__init__(name, failure_mode, num_examples, interacter, initial_domain, read_file)
+    def __init__(self, failure_mode, num_examples, interacter, logger, initial_domain = [], name = "score_task", domain = ("", None), read_file = None):
+        super().__init__(name, failure_mode, num_examples, interacter, logger, initial_domain, read_file)
         
         self.domain = domain[0]
         self.scraper = domain[1]
@@ -49,13 +55,13 @@ class SummarizationScore(Task):
 
             return
 
-        prompt = "Write down 3 separate and unrelated paragraphs in the style of {self.domain}. You will be evaluated on how well you perform. Your sentence structure and length can be creative. Please format your numbered output as: Paragraph 1:, Paragraph 2:, ..."
-
-        self.initial_domain = self.scraper.get_examples(self.num_examples)
-        #self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 3)
-
-        self.baseline = ["..."] 
-        #self.baseline = self.gen_failures(context = baseline_prompt, num_paragraphs = 3, is_baseline = True)
+        elif len(self.initial_domain) == 0:
+            self.initial_domain = self.scraper.get_examples(self.num_examples)
+            self.baseline = ["..."]
+             
+        else:
+            self.baseline = ["..."] 
+        
 
     def score_summary(self, summary,  model = 'gpt-3.5-turbo'):
         start = f'You will be given a summary SUMMARY, and you will be asked to score the quality of the summary on a scale from 1 to 10. A strong summary should have grammatically correct sentences, and should make logical sense to a reader with no external context. '
@@ -72,8 +78,26 @@ class SummarizationScore(Task):
 
         return (scores)
 
+    def calculate_retention_score(self, original_text, summary_text):
+        def calculate_tfidf_cosine_similarity(original_text, summary_text):
+            tfidf_matrix = vectorizer.fit_transform([original_text, summary_text])
+            cos_sim = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:])
+            return cos_sim[0][0]
+
+        def calculate_semantic_similarity(original_text, summary_text):
+            original_embedding = model.encode([original_text])
+            summary_embedding = model.encode([summary_text])
+            similarity = util.pytorch_cos_sim(original_embedding, summary_embedding)
+            return similarity[0][0].item()
+
+        tfidf_score = calculate_tfidf_cosine_similarity(original_text, summary_text)
+        semantic_score = calculate_semantic_similarity(original_text, summary_text)
+        combined_score = (tfidf_score + semantic_score) / 2
+        
+        return (combined_score)
+
     def pipeline(self):
-        summarize_prefix = f"Summarize the following text as succinctly as possible. Capture only the points necessary to understanding the text. Summarize in 2 sentences or less. "  
+        summarize_prefix = f"Summarize the following text as succinctly as possible. Capture only the points necessary to understanding the text. Be efficient with the number of sentences you use. "  
         
         def extract_answers(response):
             if ':' not in response:
@@ -97,11 +121,8 @@ class SummarizationScore(Task):
             scores = []
 
             for i in range(len(questions)):
-                scores.append(self.score_summary(answers[i]))
-   
-                # Modify if we decide to apply thresholding
-                if scores[-1] <= 10:
-                    failures.append((input_domain[i], answers[i], scores[-1]))
+                scores.append(self.calculate_retention_score(input_domain[i], answers[i]))
+                failures.append((input_domain[i], answers[i], scores[-1]))
 
             input_domain = self.baseline
             all_scores.append(scores)
