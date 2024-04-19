@@ -1,1 +1,0 @@
-('...', 'The text describes the potential benefits of using artificial intelligence (AI) in education, including personalized learning and improved student outcomes. The author argues that AI can help teachers by automating administrative tasks, providing real-time feedback to students, and identifying learning gaps that can be addressed through targeted interventions.', 9)

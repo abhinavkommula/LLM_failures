@@ -1,0 +1,2 @@
+Similarity Mean: 0.3674085210240576
+Similarity Std: 0.1970994431969854

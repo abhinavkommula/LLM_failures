@@ -10,7 +10,6 @@ class InformationRetrieval(Task):
 
     def gen_data(self):
         prompt = f"Write 3 additional paragraphs, and for each paragraph provide {self.num_facts} objective question/short answer pairs that could be used to test a language models ability to retrieve information. Furthermore, design all 3 of these paragraphs so that when passed as input to a language model with the following failure mode they would likely elicit failures in information retrieval tasks. You will be evaluated on how well you perform. Your sentence structure and length can be creative; extrapolate based on the failure mode. Be both creative and cautious. Format your output as: (Paragraph 1., Questions ...), (Paragraph 2., Questions ...). "
-
         baseline_prompt = f"Write 3 additional paragraphs, and for each paragraph provide {self.num_facts} objective question/short answer pairs that could be used to test a language models ability to retrieve information. Furthermore, design all 3 of these paragraphs so that when passed as input to a language model they would likely elicit failures in information retrieval tasks. You will be evaluated on how well you perform. Your sentence structure and length can be creative; be both creative and cautious. "
 
         self.initial_domain = self.gen_failures(context = prompt, num_paragraphs = 3)

@@ -1,0 +1,209 @@
+2024-04-18 21:44:44.608538: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2024-04-18 21:44:44.608848: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[nltk_data] Downloading package wordnet to
+[nltk_data]     /accounts/projects/jsteinhardt/akommula/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+[nltk_data] Downloading package punkt to
+[nltk_data]     /accounts/projects/jsteinhardt/akommula/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package wordnet to
+[nltk_data]     /accounts/projects/jsteinhardt/akommula/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+[nltk_data] Downloading package punkt to
+[nltk_data]     /accounts/projects/jsteinhardt/akommula/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /accounts/projects/jsteinhardt/akommula/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+Repo card metadata block was not found. Setting CardData to empty.
+2024-04-18 21:45:03,286	INFO worker.py:1743 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+TRANSFORMERS_CACHE: /data/akommula/models/huggingface
+HF_HOME: /data/akommula/models/huggingface
+INFO 04-18 21:45:31 llm_engine.py:74] Initializing an LLM engine (v0.4.0.post1) with config: model='mistralai/Mixtral-8x7B-Instruct-v0.1', tokenizer='mistralai/Mixtral-8x7B-Instruct-v0.1', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=32768, download_dir='/data/akommula/models/huggingface', load_format=auto, tensor_parallel_size=4, disable_custom_all_reduce=True, quantization=None, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, seed=0)
+INFO 04-18 21:45:51 selector.py:16] Using FlashAttention backend.
+[36m(RayWorkerVllm pid=2103059)[0m INFO 04-18 21:45:58 selector.py:16] Using FlashAttention backend.
+[36m(RayWorkerVllm pid=2103138)[0m INFO 04-18 21:45:59 pynccl_utils.py:45] vLLM is using nccl==2.18.1
+INFO 04-18 21:45:59 pynccl_utils.py:45] vLLM is using nccl==2.18.1
+INFO 04-18 21:46:22 weight_utils.py:177] Using model weights format ['*.safetensors']
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] Error executing method load_model. This might cause deadlock in distributed execution.
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] Traceback (most recent call last):
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/utils/_errors.py", line 304, in hf_raise_for_status
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     response.raise_for_status()
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/usr/local/linux/anaconda3.8/lib/python3.8/site-packages/requests/models.py", line 1021, in raise_for_status
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     raise HTTPError(http_error_msg, response=self)
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/api/models/mistralai/Mixtral-8x7B-Instruct-v0.1
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] 
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] The above exception was the direct cause of the following exception:
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] 
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] Traceback (most recent call last):
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_file_system.py", line 117, in _repo_and_revision_exist
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     self._api.repo_info(repo_id, revision=revision, repo_type=repo_type)
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 118, in _inner_fn
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     return fn(*args, **kwargs)
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_api.py", line 2410, in repo_info
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     return method(
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 118, in _inner_fn
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     return fn(*args, **kwargs)
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_api.py", line 2220, in model_info
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     hf_raise_for_status(r)
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/utils/_errors.py", line 321, in hf_raise_for_status
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     raise GatedRepoError(message, response) from e
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] huggingface_hub.utils._errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-6621f71f-70ba77ec225b83f4533c64ec;a4bca429-b58b-4f2a-b50c-bcc3bf779ca1)
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] 
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] Cannot access gated repo for url https://huggingface.co/api/models/mistralai/Mixtral-8x7B-Instruct-v0.1.
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] Repo model mistralai/Mixtral-8x7B-Instruct-v0.1 is gated. You must be authenticated to access it.
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] 
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] The above exception was the direct cause of the following exception:
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] 
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] Traceback (most recent call last):
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/engine/ray_utils.py", line 37, in execute_method
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     return executor(*args, **kwargs)
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/worker.py", line 107, in load_model
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     self.model_runner.load_model()
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/model_runner.py", line 95, in load_model
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     self.model = get_model(
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/model_loader.py", line 101, in get_model
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     model.load_weights(model_config.model, model_config.download_dir,
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/models/mixtral.py", line 418, in load_weights
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     for name, loaded_weight in hf_model_weights_iterator(
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/weight_utils.py", line 224, in hf_model_weights_iterator
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     hf_folder, hf_weights_files, use_safetensors = prepare_hf_model_weights(
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/weight_utils.py", line 168, in prepare_hf_model_weights
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     file_list = fs.ls(model_name_or_path, detail=False, revision=revision)
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_file_system.py", line 274, in ls
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     resolved_path = self.resolve_path(path, revision=revision)
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_file_system.py", line 187, in resolve_path
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     _raise_file_not_found(path, err)
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_file_system.py", line 789, in _raise_file_not_found
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     raise FileNotFoundError(msg) from err
+[36m(RayWorkerVllm pid=2103059)[0m ERROR 04-18 21:46:23 ray_utils.py:44] FileNotFoundError: mistralai/Mixtral-8x7B-Instruct-v0.1 (repository not found)
+[36m(RayWorkerVllm pid=2103217)[0m INFO 04-18 21:45:58 selector.py:16] Using FlashAttention backend.[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m INFO 04-18 21:45:59 pynccl_utils.py:45] vLLM is using nccl==2.18.1[32m [repeated 2x across cluster][0m
+INFO 04-18 21:47:54 model_runner.py:104] Loading model weights took 21.7573 GB
+[36m(pid=2101073)[0m /accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+[36m(pid=2101073)[0m   warnings.warn(
+[36m(pid=2103138)[0m /accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.[32m [repeated 2x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/ray-logging.html#log-deduplication for more options.)[0m
+[36m(pid=2103138)[0m   warnings.warn([32m [repeated 2x across cluster][0m
+Traceback (most recent call last):
+  File "failure_transfer.py", line 65, in <module>
+    interacter = InteractMistral(logger)
+  File "/accounts/projects/jsteinhardt/akommula/LLM_failures/failure_transfer/interact_mistral.py", line 22, in __init__
+    self.model = load_mistral_model(self.model_name)
+  File "/accounts/projects/jsteinhardt/akommula/LLM_failures/failure_transfer/model_utils/mistral_vllm_utils.py", line 38, in load_mistral_model_vllm
+    llm = LLM(model = MODELNAME2PATH[model_name], dtype = 'bfloat16', tensor_parallel_size = tensor_parallel_size, download_dir="/data/akommula/models/huggingface")
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/entrypoints/llm.py", line 112, in __init__
+    self.llm_engine = LLMEngine.from_engine_args(
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/engine/llm_engine.py", line 196, in from_engine_args
+    engine = cls(
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/engine/llm_engine.py", line 110, in __init__
+    self.model_executor = executor_class(model_config, cache_config,
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/executor/ray_gpu_executor.py", line 62, in __init__
+    self._init_workers_ray(placement_group)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/executor/ray_gpu_executor.py", line 192, in _init_workers_ray
+    self._run_workers(
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/executor/ray_gpu_executor.py", line 340, in _run_workers
+    ray_worker_outputs = ray.get(ray_worker_outputs)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(FileNotFoundError): [36mray::RayWorkerVllm.execute_method()[39m (pid=2103059, ip=128.32.135.42, actor_id=f2e11bc231cae93e5671ce0d01000000, repr=<vllm.engine.ray_utils.RayWorkerVllm object at 0x7fada56b7490>)
+  File "/usr/local/linux/anaconda3.8/lib/python3.8/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/api/models/mistralai/Mixtral-8x7B-Instruct-v0.1
+
+The above exception was the direct cause of the following exception:
+
+[36mray::RayWorkerVllm.execute_method()[39m (pid=2103059, ip=128.32.135.42, actor_id=f2e11bc231cae93e5671ce0d01000000, repr=<vllm.engine.ray_utils.RayWorkerVllm object at 0x7fada56b7490>)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_file_system.py", line 117, in _repo_and_revision_exist
+    self._api.repo_info(repo_id, revision=revision, repo_type=repo_type)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 118, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_api.py", line 2410, in repo_info
+    return method(
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 118, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_api.py", line 2220, in model_info
+    hf_raise_for_status(r)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/utils/_errors.py", line 321, in hf_raise_for_status
+    raise GatedRepoError(message, response) from e
+huggingface_hub.utils._errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-6621f71f-70ba77ec225b83f4533c64ec;a4bca429-b58b-4f2a-b50c-bcc3bf779ca1)
+
+Cannot access gated repo for url https://huggingface.co/api/models/mistralai/Mixtral-8x7B-Instruct-v0.1.
+Repo model mistralai/Mixtral-8x7B-Instruct-v0.1 is gated. You must be authenticated to access it.
+
+The above exception was the direct cause of the following exception:
+
+[36mray::RayWorkerVllm.execute_method()[39m (pid=2103059, ip=128.32.135.42, actor_id=f2e11bc231cae93e5671ce0d01000000, repr=<vllm.engine.ray_utils.RayWorkerVllm object at 0x7fada56b7490>)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/engine/ray_utils.py", line 45, in execute_method
+    raise e
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/engine/ray_utils.py", line 37, in execute_method
+    return executor(*args, **kwargs)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/worker.py", line 107, in load_model
+    self.model_runner.load_model()
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/model_runner.py", line 95, in load_model
+    self.model = get_model(
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/model_loader.py", line 101, in get_model
+    model.load_weights(model_config.model, model_config.download_dir,
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/models/mixtral.py", line 418, in load_weights
+    for name, loaded_weight in hf_model_weights_iterator(
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/weight_utils.py", line 224, in hf_model_weights_iterator
+    hf_folder, hf_weights_files, use_safetensors = prepare_hf_model_weights(
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/weight_utils.py", line 168, in prepare_hf_model_weights
+    file_list = fs.ls(model_name_or_path, detail=False, revision=revision)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_file_system.py", line 274, in ls
+    resolved_path = self.resolve_path(path, revision=revision)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_file_system.py", line 187, in resolve_path
+    _raise_file_not_found(path, err)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_file_system.py", line 789, in _raise_file_not_found
+    raise FileNotFoundError(msg) from err
+FileNotFoundError: mistralai/Mixtral-8x7B-Instruct-v0.1 (repository not found)
+[36m(pid=2103217)[0m /accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+[36m(pid=2103217)[0m   warnings.warn(
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44] Error executing method load_model. This might cause deadlock in distributed execution.[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44] Traceback (most recent call last):[32m [repeated 6x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/utils/_errors.py", line 321, in hf_raise_for_status[32m [repeated 4x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     response.raise_for_status()[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/usr/local/linux/anaconda3.8/lib/python3.8/site-packages/requests/models.py", line 1021, in raise_for_status[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     raise HTTPError(http_error_msg, response=self)[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44] requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/api/models/mistralai/Mixtral-8x7B-Instruct-v0.1[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44] [32m [repeated 10x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44] The above exception was the direct cause of the following exception:[32m [repeated 4x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_file_system.py", line 117, in _repo_and_revision_exist[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     self._api.repo_info(repo_id, revision=revision, repo_type=repo_type)[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 118, in _inner_fn[32m [repeated 4x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     return fn(*args, **kwargs)[32m [repeated 4x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_api.py", line 2410, in repo_info[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     return method([32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_api.py", line 2220, in model_info[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     hf_raise_for_status(r)[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     raise GatedRepoError(message, response) from e[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44] huggingface_hub.utils._errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-6621f71f-6931d93e781e67236590a647;009f57d1-e600-422e-8d14-9b0bd09e80ab)[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44] Cannot access gated repo for url https://huggingface.co/api/models/mistralai/Mixtral-8x7B-Instruct-v0.1.[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44] Repo model mistralai/Mixtral-8x7B-Instruct-v0.1 is gated. You must be authenticated to access it.[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/engine/ray_utils.py", line 37, in execute_method[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     return executor(*args, **kwargs)[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/model_runner.py", line 95, in load_model[32m [repeated 4x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     self.model_runner.load_model()[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     self.model = get_model([32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/model_loader.py", line 101, in get_model[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     model.load_weights(model_config.model, model_config.download_dir,[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/models/mixtral.py", line 418, in load_weights[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     for name, loaded_weight in hf_model_weights_iterator([32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/weight_utils.py", line 224, in hf_model_weights_iterator[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     hf_folder, hf_weights_files, use_safetensors = prepare_hf_model_weights([32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/weight_utils.py", line 168, in prepare_hf_model_weights[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     file_list = fs.ls(model_name_or_path, detail=False, revision=revision)[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_file_system.py", line 274, in ls[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     resolved_path = self.resolve_path(path, revision=revision)[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_file_system.py", line 187, in resolve_path[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     _raise_file_not_found(path, err)[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/huggingface_hub/hf_file_system.py", line 789, in _raise_file_not_found[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44]     raise FileNotFoundError(msg) from err[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2103217)[0m ERROR 04-18 21:46:23 ray_utils.py:44] FileNotFoundError: mistralai/Mixtral-8x7B-Instruct-v0.1 (repository not found)[32m [repeated 2x across cluster][0m

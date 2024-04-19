@@ -6,8 +6,8 @@ class Logger:
         self.cur_file = ""
                 
     def change_job(self, task_name):
-        if task_name != "" and os.path.isfile("metrics/logs/" + task_name + ".txt"):
-            os.remove("metrics/logs/" + task_name + ".txt")
+        #if task_name != "" and os.path.isfile("metrics/logs/" + task_name + ".txt"):
+        #    os.remove("metrics/logs/" + task_name + ".txt")
 
         self.cur_file = "metrics/logs/" + task_name + ".txt"
 

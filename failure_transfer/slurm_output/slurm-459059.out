@@ -1,0 +1,180 @@
+2024-04-12 17:01:40.133494: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2024-04-12 17:01:40.133816: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[nltk_data] Downloading package wordnet to
+[nltk_data]     /accounts/projects/jsteinhardt/akommula/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+[nltk_data] Downloading package punkt to
+[nltk_data]     /accounts/projects/jsteinhardt/akommula/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package wordnet to
+[nltk_data]     /accounts/projects/jsteinhardt/akommula/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+[nltk_data] Downloading package punkt to
+[nltk_data]     /accounts/projects/jsteinhardt/akommula/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /accounts/projects/jsteinhardt/akommula/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+Repo card metadata block was not found. Setting CardData to empty.
+2024-04-12 17:01:59,172	INFO worker.py:1743 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+TRANSFORMERS_CACHE: /data/akommula/models/huggingface
+HF_HOME: /data/akommula/models/huggingface
+INFO 04-12 17:02:19 llm_engine.py:74] Initializing an LLM engine (v0.4.0.post1) with config: model='mistralai/Mixtral-8x7B-Instruct-v0.1', tokenizer='mistralai/Mixtral-8x7B-Instruct-v0.1', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=32768, download_dir='/data/akommula/models/huggingface', load_format=auto, tensor_parallel_size=4, disable_custom_all_reduce=True, quantization=None, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, seed=0)
+INFO 04-12 17:02:38 selector.py:16] Using FlashAttention backend.
+[36m(RayWorkerVllm pid=2592342)[0m INFO 04-12 17:02:43 selector.py:16] Using FlashAttention backend.
+[36m(RayWorkerVllm pid=2592342)[0m INFO 04-12 17:02:44 pynccl_utils.py:45] vLLM is using nccl==2.18.1
+INFO 04-12 17:02:44 pynccl_utils.py:45] vLLM is using nccl==2.18.1
+INFO 04-12 17:03:01 weight_utils.py:177] Using model weights format ['*.safetensors']
+[36m(pid=2591652)[0m /accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+[36m(pid=2591652)[0m   warnings.warn(
+[36m(pid=2592267)[0m /accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.[32m [repeated 2x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/ray-logging.html#log-deduplication for more options.)[0m
+[36m(pid=2592267)[0m   warnings.warn([32m [repeated 2x across cluster][0m
+Error while downloading from https://cdn-lfs-us-1.huggingface.co/repos/56/dd/56dddba94664e0d83f2b33a201ebd592ec49ebaefd116e268abfb7cc19cbdf5c/e56a2e7eda699bf4ec1433bd07d7cb86488420813e66463d2e2296d7accebc5c?response-content-disposition=attachment%3B+filename*%3DUTF-8%27%27model-00013-of-00019.safetensors%3B+filename%3D%22model-00013-of-00019.safetensors%22%3B&Expires=1713222898&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTcxMzIyMjg5OH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmh1Z2dpbmdmYWNlLmNvL3JlcG9zLzU2L2RkLzU2ZGRkYmE5NDY2NGUwZDgzZjJiMzNhMjAxZWJkNTkyZWM0OWViYWVmZDExNmUyNjhhYmZiN2NjMTljYmRmNWMvZTU2YTJlN2VkYTY5OWJmNGVjMTQzM2JkMDdkN2NiODY0ODg0MjA4MTNlNjY0NjNkMmUyMjk2ZDdhY2NlYmM1Yz9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSoifV19&Signature=GFJimwYazWISYlPg8dMpR17dos739LR%7EoRlG7tV8QIE1tJW0f0FBirh1NAeE8nQEDHaz8obo-iHYwWr%7Ea4yY%7EOKMh69ey%7EmsL-NFimjX8j%7E6qzh4r65eRqCP4JBkRSygM6BEx-Kkb3CX2pn76E30Qg5Wd3LnCJVl0m4jjEiNZLAxctuNnulPBhELZvkyqn2NsNyzwVmblmL8oil-f966Ty%7EjIu%7ElyMWTUiiv%7Eca0u3cU1uejiFixi%7ExXlaitUXwUwj0WpQ%7EhdtDRR24GBiMX9GgIuNHas4RDcSbMGNnc-M%7EhvdOlSgBomP-Kx5BCYEZCCNYExuGxaW9C56aT7R0nGw__&Key-Pair-Id=KCD77M1F0VK2B: HTTPSConnectionPool(host='cdn-lfs-us-1.huggingface.co', port=443): Read timed out.
+Trying to resume download...
+Error while downloading from https://cdn-lfs-us-1.huggingface.co/repos/56/dd/56dddba94664e0d83f2b33a201ebd592ec49ebaefd116e268abfb7cc19cbdf5c/5882e4366c63048a0ad36ef6d90194a2fabdb42a2140be79c8e0ec2e8ac2ccc5?response-content-disposition=attachment%3B+filename*%3DUTF-8%27%27model-00009-of-00019.safetensors%3B+filename%3D%22model-00009-of-00019.safetensors%22%3B&Expires=1713225219&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTcxMzIyNTIxOX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmh1Z2dpbmdmYWNlLmNvL3JlcG9zLzU2L2RkLzU2ZGRkYmE5NDY2NGUwZDgzZjJiMzNhMjAxZWJkNTkyZWM0OWViYWVmZDExNmUyNjhhYmZiN2NjMTljYmRmNWMvNTg4MmU0MzY2YzYzMDQ4YTBhZDM2ZWY2ZDkwMTk0YTJmYWJkYjQyYTIxNDBiZTc5YzhlMGVjMmU4YWMyY2NjNT9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSoifV19&Signature=EFfpSr80Tdfo9rhr1LIFmkQJo2a9-lYBOuwTkI-VNjG8CrWMvysY7iUQe-wnbz%7ELME5VSPTIsB65EEgO-USCp6r87wPWVRlZsSq2zW9gZBCCxAQ6LmeN802QN%7ETiMbIs94MsZL-2Fn6HKPiu%7EuL9CyOHwAbFidlr-%7Ekee8lqwh94243EDhBHKb6iJvpFvx6VOLHoICXv6wW7Sa7tA9pgkI-CJO0SUxMArNaoh2IHEqmyblP3jcB6Av8CdjlS-TjgcV0jUacBDYFTYBDQKj6WnxYBdGHzQzm%7Elxd6LdEnLl-nxYILv%7Eqj9F732vi-jvmmR-qiJ7sbBi12tz92AEIBwg__&Key-Pair-Id=KCD77M1F0VK2B: HTTPSConnectionPool(host='cdn-lfs-us-1.huggingface.co', port=443): Read timed out.
+Trying to resume download...
+Error while downloading from https://cdn-lfs-us-1.huggingface.co/repos/56/dd/56dddba94664e0d83f2b33a201ebd592ec49ebaefd116e268abfb7cc19cbdf5c/e56a2e7eda699bf4ec1433bd07d7cb86488420813e66463d2e2296d7accebc5c?response-content-disposition=attachment%3B+filename*%3DUTF-8%27%27model-00013-of-00019.safetensors%3B+filename%3D%22model-00013-of-00019.safetensors%22%3B&Expires=1713222898&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTcxMzIyMjg5OH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmh1Z2dpbmdmYWNlLmNvL3JlcG9zLzU2L2RkLzU2ZGRkYmE5NDY2NGUwZDgzZjJiMzNhMjAxZWJkNTkyZWM0OWViYWVmZDExNmUyNjhhYmZiN2NjMTljYmRmNWMvZTU2YTJlN2VkYTY5OWJmNGVjMTQzM2JkMDdkN2NiODY0ODg0MjA4MTNlNjY0NjNkMmUyMjk2ZDdhY2NlYmM1Yz9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSoifV19&Signature=GFJimwYazWISYlPg8dMpR17dos739LR%7EoRlG7tV8QIE1tJW0f0FBirh1NAeE8nQEDHaz8obo-iHYwWr%7Ea4yY%7EOKMh69ey%7EmsL-NFimjX8j%7E6qzh4r65eRqCP4JBkRSygM6BEx-Kkb3CX2pn76E30Qg5Wd3LnCJVl0m4jjEiNZLAxctuNnulPBhELZvkyqn2NsNyzwVmblmL8oil-f966Ty%7EjIu%7ElyMWTUiiv%7Eca0u3cU1uejiFixi%7ExXlaitUXwUwj0WpQ%7EhdtDRR24GBiMX9GgIuNHas4RDcSbMGNnc-M%7EhvdOlSgBomP-Kx5BCYEZCCNYExuGxaW9C56aT7R0nGw__&Key-Pair-Id=KCD77M1F0VK2B: HTTPSConnectionPool(host='cdn-lfs-us-1.huggingface.co', port=443): Read timed out.
+Trying to resume download...
+Error while downloading from https://cdn-lfs-us-1.huggingface.co/repos/56/dd/56dddba94664e0d83f2b33a201ebd592ec49ebaefd116e268abfb7cc19cbdf5c/48bc12845676eab1adb3cfce7037a7ecd664a0d5f5deaf93c7362a5bb5173298?response-content-disposition=attachment%3B+filename*%3DUTF-8%27%27model-00012-of-00019.safetensors%3B+filename%3D%22model-00012-of-00019.safetensors%22%3B&Expires=1713226009&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTcxMzIyNjAwOX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmh1Z2dpbmdmYWNlLmNvL3JlcG9zLzU2L2RkLzU2ZGRkYmE5NDY2NGUwZDgzZjJiMzNhMjAxZWJkNTkyZWM0OWViYWVmZDExNmUyNjhhYmZiN2NjMTljYmRmNWMvNDhiYzEyODQ1Njc2ZWFiMWFkYjNjZmNlNzAzN2E3ZWNkNjY0YTBkNWY1ZGVhZjkzYzczNjJhNWJiNTE3MzI5OD9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSoifV19&Signature=TW379v%7Er9Azh-aiixU1mVm%7EKVnr4F8GJ7oru2eVShyMtvtxWQFKWM%7EsWyGl0i1aWfS2DhOFHYpz1jNlPxgXI8Xk14GhOYVO-tbS%7E2PDw-ybG-HlNV0mGT7xG1HdNQSdKVW%7EWfSDHPSBHxvKLRnBE%7ETm4uG86MstZbpjl3je-sth0ex-syMWWkqjOo39ZajVC3--OoGTIx3DBK2-oUiIC7AGPYqlZNBstgDQU--1e2ZcmVN2QSEnM2yqDzgPx2xq%7Em5dsauxiMq1Z4o8qfxB9bebUEj6kDB9oJGRFbkVKHWSrcvMOCuNoaqlK82D820ADJEHPx5cAhUsDxYK5NwZNPQ__&Key-Pair-Id=KCD77M1F0VK2B: HTTPSConnectionPool(host='cdn-lfs-us-1.huggingface.co', port=443): Read timed out.
+Trying to resume download...
+Error while downloading from https://cdn-lfs-us-1.huggingface.co/repos/56/dd/56dddba94664e0d83f2b33a201ebd592ec49ebaefd116e268abfb7cc19cbdf5c/48bc12845676eab1adb3cfce7037a7ecd664a0d5f5deaf93c7362a5bb5173298?response-content-disposition=attachment%3B+filename*%3DUTF-8%27%27model-00012-of-00019.safetensors%3B+filename%3D%22model-00012-of-00019.safetensors%22%3B&Expires=1713226009&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTcxMzIyNjAwOX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmh1Z2dpbmdmYWNlLmNvL3JlcG9zLzU2L2RkLzU2ZGRkYmE5NDY2NGUwZDgzZjJiMzNhMjAxZWJkNTkyZWM0OWViYWVmZDExNmUyNjhhYmZiN2NjMTljYmRmNWMvNDhiYzEyODQ1Njc2ZWFiMWFkYjNjZmNlNzAzN2E3ZWNkNjY0YTBkNWY1ZGVhZjkzYzczNjJhNWJiNTE3MzI5OD9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSoifV19&Signature=TW379v%7Er9Azh-aiixU1mVm%7EKVnr4F8GJ7oru2eVShyMtvtxWQFKWM%7EsWyGl0i1aWfS2DhOFHYpz1jNlPxgXI8Xk14GhOYVO-tbS%7E2PDw-ybG-HlNV0mGT7xG1HdNQSdKVW%7EWfSDHPSBHxvKLRnBE%7ETm4uG86MstZbpjl3je-sth0ex-syMWWkqjOo39ZajVC3--OoGTIx3DBK2-oUiIC7AGPYqlZNBstgDQU--1e2ZcmVN2QSEnM2yqDzgPx2xq%7Em5dsauxiMq1Z4o8qfxB9bebUEj6kDB9oJGRFbkVKHWSrcvMOCuNoaqlK82D820ADJEHPx5cAhUsDxYK5NwZNPQ__&Key-Pair-Id=KCD77M1F0VK2B: HTTPSConnectionPool(host='cdn-lfs-us-1.huggingface.co', port=443): Read timed out.
+Trying to resume download...
+Error while downloading from https://cdn-lfs-us-1.huggingface.co/repos/56/dd/56dddba94664e0d83f2b33a201ebd592ec49ebaefd116e268abfb7cc19cbdf5c/e56a2e7eda699bf4ec1433bd07d7cb86488420813e66463d2e2296d7accebc5c?response-content-disposition=attachment%3B+filename*%3DUTF-8%27%27model-00013-of-00019.safetensors%3B+filename%3D%22model-00013-of-00019.safetensors%22%3B&Expires=1713222898&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTcxMzIyMjg5OH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmh1Z2dpbmdmYWNlLmNvL3JlcG9zLzU2L2RkLzU2ZGRkYmE5NDY2NGUwZDgzZjJiMzNhMjAxZWJkNTkyZWM0OWViYWVmZDExNmUyNjhhYmZiN2NjMTljYmRmNWMvZTU2YTJlN2VkYTY5OWJmNGVjMTQzM2JkMDdkN2NiODY0ODg0MjA4MTNlNjY0NjNkMmUyMjk2ZDdhY2NlYmM1Yz9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSoifV19&Signature=GFJimwYazWISYlPg8dMpR17dos739LR%7EoRlG7tV8QIE1tJW0f0FBirh1NAeE8nQEDHaz8obo-iHYwWr%7Ea4yY%7EOKMh69ey%7EmsL-NFimjX8j%7E6qzh4r65eRqCP4JBkRSygM6BEx-Kkb3CX2pn76E30Qg5Wd3LnCJVl0m4jjEiNZLAxctuNnulPBhELZvkyqn2NsNyzwVmblmL8oil-f966Ty%7EjIu%7ElyMWTUiiv%7Eca0u3cU1uejiFixi%7ExXlaitUXwUwj0WpQ%7EhdtDRR24GBiMX9GgIuNHas4RDcSbMGNnc-M%7EhvdOlSgBomP-Kx5BCYEZCCNYExuGxaW9C56aT7R0nGw__&Key-Pair-Id=KCD77M1F0VK2B: HTTPSConnectionPool(host='cdn-lfs-us-1.huggingface.co', port=443): Read timed out.
+Trying to resume download...
+[36m(RayWorkerVllm pid=2592193)[0m INFO 04-12 17:03:01 weight_utils.py:177] Using model weights format ['*.safetensors']
+[36m(RayWorkerVllm pid=2592193)[0m INFO 04-12 17:02:44 selector.py:16] Using FlashAttention backend.[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592193)[0m INFO 04-12 17:02:44 pynccl_utils.py:45] vLLM is using nccl==2.18.1[32m [repeated 2x across cluster][0m
+INFO 04-12 17:16:40 model_runner.py:104] Loading model weights took 21.7573 GB
+[36m(RayWorkerVllm pid=2592193)[0m INFO 04-12 17:17:03 model_runner.py:104] Loading model weights took 21.7573 GB
+[36m(RayWorkerVllm pid=2592342)[0m INFO 04-12 17:03:02 weight_utils.py:177] Using model weights format ['*.safetensors'][32m [repeated 2x across cluster][0m
+Traceback (most recent call last):
+  File "failure_transfer.py", line 65, in <module>
+    interacter = InteractMistral(logger)
+  File "/accounts/projects/jsteinhardt/akommula/LLM_failures/failure_transfer/interact_mistral.py", line 22, in __init__
+    self.model = load_mistral_model(self.model_name)
+  File "/accounts/projects/jsteinhardt/akommula/LLM_failures/failure_transfer/model_utils/mistral_vllm_utils.py", line 38, in load_mistral_model_vllm
+    llm = LLM(model = MODELNAME2PATH[model_name], dtype = 'bfloat16', tensor_parallel_size = tensor_parallel_size, download_dir="/data/akommula/models/huggingface")
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/entrypoints/llm.py", line 112, in __init__
+    self.llm_engine = LLMEngine.from_engine_args(
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/engine/llm_engine.py", line 196, in from_engine_args
+    engine = cls(
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/engine/llm_engine.py", line 110, in __init__
+    self.model_executor = executor_class(model_config, cache_config,
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/executor/ray_gpu_executor.py", line 65, in __init__
+    self._init_cache()
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/executor/ray_gpu_executor.py", line 220, in _init_cache
+    num_blocks = self._run_workers(
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/executor/ray_gpu_executor.py", line 324, in _run_workers
+    driver_worker_output = getattr(self.driver_worker,
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/worker.py", line 131, in profile_num_available_blocks
+    self.model_runner.profile_run()
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/model_runner.py", line 742, in profile_run
+    self.execute_model(seqs, kv_caches)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/model_runner.py", line 663, in execute_model
+    hidden_states = model_executable(**execute_model_kwargs)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/models/mixtral.py", line 379, in forward
+    hidden_states = self.model(input_ids, positions, kv_caches,
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/models/mixtral.py", line 315, in forward
+    hidden_states, residual = layer(positions, hidden_states,
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/models/mixtral.py", line 274, in forward
+    hidden_states = self.block_sparse_moe(hidden_states)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/models/mixtral.py", line 128, in forward
+    final_hidden_states = fused_moe(hidden_states,
+  File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/layers/fused_moe/fused_moe.py", line 387, in fused_moe
+    intermediate_cache2 = torch.empty((M * topk_ids.shape[1], N // 2),
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 0 has a total capacty of 23.68 GiB of which 53.00 MiB is free. Including non-PyTorch memory, this process has 23.62 GiB memory in use. Of the allocated memory 23.14 GiB is allocated by PyTorch, and 16.61 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+[36m(pid=2592342)[0m /accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+[36m(pid=2592342)[0m   warnings.warn(
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44] Error executing method profile_num_available_blocks. This might cause deadlock in distributed execution.
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44] Traceback (most recent call last):
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/engine/ray_utils.py", line 37, in execute_method
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return executor(*args, **kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return func(*args, **kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/worker.py", line 131, in profile_num_available_blocks
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     self.model_runner.profile_run()
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return func(*args, **kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/model_runner.py", line 742, in profile_run
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     self.execute_model(seqs, kv_caches)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return func(*args, **kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/model_runner.py", line 663, in execute_model
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     hidden_states = model_executable(**execute_model_kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return self._call_impl(*args, **kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return forward_call(*args, **kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/models/mixtral.py", line 379, in forward
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     hidden_states = self.model(input_ids, positions, kv_caches,
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return self._call_impl(*args, **kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return forward_call(*args, **kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/models/mixtral.py", line 315, in forward
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     hidden_states, residual = layer(positions, hidden_states,
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return self._call_impl(*args, **kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return forward_call(*args, **kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/models/mixtral.py", line 274, in forward
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     hidden_states = self.block_sparse_moe(hidden_states)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return self._call_impl(*args, **kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return forward_call(*args, **kwargs)
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/models/mixtral.py", line 128, in forward
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     final_hidden_states = fused_moe(hidden_states,
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/layers/fused_moe/fused_moe.py", line 387, in fused_moe
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     intermediate_cache2 = torch.empty((M * topk_ids.shape[1], N // 2),
+[36m(RayWorkerVllm pid=2592342)[0m ERROR 04-12 17:17:13 ray_utils.py:44] torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 3 has a total capacty of 23.68 GiB of which 137.00 MiB is free. Including non-PyTorch memory, this process has 23.54 GiB memory in use. Of the allocated memory 23.14 GiB is allocated by PyTorch, and 16.61 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+[36m(RayWorkerVllm pid=2592342)[0m INFO 04-12 17:17:04 model_runner.py:104] Loading model weights took 21.7573 GB[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592193)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     intermediate_cache1 = torch.empty((M, topk_ids.shape[1], N),
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44] Error executing method profile_num_available_blocks. This might cause deadlock in distributed execution.[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44] Traceback (most recent call last):[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/engine/ray_utils.py", line 37, in execute_method[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return executor(*args, **kwargs)[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context[32m [repeated 6x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return func(*args, **kwargs)[32m [repeated 6x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/worker.py", line 131, in profile_num_available_blocks[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     self.model_runner.profile_run()[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/model_runner.py", line 742, in profile_run[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     self.execute_model(seqs, kv_caches)[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/worker/model_runner.py", line 663, in execute_model[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     hidden_states = model_executable(**execute_model_kwargs)[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl[32m [repeated 8x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return self._call_impl(*args, **kwargs)[32m [repeated 8x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/accounts/projects/jsteinhardt/akommula/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl[32m [repeated 8x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     return forward_call(*args, **kwargs)[32m [repeated 8x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/models/mixtral.py", line 128, in forward[32m [repeated 8x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     hidden_states = self.model(input_ids, positions, kv_caches,[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     hidden_states, residual = layer(positions, hidden_states,[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     hidden_states = self.block_sparse_moe(hidden_states)[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     final_hidden_states = fused_moe(hidden_states,[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]   File "/scratch/users/akommula/lib/python3.8/site-packages/vllm/model_executor/layers/fused_moe/fused_moe.py", line 387, in fused_moe[32m [repeated 2x across cluster][0m
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44]     intermediate_cache2 = torch.empty((M * topk_ids.shape[1], N // 2),
+[36m(RayWorkerVllm pid=2592267)[0m ERROR 04-12 17:17:13 ray_utils.py:44] torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 2 has a total capacty of 23.68 GiB of which 5.00 MiB is free. Including non-PyTorch memory, this process has 23.67 GiB memory in use. Of the allocated memory 23.14 GiB is allocated by PyTorch, and 16.61 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF[32m [repeated 2x across cluster][0m

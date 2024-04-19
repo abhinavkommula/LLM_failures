@@ -1,0 +1,5 @@
+I will provide a series of data for you to remember. Subsequently, I will ask you some questions to test your performance! Here are some prompts for you to memorize.
+[(Weak: Why are those working in development so willing to disregard history and the lessons it might offer?
+Strong: In short why does so much planned development fail?),
+]
+I am looking for failures with a language model. Below are pairs of sentences that are written differently, even though they convey similar concepts. Using these specific examples, are there any common differences you notice between weak and strong pairs? Focus on differences in the structure of the text between each weak & strong pair, and be specific in the differences you notice so that someone could reliably reproduce these differences in textual structure. Focus on the most common differences, and structures that are important for translation as these differences will be used to assess a language model's ability to translate text.

@@ -1,5 +1,0 @@
-Failure Score Mean: 8.0
-Failure Score Std: 0.6324555320336759
-Baseline Score Mean: 8.133333333333333
-Baseline Score Std: 0.669991708074726
-Earth Movers Distance: 0.13333333333333344

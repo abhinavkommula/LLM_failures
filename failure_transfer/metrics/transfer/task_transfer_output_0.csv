@@ -1,0 +1,337 @@
+N/A,translation,summarization,completion,sentence_interweave,text_reorder,pronoun_replacement
+translation,N/A,"True Positive: 5
+False Positive: 21
+True Negative: 1724
+False Negative: 248
+
+Output Failure Rate: 0.128
+Transfer Failure Rate: 0.192
+Confidence Interval: 0.148 - 0.236
+Transfer Nonfailure Rate: 0.126
+Precision: 0.192
+Recall: 0.02
+            ","True Positive: 2
+False Positive: 24
+True Negative: 1771
+False Negative: 201
+
+Output Failure Rate: 0.102
+Transfer Failure Rate: 0.077
+Confidence Interval: 0.033 - 0.121
+Transfer Nonfailure Rate: 0.102
+Precision: 0.077
+Recall: 0.01
+            ","True Positive: 11
+False Positive: 15
+True Negative: 1247
+False Negative: 725
+
+Output Failure Rate: 0.369
+Transfer Failure Rate: 0.423
+Confidence Interval: 0.379 - 0.467
+Transfer Nonfailure Rate: 0.368
+Precision: 0.423
+Recall: 0.015
+            ","True Positive: 1
+False Positive: 25
+True Negative: 1927
+False Negative: 45
+
+Output Failure Rate: 0.023
+Transfer Failure Rate: 0.038
+Confidence Interval: -0.005 - 0.082
+Transfer Nonfailure Rate: 0.023
+Precision: 0.038
+Recall: 0.022
+            ","True Positive: 5
+False Positive: 21
+True Negative: 1394
+False Negative: 578
+
+Output Failure Rate: 0.291
+Transfer Failure Rate: 0.192
+Confidence Interval: 0.148 - 0.236
+Transfer Nonfailure Rate: 0.293
+Precision: 0.192
+Recall: 0.009
+            "
+summarization,"True Positive: 5
+False Positive: 248
+True Negative: 1723
+False Negative: 20
+
+Output Failure Rate: 0.013
+Transfer Failure Rate: 0.02
+Confidence Interval: -0.024 - 0.064
+Transfer Nonfailure Rate: 0.011
+Precision: 0.02
+Recall: 0.2
+            ",N/A,"True Positive: 50
+False Positive: 205
+True Negative: 1588
+False Negative: 155
+
+Output Failure Rate: 0.102
+Transfer Failure Rate: 0.196
+Confidence Interval: 0.152 - 0.24
+Transfer Nonfailure Rate: 0.089
+Precision: 0.196
+Recall: 0.244
+            ","True Positive: 135
+False Positive: 120
+True Negative: 1142
+False Negative: 601
+
+Output Failure Rate: 0.369
+Transfer Failure Rate: 0.529
+Confidence Interval: 0.486 - 0.573
+Transfer Nonfailure Rate: 0.345
+Precision: 0.529
+Recall: 0.183
+            ","True Positive: 6
+False Positive: 249
+True Negative: 1703
+False Negative: 40
+
+Output Failure Rate: 0.023
+Transfer Failure Rate: 0.024
+Confidence Interval: -0.02 - 0.067
+Transfer Nonfailure Rate: 0.023
+Precision: 0.024
+Recall: 0.13
+            ","True Positive: 102
+False Positive: 153
+True Negative: 1262
+False Negative: 481
+
+Output Failure Rate: 0.291
+Transfer Failure Rate: 0.4
+Confidence Interval: 0.356 - 0.444
+Transfer Nonfailure Rate: 0.276
+Precision: 0.4
+Recall: 0.175
+            "
+completion,"True Positive: 2
+False Positive: 201
+True Negative: 1770
+False Negative: 23
+
+Output Failure Rate: 0.013
+Transfer Failure Rate: 0.01
+Confidence Interval: -0.034 - 0.054
+Transfer Nonfailure Rate: 0.013
+Precision: 0.01
+Recall: 0.08
+            ","True Positive: 50
+False Positive: 155
+True Negative: 1588
+False Negative: 205
+
+Output Failure Rate: 0.128
+Transfer Failure Rate: 0.244
+Confidence Interval: 0.2 - 0.288
+Transfer Nonfailure Rate: 0.114
+Precision: 0.244
+Recall: 0.196
+            ",N/A,"True Positive: 82
+False Positive: 123
+True Negative: 1139
+False Negative: 654
+
+Output Failure Rate: 0.369
+Transfer Failure Rate: 0.4
+Confidence Interval: 0.356 - 0.444
+Transfer Nonfailure Rate: 0.365
+Precision: 0.4
+Recall: 0.111
+            ","True Positive: 3
+False Positive: 202
+True Negative: 1750
+False Negative: 43
+
+Output Failure Rate: 0.023
+Transfer Failure Rate: 0.015
+Confidence Interval: -0.029 - 0.058
+Transfer Nonfailure Rate: 0.024
+Precision: 0.015
+Recall: 0.065
+            ","True Positive: 72
+False Positive: 133
+True Negative: 1282
+False Negative: 511
+
+Output Failure Rate: 0.291
+Transfer Failure Rate: 0.351
+Confidence Interval: 0.307 - 0.395
+Transfer Nonfailure Rate: 0.285
+Precision: 0.351
+Recall: 0.123
+            "
+sentence_interweave,"True Positive: 10
+False Positive: 724
+True Negative: 1247
+False Negative: 15
+
+Output Failure Rate: 0.013
+Transfer Failure Rate: 0.014
+Confidence Interval: -0.03 - 0.057
+Transfer Nonfailure Rate: 0.012
+Precision: 0.014
+Recall: 0.4
+            ","True Positive: 135
+False Positive: 601
+True Negative: 1142
+False Negative: 120
+
+Output Failure Rate: 0.128
+Transfer Failure Rate: 0.183
+Confidence Interval: 0.14 - 0.227
+Transfer Nonfailure Rate: 0.095
+Precision: 0.183
+Recall: 0.529
+            ","True Positive: 82
+False Positive: 654
+True Negative: 1139
+False Negative: 123
+
+Output Failure Rate: 0.102
+Transfer Failure Rate: 0.111
+Confidence Interval: 0.068 - 0.155
+Transfer Nonfailure Rate: 0.097
+Precision: 0.111
+Recall: 0.4
+            ",N/A,"True Positive: 19
+False Positive: 717
+True Negative: 1235
+False Negative: 27
+
+Output Failure Rate: 0.023
+Transfer Failure Rate: 0.026
+Confidence Interval: -0.018 - 0.07
+Transfer Nonfailure Rate: 0.021
+Precision: 0.026
+Recall: 0.413
+            ","True Positive: 241
+False Positive: 495
+True Negative: 920
+False Negative: 342
+
+Output Failure Rate: 0.291
+Transfer Failure Rate: 0.327
+Confidence Interval: 0.284 - 0.371
+Transfer Nonfailure Rate: 0.271
+Precision: 0.327
+Recall: 0.413
+            "
+text_reorder,"True Positive: 1
+False Positive: 45
+True Negative: 1926
+False Negative: 24
+
+Output Failure Rate: 0.013
+Transfer Failure Rate: 0.022
+Confidence Interval: -0.022 - 0.066
+Transfer Nonfailure Rate: 0.012
+Precision: 0.022
+Recall: 0.04
+            ","True Positive: 6
+False Positive: 40
+True Negative: 1703
+False Negative: 249
+
+Output Failure Rate: 0.128
+Transfer Failure Rate: 0.13
+Confidence Interval: 0.087 - 0.174
+Transfer Nonfailure Rate: 0.128
+Precision: 0.13
+Recall: 0.024
+            ","True Positive: 3
+False Positive: 43
+True Negative: 1750
+False Negative: 202
+
+Output Failure Rate: 0.102
+Transfer Failure Rate: 0.065
+Confidence Interval: 0.021 - 0.109
+Transfer Nonfailure Rate: 0.103
+Precision: 0.065
+Recall: 0.015
+            ","True Positive: 19
+False Positive: 27
+True Negative: 1235
+False Negative: 717
+
+Output Failure Rate: 0.369
+Transfer Failure Rate: 0.413
+Confidence Interval: 0.369 - 0.457
+Transfer Nonfailure Rate: 0.367
+Precision: 0.413
+Recall: 0.026
+            ",N/A,"True Positive: 13
+False Positive: 33
+True Negative: 1382
+False Negative: 570
+
+Output Failure Rate: 0.291
+Transfer Failure Rate: 0.283
+Confidence Interval: 0.239 - 0.326
+Transfer Nonfailure Rate: 0.292
+Precision: 0.283
+Recall: 0.022
+            "
+pronoun_replacement,"True Positive: 5
+False Positive: 578
+True Negative: 1393
+False Negative: 20
+
+Output Failure Rate: 0.013
+Transfer Failure Rate: 0.009
+Confidence Interval: -0.035 - 0.052
+Transfer Nonfailure Rate: 0.014
+Precision: 0.009
+Recall: 0.2
+            ","True Positive: 102
+False Positive: 481
+True Negative: 1262
+False Negative: 153
+
+Output Failure Rate: 0.128
+Transfer Failure Rate: 0.175
+Confidence Interval: 0.131 - 0.219
+Transfer Nonfailure Rate: 0.108
+Precision: 0.175
+Recall: 0.4
+            ","True Positive: 72
+False Positive: 511
+True Negative: 1282
+False Negative: 133
+
+Output Failure Rate: 0.102
+Transfer Failure Rate: 0.123
+Confidence Interval: 0.08 - 0.167
+Transfer Nonfailure Rate: 0.094
+Precision: 0.123
+Recall: 0.351
+            ","True Positive: 241
+False Positive: 342
+True Negative: 920
+False Negative: 495
+
+Output Failure Rate: 0.369
+Transfer Failure Rate: 0.413
+Confidence Interval: 0.37 - 0.457
+Transfer Nonfailure Rate: 0.35
+Precision: 0.413
+Recall: 0.327
+            ","True Positive: 13
+False Positive: 570
+True Negative: 1382
+False Negative: 33
+
+Output Failure Rate: 0.023
+Transfer Failure Rate: 0.022
+Confidence Interval: -0.022 - 0.066
+Transfer Nonfailure Rate: 0.023
+Precision: 0.022
+Recall: 0.283
+            ",N/A

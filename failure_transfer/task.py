@@ -27,7 +27,10 @@ class Task:
             )
 
             data = response['choices'][0]['message']['content'].replace('\n\n', '\n')
-        except:
+        except KeyboardInterrupt:
+            print("Interruption...")
+            exit()
+        except Exception:
             data = "Error Querying OpenAI"
 
         return (data)

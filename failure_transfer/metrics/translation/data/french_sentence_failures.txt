@@ -1,0 +1,2 @@
+('Send a volley cheer on high, shake down the thunder from the sky!', ' Shout a rallying cry towards the sky, awaken the thunder from the heavens!', 0.85403967, 0)
+('This scene was parodied in the movie Airplane!', ' This is a film scene: [The scene was parodied in the Airplane! movie].', 0.94922656, 0)
